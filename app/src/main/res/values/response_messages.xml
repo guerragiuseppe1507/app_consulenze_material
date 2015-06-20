@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Strings related to app response -->
+    <string name="success_login">Successful login</string>
+    <string name="fail_login">Wrong password or email</string>
+    <string name="conn_timeout">Check connection status</string>
+</resources>

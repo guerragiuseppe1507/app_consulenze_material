@@ -1,0 +1,14 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_drawer_width">260dp</dimen>
+
+    <!-- Registration form dimensions -->
+    <dimen name="ll_padding">10dip</dimen>
+    <dimen name="et_marginTop">5dip</dimen>
+    <dimen name="et_marginBottom">20dip</dimen>
+    <dimen name="btn_marginTop">10dip</dimen>
+    <dimen name="login_margin">40dip</dimen>
+    <dimen name="login_link_text_size">20sp</dimen>
+</resources>

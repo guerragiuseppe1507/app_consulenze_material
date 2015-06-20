@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="specialties">
+        <item>Allergology</item>
+        <item>Cardiology</item>
+        <item>Dermatology</item>
+        <item>Endocrinology</item>
+        <item>General Surgery</item>
+        <item>Gynecology</item>
+        <item>Neurology</item>
+        <item>Neurosurgery</item>
+        <item>Neuropsychiatry</item>
+        <item>Oncology</item>
+        <item>Ophthalmology</item>
+        <item>Orthopedics</item>
+        <item>Pediatric Cardiology</item>
+        <item>Pediatrics</item>
+        <item>Plastic Surgery</item>
+        <item>Psychology</item>
+        <item>Urology</item>
+    </string-array>
+</resources>
