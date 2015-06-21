@@ -75,7 +75,8 @@
             android:text="@string/province_label" />
         <Spinner android:id="@+id/specialties_spinner"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
 
 
         <!-- Register Button -->
