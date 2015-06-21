@@ -31,50 +31,30 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/ll_padding">
-        <!-- Name Label -->
 
-        <TextView android:id="@+id/reg_name_label_tv"
+        <!--  Email Label -->
+        <TextView android:id="@+id/reg_email_label_tv"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/name_label" />
-        <EditText android:id="@+id/reg_name_et"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/et_marginBottom"
-            android:layout_marginTop="@dimen/et_marginTop"
-            android:inputType="textPersonName"
-            android:singleLine="true" />
-        <!-- Surname Label -->
-        <TextView android:id="@+id/reg_surname_label_tv"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/surname_label" />
-        <EditText android:id="@+id/reg_surname_et"
+            android:text="@string/email_label"/>
+        <EditText android:id="@+id/reg_email_et"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/et_marginBottom"
             android:layout_marginTop="@dimen/et_marginTop"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:singleLine="true"/>
-        <!-- Specialization Label -->
-        <TextView android:id="@+id/reg_specialization_label_tv"
+        <!-- Numero --> <!-- DA CONTROLLARE -->
+        <TextView android:id="@+id/reg_anno_label_tv"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/specialties_label" />
-        <Spinner android:id="@+id/specialties_spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-        <!-- Provincia Label -->
-        <TextView android:id="@+id/reg_province_label_tv"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/province_label" />
-        <EditText android:id="@+id/reg_province_et"
+            android:text="@string/year_label" />
+        <EditText android:id="@+id/reg_anno_et"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/et_marginBottom"
             android:layout_marginTop="@dimen/et_marginTop"
-            android:inputType="text"
+            android:inputType="number"
             android:singleLine="true"/>
         <!-- Numero --> <!-- DA CONTROLLARE -->
         <TextView android:id="@+id/reg_num_label_tv"
@@ -88,41 +68,16 @@
             android:layout_marginTop="@dimen/et_marginTop"
             android:inputType="number"
             android:singleLine="true"/>
-        <!-- Albo Label -->
-        <TextView android:id="@+id/reg_albo_label_tv"
+        <!-- Province Label -->
+        <TextView android:id="@+id/reg_province_label_tv"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/albo_label" />
-        <EditText android:id="@+id/reg_albo_et"
+            android:text="@string/province_label" />
+        <Spinner android:id="@+id/specialties_spinner"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/et_marginBottom"
-            android:layout_marginTop="@dimen/et_marginTop"
-            android:inputType="number"
-            android:singleLine="true"/>
-        <!--  Email Label -->
-        <TextView android:id="@+id/reg_email_label_tv"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/email_label"/>
-        <EditText android:id="@+id/reg_email_et"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/et_marginBottom"
-            android:layout_marginTop="@dimen/et_marginTop"
-            android:inputType="textEmailAddress"
-            android:singleLine="true"/>
-        <!-- Password Label -->
-        <TextView android:id="@+id/reg_password_label_tv"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/password_label"/>
-        <EditText android:id="@+id/reg_password_et"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/et_marginTop"
-            android:inputType="textPassword"
-            android:singleLine="true" />
+            android:layout_height="wrap_content" />
+
+
         <!-- Register Button -->
         <Button android:id="@+id/btnRegister"
             android:layout_width="fill_parent"

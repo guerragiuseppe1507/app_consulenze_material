@@ -41,9 +41,10 @@
     <string name="surname_label">Surname:</string>
     <string name="specialties_label">Specialization:</string>
     <string name="province_label">Province:</string>
-    <string name="number_label">Number:</string>
+    <string name="number_label">Registration Number:</string>
     <string name="albo_label">Enrolled in the Register on:</string>
     <string name="email_label">Email:</string>
+    <string name="year_label">Registration Year:</string>
     <string name="password_label">Password:</string>
     <string name="reg_btn">Register New Account</string>
     <string name="login_link">Already have account? Login here</string>
