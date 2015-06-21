@@ -86,6 +86,7 @@
             android:layout_marginTop="@dimen/btn_marginTop"
             android:text="@string/reg_btn"
             android:textSize="@dimen/login_link_text_size"
+            android:background="@color/colorAccent"
             android:textColor="@color/whiteText" />
         <!-- Link to Login Screen -->
 
@@ -97,6 +98,7 @@
             android:gravity="center"
             android:text="@string/login_link"
             android:textSize="15dp"
+            android:background="@color/colorAccent"
             android:textColor="@color/whiteText"/>
 
     </LinearLayout>

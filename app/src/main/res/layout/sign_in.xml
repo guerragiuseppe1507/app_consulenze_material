@@ -46,6 +46,7 @@
                 android:layout_marginTop="16dp" android:text="@string/action_sign_in_short"
                 android:textStyle="bold"
                 android:textSize="@dimen/login_link_text_size"
+                android:background="@color/colorAccent"
                 android:textColor="@color/whiteText" />
 
             <Button android:id="@+id/link_to_signup"
@@ -54,6 +55,7 @@
                 android:text="@string/reg_btn"
                 android:textStyle="bold"
                 android:textColor="@color/whiteText"
+                android:background="@color/colorAccent"
                 android:textSize="@dimen/login_link_text_size" />
 
         </LinearLayout>
