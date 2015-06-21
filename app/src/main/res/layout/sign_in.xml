@@ -46,14 +46,12 @@
                 android:layout_marginTop="16dp" android:text="@string/action_sign_in_short"
                 android:textStyle="bold"
                 android:textSize="@dimen/login_link_text_size"
-                android:textColor="@color/whiteText"
-                android:elevation="5dp"/>
+                android:textColor="@color/whiteText" />
 
             <Button android:id="@+id/link_to_signup"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/reg_btn"
-                android:elevation="5dp"
                 android:textStyle="bold"
                 android:textColor="@color/whiteText"
                 android:textSize="@dimen/login_link_text_size" />
