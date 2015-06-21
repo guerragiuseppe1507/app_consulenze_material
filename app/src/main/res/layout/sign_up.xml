@@ -73,7 +73,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/province_label" />
-        <Spinner android:id="@+id/specialties_spinner"
+        <Spinner android:id="@+id/province_spinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"/>
