@@ -15,15 +15,15 @@ public class StrutturaJson {
             case"storico":
                 return new String[]{};
                 */
-            case"richieste":
+            case"richiesteValutare":
                 return new String[]{"data", "oraInizio", "oraFine", "intervento", "dottore"};
-            case"richiesteUtente":
+            case"mieRichiesteInserite":
                 return new String[]{"id", "data", "oraInizio", "oraFine", "intervento", "nomeTutor", "cognomeTutor", "percorso", "utente"};
-            case"disponibilita":
+            case"dispon":
                 return new String[]{"id", "data", "oraInizio", "oraFine", "intervento", "ripetizione", "fineRipetizione", "utente"};
             case"tutor":
                 return new String[]{"nomeT", "cognomeT", "scoreT"};
-            case"dateDisponibili":
+            case"dateDispon":
                 return new String[]{"data", "oraInizio", "oraFine", "nomeT", "cognomeT", "scoreT"};
             case"registrazione":
                 return new String[]{"email", "numeroIscrizione", "annoIscrizione","provincia", "password"};

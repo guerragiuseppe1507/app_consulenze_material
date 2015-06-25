@@ -30,6 +30,8 @@ public class Connection {
         this.registrationUrl = url;
     }
 
+    //Tipi di accesso: read, write, change, delete
+    //Tipo elem: vedi classe util/StrutturaJson
     public void setParametri(String tipoElem, String accesso, String... valori){
         this.tipoElem = tipoElem;
         String jsonDaInviare;
