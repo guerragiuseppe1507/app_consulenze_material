@@ -26,9 +26,9 @@ public class JsonHandler {
 
         //creo un nuovo oggetto Json dal risultato ottenuto dal server
         JSONObject oggettoJson = new JSONObject(result);
-        String[] strutturaJson = StrutturaJson.getStruct(tipoElem);
+        String[] strutturaJson = StrutturaJson.getReturnStruct(StrutturaJson.getReturnStructName(tipoElem));
 
-        JSONArray resultArray = oggettoJson.getJSONArray(tipoElem);
+        JSONArray resultArray = oggettoJson.getJSONArray(StrutturaJson.getReturnStructName(tipoElem));
 
         ArrayList<HashMap<String,String>> listaElem = new ArrayList<HashMap<String,String>>();
 

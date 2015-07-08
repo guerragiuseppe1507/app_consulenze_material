@@ -5,17 +5,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 import androidhive.info.materialdesign.R;
-import it.uniba.di.sss1415.app_consulenze.activity.MieDispHolder;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 
 /**
  * Created by Giuseppe on 07/07/2015.
  */
-public class DispListAdapter extends  RecyclerView.Adapter<MieDispHolder> {
+public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDispHolder> {
 
     private Context context;
     private ArrayList<MieDisp> items;
@@ -37,11 +41,48 @@ public class DispListAdapter extends  RecyclerView.Adapter<MieDispHolder> {
     @Override
     public void onBindViewHolder(MieDispHolder viewHolder, int position) {
         MieDisp disp = items.get(position);
-        viewHolder.tvDisp.setText(disp.getIntervento());
+        viewHolder.tvData.setText(disp.getData());
+        viewHolder.tvOraInizio.setText(disp.getOraInizio());
+        viewHolder.tvOraFine.setText(disp.getOraFine());
+        viewHolder.tvIntervento.setText(disp.getIntervento());
+        viewHolder.tvRipetizione.setText(disp.getRipetizione());
+        viewHolder.tvFineRipetizione.setText(disp.getFineRipetizione());
     }
 
     @Override
     public int getItemCount() {
         return items.size();
     }
+
+    public class MieDispHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        private Context context;
+        public TextView tvData;
+        public TextView tvOraInizio;
+        public TextView tvOraFine;
+        public TextView tvIntervento;
+        public TextView tvRipetizione;
+        public TextView tvFineRipetizione;
+
+
+        public MieDispHolder(Context context, View itemView) {
+            super(itemView);
+            this.context = context;
+            tvData = (TextView) itemView.findViewById(R.id.tvData);
+            tvOraInizio = (TextView) itemView.findViewById(R.id.tvOraInizio);
+            tvOraFine = (TextView) itemView.findViewById(R.id.tvOraFine);
+            tvIntervento = (TextView) itemView.findViewById(R.id.tvIntervento);
+            tvRipetizione = (TextView) itemView.findViewById(R.id.tvRipetizione);
+            tvFineRipetizione = (TextView) itemView.findViewById(R.id.tvFineRipetizione);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(context, tvData.getText().toString(), Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 }

@@ -26,20 +26,20 @@ import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
-public class FriendsFragment extends Fragment {
+public class MieDispFragment extends Fragment {
 
     private RecyclerView recyclerView;
     ArrayList<MieDisp> disps;
     private DispListAdapter dispListAdapter;
+    private LinearLayoutManager layoutManager;
 
     private ShowDispTask dispTask = null;
     private Connection conn;
 
     private static final String NOME_RICHIESTA = "dispon";
-    private static final String TIPO_ELEMENTO = "disponibilita";
     private static final String TIPO_ACCESSO = "read";
 
-    public FriendsFragment() {
+    public MieDispFragment() {
         // Required empty public constructor
     }
 
@@ -50,6 +50,7 @@ public class FriendsFragment extends Fragment {
         conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
         dispTask = new ShowDispTask();
         dispTask.execute();
+
     }
 
 
@@ -57,40 +58,36 @@ public class FriendsFragment extends Fragment {
 
 
         disps = new ArrayList<MieDisp>();
-        disps.add(new MieDisp("", "", "", "", "UNO", "", ""));
-        disps.add(new MieDisp("", "", "", "", "DUE", "", ""));
-        disps.add(new MieDisp("", "", "", "", "TRE", "", ""));
-        disps.add(new MieDisp("", "", "", "", "QUATTRO", "", ""));
-        disps.add(new MieDisp("", "", "", "", "CINQUE", "", ""));
-        disps.add(new MieDisp("", "", "", "", "SEI", "", ""));
+        for(int i = 0; i < res.size(); i++) {
+
+            HashMap<String,String> temp = res.get(i);
+            disps.add(new MieDisp(temp.get("id"),temp.get("data"),temp.get("oraInizio"),temp.get("oraFine"),
+                    temp.get("intervento"),temp.get("ripetizione"), temp.get("fineRipetizione")));
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        final View view = inflater.inflate(R.layout.fragment_friends, container, false);
-        final FragmentActivity c = getActivity();
-        final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.mieDisp_recycler);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(c);
+        View view = inflater.inflate(R.layout.fragment_friends, container, false);
+        layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView = (RecyclerView) view.findViewById(R.id.mieDisp_recycler);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final DispListAdapter adapter = new DispListAdapter(getActivity(), disps);
-                c.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        recyclerView.setAdapter(adapter);
-                    }
-                });
-            }
-        }).start();
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         return view;
     }
+
+    private void setRecycler(){
+        dispListAdapter = new DispListAdapter(getActivity(), disps);
+        recyclerView.setAdapter(dispListAdapter);
+    }
+
+
+
 
     public class ShowDispTask extends AsyncTask<String, Void, String> {
 
@@ -113,9 +110,12 @@ public class FriendsFragment extends Fragment {
             ArrayList<HashMap<String,String>> listaDisp;
 
             try {
-                listaDisp = JsonHandler.fromJsonToMapList(TIPO_ELEMENTO, result);
-                System.out.println(listaDisp.get(1));
+                listaDisp = JsonHandler.fromJsonToMapList(NOME_RICHIESTA, result);
+                System.out.println(listaDisp.get(1).get("oraInizio"));
                 createAndPopulateCountriesArray(listaDisp);
+
+                setRecycler();
+
             } catch (JSONException e) {
                 creaMessaggio(ToastMsgs.JSON_TO_ARRAY_ERROR);
                 e.printStackTrace();

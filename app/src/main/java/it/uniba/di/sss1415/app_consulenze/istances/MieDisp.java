@@ -5,13 +5,13 @@ package it.uniba.di.sss1415.app_consulenze.istances;
  */
 public class MieDisp {
 
-    private static String id;
-    private static String data;
-    private static String oraInizio;
-    private static String oraFine;
-    private static String intervento;
-    private static String ripetizione;
-    private static String fineRipetizione;
+    private String id;
+    private String data;
+    private String oraInizio;
+    private String oraFine;
+    private String intervento;
+    private String ripetizione;
+    private String fineRipetizione;
 
     public MieDisp(String id, String data, String oraInizio, String oraFine, String intervento, String ripetizione, String fineRipetizione){
 

@@ -43,4 +43,51 @@ public class StrutturaJson {
         throw new IllegalArgumentException(tipoJson);
     }
 
+    public static String getReturnStructName(String nomeRichiesta) {
+
+        switch (nomeRichiesta) {
+            case "appuntamenti":
+                return "appuntamenti";
+            case "richiesteValutare":
+                return "richieste";
+            case "mieRichiesteInserite":
+                return "richiesteUtente";
+            case "dispon":
+                return "disponibilita";
+            case "tutor":
+                return "tutor";
+            case "dateDispon":
+                return "dateDisponibili";
+        }
+
+        throw new IllegalArgumentException(nomeRichiesta);
+    }
+
+    public static String[] getReturnStruct(String returnStructName ){
+
+        switch(returnStructName){
+            case"appuntamenti":
+                return new String[]{"data", "oraInizio", "oraFine", "tipoAppuntamento", "intervento", "dottore"};
+            /* todo
+            case"storico":
+                return new String[]{};
+                */
+            case"richieste":
+                return new String[]{"data", "oraInizio", "oraFine", "intervento", "dottore"};
+            case"richiesteUtente":
+                return new String[]{"id", "data", "oraInizio", "oraFine", "intervento", "nomeTutor", "cognomeTutor", "percorso", "utente"};
+            case"disponibilita":
+                return new String[]{"id", "data", "oraInizio", "oraFine", "intervento", "ripetizione", "fineRipetizione"};
+            case"tutor":
+                return new String[]{"nomeT", "cognomeT", "scoreT"};
+            case"dateDisponibili":
+                return new String[]{"data", "oraInizio", "oraFine", "nomeT", "cognomeT", "scoreT"};
+
+            //TO-DO Altri casi di possibili risposte da verificare.
+        }
+        throw new IllegalArgumentException(returnStructName);
+    }
+
+
+
 }

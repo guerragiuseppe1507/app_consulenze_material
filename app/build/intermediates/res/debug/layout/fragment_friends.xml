@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="it.uniba.di.sss1415.app_consulenze.activity.FriendsFragment">
+    tools:context="it.uniba.di.sss1415.app_consulenze.activity.MieDispFragment">
 
 
-    <TextView
+    <!--<TextView
         android:id="@+id/label"
         android:layout_alignParentTop="true"
         android:layout_marginTop="100dp"
@@ -25,7 +25,14 @@
         android:textSize="12dp"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
-        android:text="Edit fragment_friends.xml to change the appearance" />
+        android:text="Edit fragment_friends.xml to change the appearance" />-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mieDisp_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" />
+
 
 </RelativeLayout>
-<!-- From: file:/C:/Users/Giuseppe/AndroidStudioProjects/app_consulenze_material/app/src/main/res/layout/fragment_friends.xml -->
+<!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/layout/fragment_friends.xml -->
