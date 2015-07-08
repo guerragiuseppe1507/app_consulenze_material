@@ -2,46 +2,53 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Valerio\AndroidStudioProjects\app_consulenze_material\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="C:\Users\Valerio\AndroidStudioProjects\app_consulenze_material\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-1394eefddbbd66c80f568302231261c240c19b54.jar" />
-    </item>
-    <item
-        jar="C:\Users\Valerio\AndroidStudioProjects\app_consulenze_material\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="11842de6a309c447b3a3d60d73ad637a87c58994">
-        <dex dex="C:\Users\Valerio\AndroidStudioProjects\app_consulenze_material\app\build\intermediates\pre-dexed\debug\classes-f452b76cb6fb6c3cdb5acaca9d1acc2fe649d8e1.jar" />
-    </item>
-    <item
-        jar="C:\Users\Valerio\AndroidStudioProjects\app_consulenze_material\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="C:\Users\Valerio\AndroidStudioProjects\app_consulenze_material\app\build\intermediates\pre-dexed\debug\classes-fcc800131645b38185756db3b2d8d958c4eda816.jar" />
-    </item>
-    <item
-        jar="C:\Users\Valerio\AndroidStudioProjects\app_consulenze_material\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
-        <dex dex="C:\Users\Valerio\AndroidStudioProjects\app_consulenze_material\app\build\intermediates\pre-dexed\debug\classes-f2d397d5c774d1555508c9cabc6ebbb77d4b12ad.jar" />
-    </item>
-    <item
-        jar="C:\Users\Valerio\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="C:\Users\Valerio\AndroidStudioProjects\app_consulenze_material\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-779ae6464919f80c86c79817acf3415cb0ba24dc.jar" />
-    </item>
-    <item
-        jar="C:\Users\Valerio\AndroidStudioProjects\app_consulenze_material\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jar="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="C:\Users\Valerio\AndroidStudioProjects\app_consulenze_material\app\build\intermediates\pre-dexed\debug\classes-24dbd63c9dfd1727c89c2bcc8654f247e3c9dd4d.jar" />
+        <dex dex="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\pre-dexed\debug\classes-bc7ee03f775bf4b45979a758f3a77dd94f5faafd.jar" />
+    </item>
+    <item
+        jar="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="11842de6a309c447b3a3d60d73ad637a87c58994">
+        <dex dex="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\pre-dexed\debug\classes-d023f4e04d319768eaa17c34ed7c40a15ddc5c17.jar" />
+    </item>
+    <item
+        jar="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\exploded-aar\com.xgc1986.android\ripplebutton\0.4.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fe4a82d37ae0d121dda801c9d7b9350c9a6867a6">
+        <dex dex="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\pre-dexed\debug\classes-06dd702ee490f3eacd95fdb26c5acc1f341750b8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-7137e67be40ad80e132ed1a2e6a27492cb2d7bcf.jar" />
+    </item>
+    <item
+        jar="C:\Users\Giuseppe\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-6a008f8c4d90cb34874a2478a6a8704b8e03a724.jar" />
+    </item>
+    <item
+        jar="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\pre-dexed\debug\classes-1248db062e19ff5468521f52c62f3d47093b941f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
+        <dex dex="C:\Users\Giuseppe\AndroidStudioProjects\ProgettoSmart\app_consulenze_material\app\build\intermediates\pre-dexed\debug\classes-7f128f5e4aabacaadf72f60889fdd41547cf826c.jar" />
     </item>
 
 </items>

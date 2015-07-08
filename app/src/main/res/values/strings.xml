@@ -9,16 +9,20 @@
     <string name="nav_item_friends">Mie Disponibilità</string>
     <string name="nav_item_notifications">Messages</string>
 
+    <string name="specialtiesLabel_textView">Expertise</string>
+
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
         <item>@string/nav_item_friends</item>
         <item>@string/nav_item_notifications</item>
+        <item>@string/title_newDisp</item>
     </string-array>
 
     <string name="title_messages">Messages</string>
     <string name="title_friends">Mie Disponibilità</string>
     <string name="title_home">Home</string>
+    <string name="title_newDisp">New Availability</string>
 
     <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
 

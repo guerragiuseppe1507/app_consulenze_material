@@ -117,7 +117,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
             public void onClick(View v) {
 
                 if (ripLL.getVisibility() == View.VISIBLE) {
-                    ripLL.setVisibility(View.INVISIBLE);
+                    ripLL.setVisibility(View.GONE);
                 } else {
                     ripLL.setVisibility(View.VISIBLE);
                 }

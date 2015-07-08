@@ -1,6 +1,10 @@
 -- Merging decision tree log ---
 manifest
 ADDED from AndroidManifest.xml:2:1
+	xmlns:tools
+		ADDED from AndroidManifest.xml:3:5
+	xmlns:android
+		ADDED from AndroidManifest.xml:2:11
 	package
 		ADDED from AndroidManifest.xml:4:5
 		INJECTED from AndroidManifest.xml:0:0
@@ -8,10 +12,6 @@ ADDED from AndroidManifest.xml:2:1
 	android:versionName
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
-	xmlns:tools
-		ADDED from AndroidManifest.xml:3:5
-	xmlns:android
-		ADDED from AndroidManifest.xml:2:11
 	android:versionCode
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
@@ -38,6 +38,7 @@ MERGED from com.android.support:support-v4:22.0.0:22:5
 MERGED from com.android.support:recyclerview-v7:21.0.3:17:5
 MERGED from com.android.support:support-v4:22.0.0:22:5
 MERGED from com.android.support:cardview-v7:22.0.0:22:5
+MERGED from com.xgc1986.android:ripplebutton:0.4.1:11:5
 	android:label
 		ADDED from AndroidManifest.xml:15:9
 	android:allowBackup
@@ -64,20 +65,20 @@ ADDED from AndroidManifest.xml:23:17
 		ADDED from AndroidManifest.xml:23:27
 activity#it.uniba.di.sss1415.app_consulenze.activity.LoginActivity
 ADDED from AndroidManifest.xml:27:9
-	android:label
-		ADDED from AndroidManifest.xml:30:13
-	android:noHistory
-		ADDED from AndroidManifest.xml:29:13
 	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:31:13
+	android:noHistory
+		ADDED from AndroidManifest.xml:29:13
+	android:label
+		ADDED from AndroidManifest.xml:30:13
 	android:name
 		ADDED from AndroidManifest.xml:28:13
 activity#it.uniba.di.sss1415.app_consulenze.activity.RegistrazioneActivity
 ADDED from AndroidManifest.xml:34:9
-	android:label
-		ADDED from AndroidManifest.xml:37:13
 	android:noHistory
 		ADDED from AndroidManifest.xml:36:13
+	android:label
+		ADDED from AndroidManifest.xml:37:13
 	android:name
 		ADDED from AndroidManifest.xml:35:13
 uses-sdk
@@ -87,6 +88,7 @@ MERGED from com.android.support:support-v4:22.0.0:20:5
 MERGED from com.android.support:recyclerview-v7:21.0.3:15:5
 MERGED from com.android.support:support-v4:22.0.0:20:5
 MERGED from com.android.support:cardview-v7:22.0.0:20:5
+MERGED from com.xgc1986.android:ripplebutton:0.4.1:7:5
 	android:targetSdkVersion
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0

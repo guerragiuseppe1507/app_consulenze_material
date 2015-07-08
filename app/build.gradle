@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "androidhive.info.materialdesign"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
@@ -24,4 +24,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.android.support:recyclerview-v7:21.0.+'
     compile 'com.android.support:cardview-v7:22.0.0'
+    compile 'com.xgc1986.android:ripplebutton:0.4.1'
 }
