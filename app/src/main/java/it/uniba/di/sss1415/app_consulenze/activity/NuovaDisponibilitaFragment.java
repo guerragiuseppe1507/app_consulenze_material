@@ -1,8 +1,10 @@
 package it.uniba.di.sss1415.app_consulenze.activity;
 
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidhive.info.materialdesign.R;
+import it.uniba.di.sss1415.app_consulenze.util.SummaryAvalaibility;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,11 +41,8 @@ public class NuovaDisponibilitaFragment extends Fragment {
     ToggleButton rip;
     LinearLayout ripLL;
     ArrayAdapter<CharSequence> adapter;
-    Button datePicker;
-    TextView OutputDate;
-    private int year;
-    private int month;
-    private int day;
+    Button summary;
+    SummaryAvalaibility dialogSummary;
 
     //static final int DATE_PICKER_ID = 1111;
 
@@ -105,12 +104,15 @@ public class NuovaDisponibilitaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_nuova_disponibilita, container, false);
+
+
         // Populate the Spinner with the specialties array
         expertise = (Spinner) v.findViewById(R.id.specialtiesSpinner);
         rip = (ToggleButton) v.findViewById(R.id.RepToggleButton);
         ripLL =(LinearLayout) v.findViewById(R.id.repLinearLayout);
         // Apply the adapter to the spinner
         expertise.setAdapter(adapter);
+        summary = (Button) v.findViewById(R.id.RiepilogoButton);
 
         rip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +123,16 @@ public class NuovaDisponibilitaFragment extends Fragment {
                 } else {
                     ripLL.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        summary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Instance  object of dialog summary
+                dialogSummary = SummaryAvalaibility.newInstance("a","b","c","d","e","f");// TODO
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                dialogSummary.show(ft,"summary");
             }
         });
 

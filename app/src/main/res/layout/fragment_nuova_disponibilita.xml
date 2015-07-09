@@ -161,7 +161,7 @@
                 android:id="@+id/RiepilogoButton"
                 app:buttonColor="@color/colorAccent"
                 app:rippleColor="@android:color/white"
-                />
+                android:singleLine="true" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

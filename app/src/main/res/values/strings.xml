@@ -9,7 +9,15 @@
     <string name="nav_item_friends">Mie Disponibilità</string>
     <string name="nav_item_notifications">Messages</string>
 
+    <!-- strings _nuova_disponibilita -->
+
     <string name="specialtiesLabel_textView">Expertise</string>
+    <string name="congiunzione_to">To</string>
+    <string name="summary_rep">Repetition</string>
+    <string name="summary_untilDate">Until</string>
+    <string name="summaryConfirmButton">Confirm</string>
+    <string name="summaryEditButton">Edit</string>
+    <string name="summaryTitle">SUMMARY</string>
 
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
@@ -55,4 +63,7 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="summary_expertise">Confirm availability for </string>
+    <string name="summary_date">on Date</string>
+
 </resources>
