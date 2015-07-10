@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,12 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.logging.SimpleFormatter;
 
 import androidhive.info.materialdesign.R;
 import it.uniba.di.sss1415.app_consulenze.adapter.DispListAdapter;
@@ -56,13 +61,25 @@ public class MieDispFragment extends Fragment {
 
     private void createAndPopulateCountriesArray(ArrayList<HashMap<String,String>> res) {
 
+        Date d = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
         disps = new ArrayList<MieDisp>();
         for(int i = 0; i < res.size(); i++) {
 
             HashMap<String,String> temp = res.get(i);
-            disps.add(new MieDisp(temp.get("id"),temp.get("data"),temp.get("oraInizio"),temp.get("oraFine"),
-                    temp.get("intervento"),temp.get("ripetizione"), temp.get("fineRipetizione")));
+
+            try {
+                if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
+
+                    disps.add(new MieDisp(temp.get("id"), temp.get("data"), temp.get("oraInizio"), temp.get("oraFine"),
+                            temp.get("intervento"), temp.get("ripetizione"), temp.get("fineRipetizione")));
+
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
