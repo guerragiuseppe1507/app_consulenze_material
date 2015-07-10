@@ -45,8 +45,17 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
         viewHolder.tvOraInizio.setText(disp.getOraInizio());
         viewHolder.tvOraFine.setText(disp.getOraFine());
         viewHolder.tvIntervento.setText(disp.getIntervento());
-        viewHolder.tvRipetizione.setText(disp.getRipetizione());
-        viewHolder.tvFineRipetizione.setText(disp.getFineRipetizione());
+
+        if(disp.getRipetizione().equals("")){
+
+            viewHolder.tvRipetizione.setVisibility(View.GONE);
+            viewHolder.tvFineRipetizione.setVisibility(View.GONE);
+
+        } else {
+            viewHolder.tvRipetizione.setText(disp.getRipetizione());
+            viewHolder.tvFineRipetizione.setText(disp.getFineRipetizione());
+        }
+
     }
 
     @Override

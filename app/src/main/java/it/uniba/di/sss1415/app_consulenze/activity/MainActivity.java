@@ -18,6 +18,11 @@ import androidhive.info.materialdesign.R;
 
 public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener {
 
+    private static final int ID_FRAGMENT_HOME = 0; //TO-DO nomi provvisori fragment
+    private static final int ID_FRAGMENT_MIE_DISP = 1;
+    private static final int ID_FRAGMENT_MEX = 2; //TO-DO nomi provvisori fragment
+    private static final int ID_FRAGMENT_NEW_DISP = 3;
+
     private static String TAG = MainActivity.class.getSimpleName();
 
     private Toolbar mToolbar;
@@ -75,23 +80,23 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             displayView(position);
     }
 
-    private void displayView(int position) {
+    public void displayView(int position) {
         Fragment fragment = null;
         String title = getString(R.string.app_name);
         switch (position) {
-            case 0:
+            case ID_FRAGMENT_HOME:
                 fragment = new HomeFragment();
                 title = getString(R.string.title_home);
                 break;
-            case 1:
+            case ID_FRAGMENT_MIE_DISP:
                 fragment = new MieDispFragment();
                 title = getString(R.string.title_friends);
                 break;
-            case 2:
+            case ID_FRAGMENT_MEX:
                 fragment = new MessagesFragment();
                 title = getString(R.string.title_messages);
                 break;
-            case 3:
+            case ID_FRAGMENT_NEW_DISP:
                 fragment = new NuovaDisponibilitaFragment();
                 title = getString(R.string.title_newDisp);
             default:
@@ -107,5 +112,9 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             // set the toolbar title
             getSupportActionBar().setTitle(title);
         }
+    }
+
+    public void showNewDisp(View v){
+        displayView(ID_FRAGMENT_NEW_DISP);
     }
 }

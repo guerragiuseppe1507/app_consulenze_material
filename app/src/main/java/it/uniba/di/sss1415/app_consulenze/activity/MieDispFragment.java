@@ -2,10 +2,13 @@ package it.uniba.di.sss1415.app_consulenze.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,6 +46,7 @@ public class MieDispFragment extends Fragment {
 
     private static final String NOME_RICHIESTA = "dispon";
     private static final String TIPO_ACCESSO = "read";
+
 
     public MieDispFragment() {
         // Required empty public constructor

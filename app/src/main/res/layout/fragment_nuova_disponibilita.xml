@@ -151,7 +151,7 @@
                     android:text="dd/mm/yyyy" />
             </LinearLayout>
 
-            <com.xgc1986.ripplebutton.widget.RippleButton
+            <Button
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textStyle="bold"
@@ -159,8 +159,6 @@
                 android:textColor="@color/whiteText"
                 android:text="Summary"
                 android:id="@+id/RiepilogoButton"
-                app:buttonColor="@color/colorAccent"
-                app:rippleColor="@android:color/white"
                 android:singleLine="true" />
         </LinearLayout>
     </ScrollView>
