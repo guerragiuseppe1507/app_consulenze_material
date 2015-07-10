@@ -1,18 +1,27 @@
 package it.uniba.di.sss1415.app_consulenze.activity;
 
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.ToggleButton;
+
+import java.util.Calendar;
 
 import androidhive.info.materialdesign.R;
 import it.uniba.di.sss1415.app_consulenze.util.SummaryAvalaibility;
@@ -43,6 +52,14 @@ public class NuovaDisponibilitaFragment extends Fragment {
     ArrayAdapter<CharSequence> adapter;
     Button summary;
     SummaryAvalaibility dialogSummary;
+    TextView oraInizio ;
+    TextView oraFine ;
+    TextView dataIn ;
+    TextView dataFn ;
+    RadioButton rb1 ;
+    RadioButton rb2 ;
+    String repChecked;
+    String untilDate;
 
     //static final int DATE_PICKER_ID = 1111;
 
@@ -87,13 +104,6 @@ public class NuovaDisponibilitaFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
-
-
-
-
-
-
     }
 
 
@@ -110,9 +120,125 @@ public class NuovaDisponibilitaFragment extends Fragment {
         expertise = (Spinner) v.findViewById(R.id.specialtiesSpinner);
         rip = (ToggleButton) v.findViewById(R.id.RepToggleButton);
         ripLL =(LinearLayout) v.findViewById(R.id.repLinearLayout);
+
         // Apply the adapter to the spinner
         expertise.setAdapter(adapter);
         summary = (Button) v.findViewById(R.id.RiepilogoButton);
+
+        // time picker
+        oraInizio = (TextView) v.findViewById(R.id.oraInizioEditText);
+        oraFine = (TextView) v.findViewById(R.id.oraFineEditText);
+        //data picker
+        dataIn = (TextView) v.findViewById(R.id.dateEditText);
+        dataFn = (TextView) v.findViewById(R.id.dataEndEditText);
+        //radio checked
+
+        rb1 = (RadioButton) v.findViewById(R.id.radioButton);
+        rb2 = (RadioButton) v.findViewById(R.id.radioButton2);
+
+        oraInizio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+
+                // Create a new instance of TimePickerDialog and return it
+                TimePickerDialog tpd =  new TimePickerDialog(getActivity(),
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                                  int minute) {
+                                // Display Selected time in textbox
+
+                                oraInizio.setText(hourOfDay + ":" + minute);
+                            }
+                        }, hour, minute,
+                        DateFormat.is24HourFormat(getActivity()));
+                tpd.show();
+
+            }
+        });
+
+        oraFine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+
+                // Create a new instance of TimePickerDialog and return it
+                TimePickerDialog tpd =  new TimePickerDialog(getActivity(),
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                                  int minute) {
+                                // Display Selected time in textbox
+
+                                oraFine.setText(hourOfDay + ":" + minute );
+                            }
+                        }, hour, minute,
+                        DateFormat.is24HourFormat(getActivity()));
+                tpd.show();
+
+            }
+        });
+
+
+        dataIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog dpd = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        dataIn.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+                    }
+                }, year, month, day);
+
+
+                dpd.show();
+
+            }
+        });
+
+        dataFn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog dpd = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        dataFn.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+                    }
+                }, year, month, day);
+
+
+                dpd.show();
+
+            }
+        });
+
+
+
+
+
+
+
+
+
 
         rip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,12 +255,38 @@ public class NuovaDisponibilitaFragment extends Fragment {
         summary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(rb1.isChecked()) {
+
+                    repChecked = rb1.getText().toString();
+                    untilDate  = dataFn.getText().toString();
+
+                } else if(rb2.isChecked()){
+                    repChecked = rb2.getText().toString();
+                    untilDate  = dataFn.getText().toString();
+                }else {
+
+
+                    repChecked = "non impostata";
+                    untilDate = "non impostata";
+
+                }
                 //Instance  object of dialog summary
-                dialogSummary = SummaryAvalaibility.newInstance("a","b","c","d","e","f");// TODO
+                dialogSummary = SummaryAvalaibility.newInstance(
+                        expertise.getSelectedItem().toString(),
+                        dataIn.getText().toString(),
+                        oraInizio.getText().toString(),
+                        oraFine.getText().toString(),
+                        repChecked,
+                        untilDate);
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 dialogSummary.show(ft,"summary");
             }
         });
+
+
+
+
 
         return v;
     }

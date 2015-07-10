@@ -32,7 +32,7 @@ public class SummaryAvalaibility extends DialogFragment {
 
 
     public static SummaryAvalaibility newInstance(String exp , String date, String sTime , String eTime, String rep, String until){
-       SummaryAvalaibility sa = new SummaryAvalaibility();
+        SummaryAvalaibility sa = new SummaryAvalaibility();
         Bundle args = new Bundle();
         args.putString("exp", exp);
         args.putString("date", date);
@@ -42,7 +42,7 @@ public class SummaryAvalaibility extends DialogFragment {
         args.putString("until", until);
 
         sa.setArguments(args);
-       return  sa;
+        return  sa;
     }
 
     @Override
