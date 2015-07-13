@@ -16,8 +16,10 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Random;
 
-import androidhive.info.materialdesign.R;
+
 import it.uniba.di.sss1415.app_consulenze.activity.Connection;
+import app_consulenze_material.R;
+
 
 
 /**

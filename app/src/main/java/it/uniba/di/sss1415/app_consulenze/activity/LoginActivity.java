@@ -13,9 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidhive.info.materialdesign.R;
+import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.istances.Connection;
 import it.uniba.di.sss1415.app_consulenze.istances.DatiUtente;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
 
 
@@ -188,6 +189,7 @@ public class LoginActivity extends Activity{
                 datiUser = new DatiUtente(result);
                 toMain();
                 creaMessaggio(getApplicationContext().getResources().getString(R.string.success_login));
+                UserSessionInfo.getInstance().setEmail(mEmail);
 
             }
 

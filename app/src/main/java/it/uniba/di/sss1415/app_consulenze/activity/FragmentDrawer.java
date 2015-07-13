@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidhive.info.materialdesign.R;
+import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.adapter.NavigationDrawerAdapter;
 import it.uniba.di.sss1415.app_consulenze.model.NavDrawerItem;
 

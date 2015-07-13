@@ -13,7 +13,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-import androidhive.info.materialdesign.R;
+import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 
 /**

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidhive.info.materialdesign.R;
+import app_consulenze_material.R;
 
 
 public class MessagesFragment extends Fragment {

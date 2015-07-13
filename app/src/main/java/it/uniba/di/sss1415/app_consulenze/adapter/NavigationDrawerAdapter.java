@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 
-import androidhive.info.materialdesign.R;
+import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.model.NavDrawerItem;
 
 
