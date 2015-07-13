@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import androidhive.info.materialdesign.R;
+import app_consulenze_material.R;
 
 
 /**

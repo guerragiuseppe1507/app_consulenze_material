@@ -23,7 +23,7 @@ import android.widget.ToggleButton;
 
 import java.util.Calendar;
 
-import androidhive.info.materialdesign.R;
+import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.util.SummaryAvalaibility;
 
 /**

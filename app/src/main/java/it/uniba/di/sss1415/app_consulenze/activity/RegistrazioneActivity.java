@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-import androidhive.info.materialdesign.R;
+import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.istances.Connection;
 import it.uniba.di.sss1415.app_consulenze.istances.DatiUtente;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;

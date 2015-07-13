@@ -1,18 +1,12 @@
 package it.uniba.di.sss1415.app_consulenze.activity;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.logging.SimpleFormatter;
 
-import androidhive.info.materialdesign.R;
+import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.adapter.DispListAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
@@ -91,7 +84,7 @@ public class MieDispFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_friends, container, false);
+        View view = inflater.inflate(R.layout.fragment_miedisp, container, false);
         layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView = (RecyclerView) view.findViewById(R.id.mieDisp_recycler);
