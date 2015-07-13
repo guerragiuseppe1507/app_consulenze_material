@@ -153,13 +153,13 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ogni settimana. (Ogni Lunedi)"
+                        android:text="Ogni settimana. (Il lunedi)"
                         android:id="@+id/radioButton" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ogni due settimana(Il lunedi)"
+                        android:text="Ogni due settimane (Il lunedi)"
                         android:id="@+id/radioButton2" />
                 </RadioGroup>
 

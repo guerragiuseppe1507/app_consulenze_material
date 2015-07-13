@@ -1,18 +1,12 @@
 package it.uniba.di.sss1415.app_consulenze.activity;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +14,10 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.logging.SimpleFormatter;
 
 import androidhive.info.materialdesign.R;
 import it.uniba.di.sss1415.app_consulenze.adapter.DispListAdapter;
@@ -73,16 +65,16 @@ public class MieDispFragment extends Fragment {
 
             HashMap<String,String> temp = res.get(i);
 
-            try {
-                if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
+            //try {
+                //if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
 
                     disps.add(new MieDisp(temp.get("id"), temp.get("data"), temp.get("oraInizio"), temp.get("oraFine"),
                             temp.get("intervento"), temp.get("ripetizione"), temp.get("fineRipetizione")));
 
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+             //   }
+            //} catch (ParseException e) {
+             //   e.printStackTrace();
+            //}
 
         }
     }

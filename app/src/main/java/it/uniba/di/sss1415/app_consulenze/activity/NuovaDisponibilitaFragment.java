@@ -60,6 +60,9 @@ public class NuovaDisponibilitaFragment extends Fragment {
     RadioButton rb2 ;
     String repChecked;
     String untilDate;
+    int dayofweek;
+
+
 
     //static final int DATE_PICKER_ID = 1111;
 
@@ -92,6 +95,8 @@ public class NuovaDisponibilitaFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         adapter = ArrayAdapter.createFromResource(this.getActivity(),
@@ -152,7 +157,17 @@ public class NuovaDisponibilitaFragment extends Fragment {
                                                   int minute) {
                                 // Display Selected time in textbox
 
-                                oraInizio.setText(hourOfDay + ":" + minute);
+
+                                String minuti = Integer.toString(minute);
+                                if(minute < 10){
+                                    minuti = "0" + minute;
+                                }
+
+                                String ora = Integer.toString(hourOfDay);
+                                if(hourOfDay < 10){
+                                    ora = "0" + hourOfDay;
+                                }
+                                oraInizio.setText(ora + ":" + minuti + ":00");
                             }
                         }, hour, minute,
                         DateFormat.is24HourFormat(getActivity()));
@@ -168,6 +183,8 @@ public class NuovaDisponibilitaFragment extends Fragment {
                 int hour = c.get(Calendar.HOUR_OF_DAY);
                 int minute = c.get(Calendar.MINUTE);
 
+
+
                 // Create a new instance of TimePickerDialog and return it
                 TimePickerDialog tpd =  new TimePickerDialog(getActivity(),
                         new TimePickerDialog.OnTimeSetListener() {
@@ -176,8 +193,18 @@ public class NuovaDisponibilitaFragment extends Fragment {
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
                                 // Display Selected time in textbox
+                                String minuti = Integer.toString(minute);
+                                if(minute < 10){
+                                    minuti = "0" + minute;
+                                }
 
-                                oraFine.setText(hourOfDay + ":" + minute );
+                                String ora = Integer.toString(hourOfDay);
+                                if(hourOfDay < 10){
+                                    ora = "0" + hourOfDay;
+                                }
+
+
+                                oraFine.setText(ora + ":" + minuti + ":00" );
                             }
                         }, hour, minute,
                         DateFormat.is24HourFormat(getActivity()));
@@ -199,7 +226,18 @@ public class NuovaDisponibilitaFragment extends Fragment {
                 DatePickerDialog dpd = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        dataIn.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+                       // dataIn.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+                        String mese = Integer.toString(monthOfYear+1);
+                        if(monthOfYear+1 < 10){
+                            mese = "0"+ mese;
+                        }
+
+                        String giorno = Integer.toString(dayOfMonth);
+                        if(dayOfMonth < 10){
+                            giorno = "0"+ Integer.toString(dayOfMonth);
+                        }
+
+                        dataIn.setText(year + "-" + mese + "-" + giorno);
                     }
                 }, year, month, day);
 
@@ -216,12 +254,22 @@ public class NuovaDisponibilitaFragment extends Fragment {
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
-
+                 dayofweek = c.get(Calendar.DAY_OF_WEEK);
+                System.out.println("DAY OF WEEK :" + dayofweek);
 
                 DatePickerDialog dpd = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        dataFn.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+                        String mese = Integer.toString(monthOfYear+1);
+                        if(monthOfYear+1 < 10){
+                            mese = "0"+ mese;
+                        }
+
+                        String giorno = Integer.toString(dayOfMonth);
+                        if(dayOfMonth < 10){
+                            giorno = "0"+ dayOfMonth;
+                        }
+                        dataFn.setText(year + "-" + mese + "-" + giorno);
                     }
                 }, year, month, day);
 
@@ -258,11 +306,11 @@ public class NuovaDisponibilitaFragment extends Fragment {
 
                 if(rb1.isChecked()) {
 
-                    repChecked = rb1.getText().toString();
+                    repChecked = "Ogni settimana. ";
                     untilDate  = dataFn.getText().toString();
 
                 } else if(rb2.isChecked()){
-                    repChecked = rb2.getText().toString();
+                    repChecked = "Ogni due settimane ";
                     untilDate  = dataFn.getText().toString();
                 }else {
 
@@ -278,7 +326,8 @@ public class NuovaDisponibilitaFragment extends Fragment {
                         oraInizio.getText().toString(),
                         oraFine.getText().toString(),
                         repChecked,
-                        untilDate);
+                        untilDate,
+                        dayofweek);
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 dialogSummary.show(ft,"summary");
             }
