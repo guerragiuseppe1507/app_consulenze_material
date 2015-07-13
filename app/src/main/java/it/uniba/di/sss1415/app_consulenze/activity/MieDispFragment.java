@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,16 +65,16 @@ public class MieDispFragment extends Fragment {
 
             HashMap<String,String> temp = res.get(i);
 
-            try {
-                if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
+            //try {
+                //if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
 
                     disps.add(new MieDisp(temp.get("id"), temp.get("data"), temp.get("oraInizio"), temp.get("oraFine"),
                             temp.get("intervento"), temp.get("ripetizione"), temp.get("fineRipetizione")));
 
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+             //   }
+            //} catch (ParseException e) {
+             //   e.printStackTrace();
+            //}
 
         }
     }

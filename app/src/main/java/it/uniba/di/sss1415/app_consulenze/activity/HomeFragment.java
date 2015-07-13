@@ -1,7 +1,6 @@
 package it.uniba.di.sss1415.app_consulenze.activity;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -69,7 +68,7 @@ public class HomeFragment extends Fragment {
 
             HashMap<String,String> temp = res.get(i);
 
-            //il controllo sulla data è disabilitato perchè altrimenti non si vedrebbe nessun appuntamento
+            //il controllo sulla data ï¿½ disabilitato perchï¿½ altrimenti non si vedrebbe nessun appuntamento
             //try {
             //if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
 
