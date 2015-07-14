@@ -1,4 +1,4 @@
-package it.uniba.di.sss1415.app_consulenze.activity;
+package it.uniba.di.sss1415.app_consulenze.Fragment;
 
 
 import android.content.Context;
@@ -21,9 +21,11 @@ import java.util.Date;
 import java.util.HashMap;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.activity.Connection;
 import it.uniba.di.sss1415.app_consulenze.adapter.AppuntamentiAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.Appuntamenti;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
+import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
@@ -84,6 +86,12 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onDetach() {
+        super.onStop();
+        if(appuntamentiTask!=null)appuntamentiTask.cancel(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -125,18 +133,23 @@ public class HomeFragment extends Fragment {
             System.out.println(result);
 
             ArrayList<HashMap<String,String>> listaApppuntamenti;
+            if (result.equals(ToastMsgs.CONN_TIMEOUT)){
 
-            try {
-                listaApppuntamenti = JsonHandler.fromJsonToMapList(NOME_RICHIESTA, result);
-                System.out.println(listaApppuntamenti.get(1).get("oraInizio"));
-                createAndPopulateCountriesArray(listaApppuntamenti);
+                creaMessaggio(getActivity().getApplicationContext().getResources().getString(R.string.conn_timeout));
+            } else {
+                try {
+                    listaApppuntamenti = JsonHandler.fromJsonToMapList(NOME_RICHIESTA, result);
+                    System.out.println(listaApppuntamenti.get(1).get("oraInizio"));
+                    createAndPopulateCountriesArray(listaApppuntamenti);
 
-                setRecycler();
+                    setRecycler();
 
-            } catch (JSONException e) {
-                creaMessaggio(ToastMsgs.JSON_TO_ARRAY_ERROR);
-                e.printStackTrace();
+                } catch (JSONException e) {
+                    creaMessaggio(ToastMsgs.JSON_TO_ARRAY_ERROR);
+                    e.printStackTrace();
+                }
             }
+
 
             appuntamentiTask = null;
 

@@ -18,6 +18,7 @@ import it.uniba.di.sss1415.app_consulenze.istances.Connection;
 import it.uniba.di.sss1415.app_consulenze.istances.DatiUtente;
 import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
+import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
 /**
@@ -147,6 +148,12 @@ public class LoginActivity extends Activity{
         return true;
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(mAuthTask!=null)mAuthTask.cancel(true);
+    }
+
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -177,7 +184,7 @@ public class LoginActivity extends Activity{
 
             System.out.println(result);
 
-            if (result.equals(ServerMsgs.CONN_TIMEOUT)){
+            if (result.equals(ToastMsgs.CONN_TIMEOUT)){
 
                 creaMessaggio(getApplicationContext().getResources().getString(R.string.conn_timeout));
 

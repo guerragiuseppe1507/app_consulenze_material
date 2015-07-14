@@ -1,4 +1,4 @@
-package it.uniba.di.sss1415.app_consulenze.activity;
+package it.uniba.di.sss1415.app_consulenze.Fragment;
 
 
 import android.app.DatePickerDialog;
@@ -24,7 +24,6 @@ import android.widget.ToggleButton;
 import java.util.Calendar;
 
 import app_consulenze_material.R;
-import it.uniba.di.sss1415.app_consulenze.util.SummaryAvalaibility;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,7 +50,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
     LinearLayout ripLL;
     ArrayAdapter<CharSequence> adapter;
     Button summary;
-    SummaryAvalaibility dialogSummary;
+    SummaryAvailability dialogSummary;
     TextView oraInizio ;
     TextView oraFine ;
     TextView dataIn ;
@@ -320,7 +319,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
 
                 }
                 //Instance  object of dialog summary
-                dialogSummary = SummaryAvalaibility.newInstance(
+                dialogSummary = SummaryAvailability.newInstance(
                         expertise.getSelectedItem().toString(),
                         dataIn.getText().toString(),
                         oraInizio.getText().toString(),

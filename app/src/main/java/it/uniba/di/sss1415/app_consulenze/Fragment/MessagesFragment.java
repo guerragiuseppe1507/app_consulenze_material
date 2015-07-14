@@ -1,4 +1,4 @@
-package it.uniba.di.sss1415.app_consulenze.activity;
+package it.uniba.di.sss1415.app_consulenze.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

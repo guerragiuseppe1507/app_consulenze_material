@@ -5,4 +5,5 @@ package it.uniba.di.sss1415.app_consulenze.util;
  */
 public class ToastMsgs {
     public static final String JSON_TO_ARRAY_ERROR = "Errore elaborazione risultati";
+    public static final String CONN_TIMEOUT = "timeout";
 }

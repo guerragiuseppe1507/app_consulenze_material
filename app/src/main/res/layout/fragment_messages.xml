@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="it.uniba.di.sss1415.app_consulenze.activity.HomeFragment">
+    tools:context="it.uniba.di.sss1415.app_consulenze.Fragment.HomeFragment">
 
 
     <TextView

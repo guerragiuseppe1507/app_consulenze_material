@@ -14,6 +14,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.Fragment.HomeFragment;
+import it.uniba.di.sss1415.app_consulenze.Fragment.MessagesFragment;
+import it.uniba.di.sss1415.app_consulenze.Fragment.MieDispFragment;
+import it.uniba.di.sss1415.app_consulenze.Fragment.NuovaDisponibilitaFragment;
 
 
 public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener {

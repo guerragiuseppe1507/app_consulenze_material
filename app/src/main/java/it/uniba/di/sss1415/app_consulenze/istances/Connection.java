@@ -15,6 +15,7 @@ import java.net.URL;
 
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
+import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 /**
  * Created by Giuseppe on 03/06/2015.
@@ -92,7 +93,7 @@ public class Connection {
             return response.toString();
 
         } catch (SocketTimeoutException e) {
-            return ServerMsgs.CONN_TIMEOUT;
+            return ToastMsgs.CONN_TIMEOUT;
         } catch (IOException e){
             e.printStackTrace();
             return null;

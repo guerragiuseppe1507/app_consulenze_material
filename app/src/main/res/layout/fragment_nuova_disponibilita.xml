@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="it.uniba.di.sss1415.app_consulenze.activity.MessagesFragment">
+    tools:context="it.uniba.di.sss1415.app_consulenze.Fragment.MessagesFragment">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

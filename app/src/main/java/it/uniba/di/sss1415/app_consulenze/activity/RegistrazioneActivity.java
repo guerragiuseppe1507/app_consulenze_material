@@ -19,6 +19,7 @@ import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.istances.Connection;
 import it.uniba.di.sss1415.app_consulenze.istances.DatiUtente;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
+import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
 public class RegistrazioneActivity extends Activity {
@@ -112,6 +113,12 @@ public class RegistrazioneActivity extends Activity {
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(mRegTask!=null)mRegTask.cancel(true);
+    }
+
     public class UserRegisterTask extends AsyncTask<String, Void, String> {
 
         private final String mEmail;
@@ -145,7 +152,7 @@ public class RegistrazioneActivity extends Activity {
 
             System.out.println(result);
 
-            if (result.equals(ServerMsgs.CONN_TIMEOUT)){
+            if (result.equals(ToastMsgs.CONN_TIMEOUT)){
 
                 creaMessaggio(getApplicationContext().getResources().getString(R.string.conn_timeout));
 

@@ -6,5 +6,5 @@ package it.uniba.di.sss1415.app_consulenze.util;
 public class ServerMsgs {
 
     public static final String NO_USER_FOUND = "Utente non presente";
-    public static final String CONN_TIMEOUT = "timeout";
+
 }

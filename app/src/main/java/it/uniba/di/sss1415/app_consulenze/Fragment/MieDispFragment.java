@@ -1,4 +1,4 @@
-package it.uniba.di.sss1415.app_consulenze.activity;
+package it.uniba.di.sss1415.app_consulenze.Fragment;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -20,9 +20,11 @@ import java.util.Date;
 import java.util.HashMap;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.activity.Connection;
 import it.uniba.di.sss1415.app_consulenze.adapter.DispListAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
+import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
@@ -100,7 +102,11 @@ public class MieDispFragment extends Fragment {
     }
 
 
-
+    @Override
+    public void onDetach() {
+        super.onStop();
+        if(dispTask!=null)dispTask.cancel(true);
+    }
 
     public class ShowDispTask extends AsyncTask<String, Void, String> {
 
@@ -122,17 +128,24 @@ public class MieDispFragment extends Fragment {
 
             ArrayList<HashMap<String,String>> listaDisp;
 
-            try {
-                listaDisp = JsonHandler.fromJsonToMapList(NOME_RICHIESTA, result);
-                System.out.println(listaDisp.get(1).get("oraInizio"));
-                createAndPopulateCountriesArray(listaDisp);
+            if (result.equals(ToastMsgs.CONN_TIMEOUT)){
 
-                setRecycler();
+                creaMessaggio(getActivity().getApplicationContext().getResources().getString(R.string.conn_timeout));
+            } else {
+                try {
+                    listaDisp = JsonHandler.fromJsonToMapList(NOME_RICHIESTA, result);
+                    System.out.println(listaDisp.get(1).get("oraInizio"));
+                    createAndPopulateCountriesArray(listaDisp);
 
-            } catch (JSONException e) {
-                creaMessaggio(ToastMsgs.JSON_TO_ARRAY_ERROR);
-                e.printStackTrace();
+                    setRecycler();
+
+                } catch (JSONException e) {
+                    creaMessaggio(ToastMsgs.JSON_TO_ARRAY_ERROR);
+                    e.printStackTrace();
+                }
             }
+
+
 
             dispTask = null;
 

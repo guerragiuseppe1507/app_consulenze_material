@@ -1,4 +1,4 @@
-package it.uniba.di.sss1415.app_consulenze.util;
+package it.uniba.di.sss1415.app_consulenze.Fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -19,13 +19,14 @@ import java.util.Random;
 
 import it.uniba.di.sss1415.app_consulenze.activity.Connection;
 import app_consulenze_material.R;
-
+import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
+import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
 /**
  * Created by Pasen on 09/07/2015.
  */
-public class SummaryAvalaibility extends DialogFragment {
+public class SummaryAvailability extends DialogFragment {
     String exp ;
     String date;
     String sTime;
@@ -44,14 +45,14 @@ public class SummaryAvalaibility extends DialogFragment {
     View v;
 
     private Connection conn;
-    private DispTask newDispTask = null;
+    private AvailabilityTask availabilityTask = null;
 
     private static final String TIPO_ELEMENTO = "dispon";
     private static final String ACCESSO = "write";
 
    private String user ;
-    public static SummaryAvalaibility newInstance(String exp , String date, String sTime , String eTime, String rep, String until, int dayofweek){
-        SummaryAvalaibility sa = new SummaryAvalaibility();
+    public static SummaryAvailability newInstance(String exp , String date, String sTime , String eTime, String rep, String until, int dayofweek){
+        SummaryAvailability sa = new SummaryAvailability();
         Bundle args = new Bundle();
         args.putString("exp", exp);
         args.putString("date", date);
@@ -130,16 +131,16 @@ public class SummaryAvalaibility extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // invio dati al server
-                          newDispTask = new DispTask(exp, date, sTime, eTime,rep, until, "ciao@afa.com");
+                        availabilityTask = new AvailabilityTask(exp, date, sTime, eTime,rep, until, "ciao@afa.com");
 
-                          newDispTask.execute();
+                        availabilityTask.execute();
 
 
                     }
                 })
                 .setNegativeButton(R.string.summaryEditButton, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        SummaryAvalaibility.this.getDialog().cancel();
+                        SummaryAvailability.this.getDialog().cancel();
                     }
                 });
 
@@ -164,7 +165,7 @@ public class SummaryAvalaibility extends DialogFragment {
     }
 
     // connection to server
-    public class DispTask extends AsyncTask<String, Void, String> {
+    public class AvailabilityTask extends AsyncTask<String, Void, String> {
 
         private String exp ;
         private String date;
@@ -175,7 +176,7 @@ public class SummaryAvalaibility extends DialogFragment {
         private String user;
 
 
-        DispTask(String mExp, String mDate, String mSTime, String mETime, String mRep, String mUntil, String mUser) {
+        AvailabilityTask(String mExp, String mDate, String mSTime, String mETime, String mRep, String mUntil, String mUser) {
             exp = mExp;
             date = mDate;
             sTime = mSTime;
@@ -183,6 +184,12 @@ public class SummaryAvalaibility extends DialogFragment {
             rep = mRep;
             until = mUntil;
             user = mUser;
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            if(availabilityTask!=null)availabilityTask.cancel(true);
         }
 
         @Override
@@ -205,7 +212,7 @@ public class SummaryAvalaibility extends DialogFragment {
 
             System.out.println(result);
 
-            if (result.equals(ServerMsgs.CONN_TIMEOUT)) {
+            if (result.equals(ToastMsgs.CONN_TIMEOUT)) {
 
                 creaMessaggio(getActivity().getResources().getString(R.string.conn_timeout));
 
@@ -219,7 +226,7 @@ public class SummaryAvalaibility extends DialogFragment {
 
             }
 
-            newDispTask = null;
+            availabilityTask = null;
 
         }
 
