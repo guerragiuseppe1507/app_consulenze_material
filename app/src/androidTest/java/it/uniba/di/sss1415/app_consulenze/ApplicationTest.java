@@ -1,4 +1,4 @@
-package androidhive.info.materialdesign;
+package it.uniba.di.sss1415.app_consulenze;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

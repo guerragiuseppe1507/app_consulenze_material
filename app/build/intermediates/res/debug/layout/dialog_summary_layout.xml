@@ -19,28 +19,22 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/et_marginBottom">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/summary_expertise"
+            android:id="@+id/ExpertiseLabelTextView" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/summary_expertise"
-                android:id="@+id/ExpertiseLabelTextView" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/expertiseTextView"
-                android:password="false"
-                android:textStyle="bold"
-                android:paddingLeft="@dimen/ll_padding" />
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/expertiseTextView"
+            android:password="false"
+            android:textStyle="bold"
+            />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -73,9 +67,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="From"
+                android:id="@+id/textView2"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="medium text"
                 android:id="@+id/startTimeTV"
                 android:textStyle="bold"
+                android:paddingLeft="@dimen/ll_padding"
                 />
 
             <TextView
@@ -97,11 +100,6 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,14 +108,12 @@
             />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/repTV"
-            android:paddingLeft="@dimen/ll_padding"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/repTV"
+        android:textStyle="bold" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -140,7 +136,8 @@
                 android:paddingLeft="@dimen/ll_padding"
                 android:textStyle="bold" />
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
-<!-- From: file:/C:/Users/Giuseppe/AndroidStudioProjects/ProgettoSmart/app_consulenze_material/app/src/main/res/layout/dialog_summary_layout.xml -->
+<!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/layout/dialog_summary_layout.xml -->

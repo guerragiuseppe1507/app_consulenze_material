@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "androidhive.info.materialdesign"
+        applicationId "app.consulenze.material"
         minSdkVersion 21
         targetSdkVersion 21
         versionCode 1

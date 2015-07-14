@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="it.uniba.di.sss1415.app_consulenze.activity.MessagesFragment">
+    tools:context="it.uniba.di.sss1415.app_consulenze.activity.HomeFragment">
 
 
     <TextView
@@ -15,7 +15,7 @@
         android:gravity="center_horizontal"
         android:textSize="45dp"
         android:text="MESSAGES"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_below="@id/label"
@@ -25,7 +25,8 @@
         android:textSize="12dp"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
-        android:text="Edit fragment_messages.xml to change the appearance" />
+        android:text="Edit fragment_friends.xml to change the appearance" />
 
 </RelativeLayout>
-<!-- From: file:/C:/Users/Giuseppe/AndroidStudioProjects/ProgettoSmart/app_consulenze_material/app/src/main/res/layout/fragment_messages.xml -->
+
+<!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/layout/fragment_messages.xml -->
