@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +26,7 @@ import it.uniba.di.sss1415.app_consulenze.adapter.DispListAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
+import it.uniba.di.sss1415.app_consulenze.util.ServerResponseDataSorter;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
@@ -62,21 +64,23 @@ public class MieDispFragment extends Fragment {
         Date d = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
+        ServerResponseDataSorter.sort(res);
+
         disps = new ArrayList<MieDisp>();
         for(int i = 0; i < res.size(); i++) {
 
             HashMap<String,String> temp = res.get(i);
 
-            //try {
-                //if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
+            try {
+                if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
 
                     disps.add(new MieDisp(temp.get("id"), temp.get("data"), temp.get("oraInizio"), temp.get("oraFine"),
                             temp.get("intervento"), temp.get("ripetizione"), temp.get("fineRipetizione")));
 
-             //   }
-            //} catch (ParseException e) {
-             //   e.printStackTrace();
-            //}
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
         }
     }

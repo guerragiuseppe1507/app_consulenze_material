@@ -17,6 +17,8 @@ import org.json.JSONException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -26,6 +28,7 @@ import it.uniba.di.sss1415.app_consulenze.adapter.AppuntamentiAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.Appuntamenti;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
+import it.uniba.di.sss1415.app_consulenze.util.ServerResponseDataSorter;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
@@ -64,6 +67,8 @@ public class HomeFragment extends Fragment {
 
         Date d = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        ServerResponseDataSorter.sort(res);
 
         appuntamenti = new ArrayList<Appuntamenti>();
         for(int i = 0; i < res.size(); i++) {

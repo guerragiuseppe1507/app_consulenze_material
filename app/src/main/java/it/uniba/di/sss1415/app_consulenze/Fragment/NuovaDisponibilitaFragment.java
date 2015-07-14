@@ -21,9 +21,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.Fragment.SummaryAvailability;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,11 +62,11 @@ public class NuovaDisponibilitaFragment extends Fragment {
     RadioButton rb2 ;
     String repChecked;
     String untilDate;
-    int dayofweek;
+    String sss;
 
 
 
-    //static final int DATE_PICKER_ID = 1111;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -136,7 +139,6 @@ public class NuovaDisponibilitaFragment extends Fragment {
         dataIn = (TextView) v.findViewById(R.id.dateEditText);
         dataFn = (TextView) v.findViewById(R.id.dataEndEditText);
         //radio checked
-
         rb1 = (RadioButton) v.findViewById(R.id.radioButton);
         rb2 = (RadioButton) v.findViewById(R.id.radioButton2);
 
@@ -155,8 +157,6 @@ public class NuovaDisponibilitaFragment extends Fragment {
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
                                 // Display Selected time in textbox
-
-
                                 String minuti = Integer.toString(minute);
                                 if(minute < 10){
                                     minuti = "0" + minute;
@@ -222,10 +222,17 @@ public class NuovaDisponibilitaFragment extends Fragment {
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
 
+
                 DatePickerDialog dpd = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                       // dataIn.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+                        String day = "";
+                        SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
+                        Date date = new Date(year, monthOfYear, dayOfMonth-1);
+                        sss = simpledateformat.format(date);
+
+
+
                         String mese = Integer.toString(monthOfYear+1);
                         if(monthOfYear+1 < 10){
                             mese = "0"+ mese;
@@ -237,6 +244,33 @@ public class NuovaDisponibilitaFragment extends Fragment {
                         }
 
                         dataIn.setText(year + "-" + mese + "-" + giorno);
+
+                        //controllo giorno della settimana
+                        switch (sss){
+
+                            case "Monday" : day = "(Ogni lunedi)";
+                                break;
+                            case "Tuesday" : day = "(Ogni martedi)";
+                                break;
+                            case "Wednesday" : day = "(Ogni mercoledi)";
+                                break;
+                            case "Thursday" : day = "(Ogni giovedi)" ;
+                                break;
+                            case "Friday" : day =  "(Ogni venerdi)";
+                                break;
+                            case "Saturday": day = "(Ogni sabato)";
+                                break;
+                            case "Sunday" : day = "(Ogni domenica)" ;
+
+                                break;
+                            default:break;
+                        }
+
+
+
+                        rb1.setText("Ogni settimana. " + day);
+                        rb2.setText("Ogni due settimane " + day);
+
                     }
                 }, year, month, day);
 
@@ -253,8 +287,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
-                 dayofweek = c.get(Calendar.DAY_OF_WEEK);
-                System.out.println("DAY OF WEEK :" + dayofweek);
+
 
                 DatePickerDialog dpd = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -291,6 +324,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
                 if (ripLL.getVisibility() == View.VISIBLE) {
                     ripLL.setVisibility(View.GONE);
                 } else {
@@ -303,19 +337,20 @@ public class NuovaDisponibilitaFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(rb1.isChecked()) {
+                if(rb1.isChecked() && rip.isChecked()) {
+                    repChecked = rb1.getText().toString();
 
-                    repChecked = "Ogni settimana. ";
                     untilDate  = dataFn.getText().toString();
 
-                } else if(rb2.isChecked()){
-                    repChecked = "Ogni due settimane ";
+                } else if(rb2.isChecked() && rip.isChecked()){
+                    repChecked = rb2.getText().toString() ;
+
                     untilDate  = dataFn.getText().toString();
                 }else {
 
 
-                    repChecked = "non impostata";
-                    untilDate = "non impostata";
+                    repChecked = "";
+                    untilDate = "";
 
                 }
                 //Instance  object of dialog summary
@@ -325,8 +360,8 @@ public class NuovaDisponibilitaFragment extends Fragment {
                         oraInizio.getText().toString(),
                         oraFine.getText().toString(),
                         repChecked,
-                        untilDate,
-                        dayofweek);
+                        untilDate
+                );
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 dialogSummary.show(ft,"summary");
             }

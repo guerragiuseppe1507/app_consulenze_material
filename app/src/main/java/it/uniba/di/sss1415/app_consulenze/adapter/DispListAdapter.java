@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 
 /**
@@ -56,6 +58,28 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
             viewHolder.tvFineRipetizione.setText(disp.getFineRipetizione());
         }
 
+        final String id = disp.getId();
+        final String data = disp.getData();
+        final String orainizio = disp.getOraInizio();
+        final String orafine = disp.getOraFine();
+        final String intervento = disp.getIntervento();
+        final String ripetizione = disp.getRipetizione();
+        final String fineripetizione = disp.getFineRipetizione();
+
+
+        viewHolder.ibEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)context).setMiaDispScelta(id,data,orainizio,orafine,intervento,ripetizione,fineripetizione);
+                showEdit();
+            }
+        });
+
+    }
+
+    public void showEdit(){
+
+        ((MainActivity)context).showFragment("ModificaDisponibilitaFragment");
     }
 
     @Override
@@ -72,6 +96,7 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
         public TextView tvIntervento;
         public TextView tvRipetizione;
         public TextView tvFineRipetizione;
+        public ImageButton ibEdit;
 
 
         public MieDispHolder(Context context, View itemView) {
@@ -83,6 +108,7 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
             tvIntervento = (TextView) itemView.findViewById(R.id.tvIntervento);
             tvRipetizione = (TextView) itemView.findViewById(R.id.tvRipetizione);
             tvFineRipetizione = (TextView) itemView.findViewById(R.id.tvFineRipetizione);
+            ibEdit = (ImageButton) itemView.findViewById(R.id.miaDispBtnEdit);
 
             itemView.setOnClickListener(this);
         }

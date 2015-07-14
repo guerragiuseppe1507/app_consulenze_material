@@ -13,12 +13,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
 import java.util.Random;
 
-
-import it.uniba.di.sss1415.app_consulenze.activity.Connection;
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.activity.Connection;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
@@ -33,7 +32,6 @@ public class SummaryAvailability extends DialogFragment {
     String eTime;
     String rep;
     String until;
-    int dayWeek;
 
     TextView expTV ;
     TextView dateTV;
@@ -50,8 +48,8 @@ public class SummaryAvailability extends DialogFragment {
     private static final String TIPO_ELEMENTO = "dispon";
     private static final String ACCESSO = "write";
 
-   private String user ;
-    public static SummaryAvailability newInstance(String exp , String date, String sTime , String eTime, String rep, String until, int dayofweek){
+    private String user ;
+    public static SummaryAvailability newInstance(String exp , String date, String sTime , String eTime, String rep, String until){
         SummaryAvailability sa = new SummaryAvailability();
         Bundle args = new Bundle();
         args.putString("exp", exp);
@@ -60,7 +58,7 @@ public class SummaryAvailability extends DialogFragment {
         args.putString("eTime", eTime);
         args.putString("rep", rep);
         args.putString("until", until);
-        args.putInt("dayweek", dayofweek);
+
         sa.setArguments(args);
         return  sa;
     }
@@ -68,9 +66,7 @@ public class SummaryAvailability extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        String day ="";
-
-       // user  = UserSessionInfo.getEmail(); TODO
+        user  = UserSessionInfo.getInstance().getEmail();
         conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
 
         exp = getArguments().getString("exp");
@@ -79,34 +75,6 @@ public class SummaryAvailability extends DialogFragment {
         eTime = getArguments().getString("eTime");
         rep = getArguments().getString("rep");
         until = getArguments().getString("until");
-        dayWeek = getArguments().getInt("dayweek");
-
-        if(rep.equalsIgnoreCase("non impostata")){
-            rep = "";
-            until = "";
-        } else {
-            switch (dayWeek){
-
-                case Calendar.SUNDAY : day = "(Ogni domenica)";
-                    break;
-                case Calendar.MONDAY : day = "(Ogni lunedi)";
-                    break;
-                case Calendar.TUESDAY : day = "(Ogni martedi)";
-                    break;
-                case Calendar.WEDNESDAY : day = "(Ogni mercoledi)";
-                    break;
-                case Calendar.THURSDAY : day = "(Ogni giovedi)";
-                    break;
-                case Calendar.FRIDAY: day = "(Ogni venerdi)";
-                    break;
-                case Calendar.SATURDAY : day = "(Ogni sabato)";
-                    break;
-            }
-
-        }
-
-
-        rep = rep + day;
 
     }
 
@@ -116,23 +84,17 @@ public class SummaryAvailability extends DialogFragment {
 
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
-         v = inflater.inflate(R.layout.dialog_summary_layout, null);
+        v = inflater.inflate(R.layout.dialog_summary_layout, null);
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-
-
-
         builder.setView(v)
-
-
 
                 // Add action buttons
                 .setPositiveButton(R.string.summaryConfirmButton, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // invio dati al server
-                        availabilityTask = new AvailabilityTask(exp, date, sTime, eTime,rep, until, "ciao@afa.com");
-
+                        availabilityTask = new AvailabilityTask(exp, date, sTime, eTime, rep, until, user);
                         availabilityTask.execute();
 
 
@@ -164,6 +126,12 @@ public class SummaryAvailability extends DialogFragment {
         return d;
     }
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if(availabilityTask!=null)availabilityTask.cancel(true);
+    }
+
     // connection to server
     public class AvailabilityTask extends AsyncTask<String, Void, String> {
 
@@ -184,12 +152,6 @@ public class SummaryAvailability extends DialogFragment {
             rep = mRep;
             until = mUntil;
             user = mUser;
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-            if(availabilityTask!=null)availabilityTask.cancel(true);
         }
 
         @Override
@@ -221,9 +183,7 @@ public class SummaryAvailability extends DialogFragment {
                 creaMessaggio("fail");
             } else {
 
-                //toMain();
-                creaMessaggio("success new availability insert");
-
+                creaMessaggio("New availability inserted");
             }
 
             availabilityTask = null;
@@ -237,4 +197,6 @@ public class SummaryAvailability extends DialogFragment {
         }
     }
 
-    }
+}
+
+

@@ -148,11 +148,6 @@ public class LoginActivity extends Activity{
         return true;
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(mAuthTask!=null)mAuthTask.cancel(true);
-    }
 
     /**
      * Represents an asynchronous login/registration task used to authenticate
@@ -172,6 +167,8 @@ public class LoginActivity extends Activity{
         }
         @Override
         protected String doInBackground(String... params) {
+
+
 
             conn.setParametri(TIPO_ELEMENTO, ACCESSO, mEmail, mPassword);
 

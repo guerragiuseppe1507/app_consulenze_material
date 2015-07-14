@@ -113,12 +113,6 @@ public class RegistrazioneActivity extends Activity {
 
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(mRegTask!=null)mRegTask.cancel(true);
-    }
-
     public class UserRegisterTask extends AsyncTask<String, Void, String> {
 
         private final String mEmail;

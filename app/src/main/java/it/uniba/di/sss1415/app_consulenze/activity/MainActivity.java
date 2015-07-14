@@ -17,7 +17,9 @@ import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.Fragment.HomeFragment;
 import it.uniba.di.sss1415.app_consulenze.Fragment.MessagesFragment;
 import it.uniba.di.sss1415.app_consulenze.Fragment.MieDispFragment;
+import it.uniba.di.sss1415.app_consulenze.Fragment.ModificaDisponibilitaFragment;
 import it.uniba.di.sss1415.app_consulenze.Fragment.NuovaDisponibilitaFragment;
+import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 
 
 public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -31,6 +33,8 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
+
+    private MieDisp miaDispScelta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,5 +124,34 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
     public void showNewDisp(View v){
         displayView(ID_FRAGMENT_NEW_DISP);
+    }
+
+
+    public void showFragment(String name){
+        Fragment fragment = null;
+        String title = getString(R.string.app_name);
+        if (name.equals("SendNewRequest")){
+
+            //fragment = new SendNewRequest();
+            //title = getString(R.string.title_newReq);
+
+        } else if (name.equals("ModificaDisponibilitaFragment")){
+            fragment = new ModificaDisponibilitaFragment();
+            title = getString(R.string.title_editDisp);
+
+        }
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container_body, fragment);
+        fragmentTransaction.commit();
+
+        // set the toolbar title
+        getSupportActionBar().setTitle(title);
+
+    }
+
+    public void setMiaDispScelta(String id, String data, String oraInizio, String oraFine, String intervento, String ripetizione, String fineRipetizione){
+
     }
 }
