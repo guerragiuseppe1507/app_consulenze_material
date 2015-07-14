@@ -25,11 +25,7 @@ import it.uniba.di.sss1415.app_consulenze.activity.Connection;
 import it.uniba.di.sss1415.app_consulenze.adapter.DispListAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
-<<<<<<< HEAD
-import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
 import it.uniba.di.sss1415.app_consulenze.util.ServerResponseDataSorter;
-=======
->>>>>>> b0f8eacf34b33165aff499d3016e326cf215ec63
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
