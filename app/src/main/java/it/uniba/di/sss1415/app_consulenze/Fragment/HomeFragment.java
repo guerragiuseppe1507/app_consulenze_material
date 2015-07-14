@@ -17,13 +17,11 @@ import org.json.JSONException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 
 import app_consulenze_material.R;
-import it.uniba.di.sss1415.app_consulenze.activity.Connection;
+import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.adapter.AppuntamentiAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.Appuntamenti;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;

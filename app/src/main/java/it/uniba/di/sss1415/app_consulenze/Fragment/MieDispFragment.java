@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import app_consulenze_material.R;
-import it.uniba.di.sss1415.app_consulenze.activity.Connection;
+import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.adapter.DispListAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;

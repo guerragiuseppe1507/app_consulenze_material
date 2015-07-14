@@ -14,9 +14,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import app_consulenze_material.R;
-import it.uniba.di.sss1415.app_consulenze.istances.Connection;
+
 import it.uniba.di.sss1415.app_consulenze.istances.DatiUtente;
 import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
+import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
