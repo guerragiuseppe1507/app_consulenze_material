@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context="it.uniba.di.sss1415.app_consulenze.Fragment.MieDispFragment">
+    tools:context="it.uniba.di.sss1415.app_consulenze.fragment.MieDispFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mieDisp_recycler"
