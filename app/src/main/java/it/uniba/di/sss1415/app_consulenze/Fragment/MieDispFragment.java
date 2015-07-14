@@ -1,4 +1,4 @@
-package it.uniba.di.sss1415.app_consulenze.Fragment;
+package it.uniba.di.sss1415.app_consulenze.fragment;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -24,7 +24,6 @@ import it.uniba.di.sss1415.app_consulenze.activity.Connection;
 import it.uniba.di.sss1415.app_consulenze.adapter.DispListAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
-import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
