@@ -65,6 +65,9 @@
     <string name="reg_btn">Register New Account</string>
     <string name="login_link">Already have account? Login here</string>
 
+    <!-- Strings related to richieste -->
+    <string name="title_activity_richieste">Richieste</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="summary_expertise">Confirm availability for </string>

@@ -40,6 +40,11 @@
             android:noHistory="true" >
         </activity>
         <activity
+            android:name="it.uniba.di.sss1415.app_consulenze.fragment.RichiesteFragment"
+            android:label="@string/title_activity_richieste"
+            android:noHistory="true" >
+        </activity>
+        <activity
             android:name="android.support.v7.widget.TestActivity"
             android:label="RecyclerViewTestActivity" />
     </application>
