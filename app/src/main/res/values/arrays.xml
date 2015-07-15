@@ -22,6 +22,20 @@
         <item>Urology</item>
     </string-array>
 
+    <string-array name="tutor">
+        <item>Dott. Mario Rossi Score : 11</item>
+        <item>Dott. Dario Spaccaossa Score : 5</item>
+        <item>Dott. Paolo Cardioso Score : 8</item>
+        <item>Dott. Umberto Radione Score : 3</item>
+
+    </string-array>
+
+    <string-array name="interventi">
+        <item>aneurismi arteriosi</item>
+        <item>by-pass</item>
+        <item>stenosi</item>
+    </string-array>
+
     <string-array name="arrayProvince">
         <item>Agrigento (AG)</item>
         <item>Alessandria (AL)</item>

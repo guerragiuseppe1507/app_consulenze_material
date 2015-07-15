@@ -32,7 +32,7 @@ public class LoginActivity extends Activity{
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] CREDENTIALS = new String[]{
-            "ciao@afa.com", "ciaobambina28"
+            "asdsd@foo.com", "4XSRG08ZP2IHQUX"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -58,6 +58,9 @@ public class LoginActivity extends Activity{
 
         conn = new Connection(getApplicationContext().getResources().getString(R.string.serverQuery));
         System.out.println(getApplicationContext().getResources().getString(R.string.serverQuery));
+
+        mAuthTask = new UserLoginTask();
+        mAuthTask.execute();
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mEmailView.setText(CREDENTIALS[0]);
@@ -158,20 +161,32 @@ public class LoginActivity extends Activity{
 
         private final String mEmail;
         private final String mPassword;
-
+        private boolean brancheMediche;
 
 
 
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
+            brancheMediche=false;
+        }
+
+        UserLoginTask() {
+            mEmail = null;
+            mPassword = null;
+            brancheMediche=true;
         }
         @Override
         protected String doInBackground(String... params) {
 
 
+            if(brancheMediche){
+                System.out.println("ciao");
+                conn.setParametri("accesso:read, elemento:brancheMediche, jsonDaScrivere:");
+            }else{
+                conn.setParametri(TIPO_ELEMENTO, ACCESSO, mEmail, mPassword);
+            }
 
-            conn.setParametri(TIPO_ELEMENTO, ACCESSO, mEmail, mPassword);
 
             return conn.newConnect();
 
@@ -181,22 +196,26 @@ public class LoginActivity extends Activity{
         protected void onPostExecute(String result) {
 
             System.out.println(result);
+            if(brancheMediche){
+                UserSessionInfo.getInstance().setBranche(result);
+            }else{
+                if (result.equals(ToastMsgs.CONN_TIMEOUT )&& !brancheMediche){
 
-            if (result.equals(ToastMsgs.CONN_TIMEOUT)){
+                    creaMessaggio(getApplicationContext().getResources().getString(R.string.conn_timeout));
 
-                creaMessaggio(getApplicationContext().getResources().getString(R.string.conn_timeout));
+                } else if (result.equals(ServerMsgs.NO_USER_FOUND)&& !brancheMediche) {
 
-            } else if (result.equals(ServerMsgs.NO_USER_FOUND)) {
+                    creaMessaggio(getApplicationContext().getResources().getString(R.string.fail_login));
+                } else if(!brancheMediche) {
+                    //datiUser = new DatiUtente(result);
+                    creaIstanza(result);
+                    toMain();
+                    creaMessaggio(getApplicationContext().getResources().getString(R.string.success_login));
 
-                creaMessaggio(getApplicationContext().getResources().getString(R.string.fail_login));
-            } else {
-                //datiUser = new DatiUtente(result);
-                datiUser = new DatiUtente(result);
-                toMain();
-                creaMessaggio(getApplicationContext().getResources().getString(R.string.success_login));
-                UserSessionInfo.getInstance().setEmail(mEmail);
-
+                }
             }
+
+
 
             mAuthTask = null;
 
@@ -206,6 +225,10 @@ public class LoginActivity extends Activity{
         protected void onCancelled() {
             mAuthTask = null;
         }
+    }
+
+    public void creaIstanza(String res){
+        UserSessionInfo.getInstance().setParams(this,res);
     }
 
     public void creaMessaggio(CharSequence message){

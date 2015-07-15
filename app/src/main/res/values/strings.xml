@@ -25,6 +25,7 @@
         <item>@string/nav_item_friends</item>
         <item>@string/nav_item_notifications</item>
         <item>@string/title_newDisp</item>
+        <item>@string/title_newReq</item>
     </string-array>
 
     <string name="title_messages">Messages</string>
@@ -33,6 +34,7 @@
     <string name="title_newDisp">New Availability</string>
     <string name="title_editDisp">Edit Availability</string>
     <string name="title_editProfile">Edit Profile</string>
+    <string name="title_newReq">New Request</string>
 
     <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
 
@@ -67,5 +69,18 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="summary_expertise">Confirm availability for </string>
     <string name="summary_date">on Date</string>
+
+    <!-- Chiavi shared preferences -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="txtProv">Provincia</string>
+    <string name="anno">Registration year</string>
+    <string name="numero">Registration Number</string>
+    <string name="cognome">Surname</string>
+    <string name="nome">name</string>
+    <string name="spec_prim">Expertise</string>
+    <string name="score">Score</string>
+    <string name="mod_prof">Edit</string>
+    <string name="title_button_Search">SEARCH</string>
 
 </resources>

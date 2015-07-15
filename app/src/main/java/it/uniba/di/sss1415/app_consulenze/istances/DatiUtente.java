@@ -33,7 +33,7 @@ public class DatiUtente {
         annoIscr = datiRicevuti[5];
         nome = datiRicevuti[6];
         cognome = datiRicevuti[7];
-       primariaEx = datiRicevuti[8];
+        primariaEx = datiRicevuti[8];
     }
 
     //metodi di getter e setter

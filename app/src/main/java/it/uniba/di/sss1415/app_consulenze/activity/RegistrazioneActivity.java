@@ -16,8 +16,10 @@ import android.widget.Toast;
 import java.util.Random;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
+
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
@@ -150,10 +152,17 @@ public class RegistrazioneActivity extends Activity {
                 creaMessaggio(getApplicationContext().getResources().getString(R.string.conn_timeout));
 
             } else if (result.equals(ServerMsgs.NO_USER_FOUND)) {
-
                 creaMessaggio(getApplicationContext().getResources().getString(R.string.fail_login));
             } else {
-
+                UserSessionInfo u = UserSessionInfo.getInstance();
+                u.setEmail(mEmail);
+                u.setNome("Not set yet");
+                u.setCognome("Not set yet");
+                u.setProvincia(mProvincia);
+                u.setAnnoIscr(mAnno);
+                u.setNumIscr(mNumero);
+                u.setExp("Not set yet");
+                u.setPassword(mPassword);
                 toMain();
                 creaMessaggio(getApplicationContext().getResources().getString(R.string.success_register));
 

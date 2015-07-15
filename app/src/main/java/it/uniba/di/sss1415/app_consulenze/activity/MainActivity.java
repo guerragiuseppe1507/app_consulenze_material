@@ -19,7 +19,9 @@ import it.uniba.di.sss1415.app_consulenze.fragment.MessagesFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.MieDispFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.ModificaProfiloFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.NuovaDisponibilitaFragment;
+import it.uniba.di.sss1415.app_consulenze.fragment.SendNewRequest;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
+import it.uniba.di.sss1415.app_consulenze.fragment.NuovaRichiestaFragment;
 
 
 
@@ -29,6 +31,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     private static final int ID_FRAGMENT_MIE_DISP = 1;
     private static final int ID_FRAGMENT_MEX = 2; //TO-DO nomi provvisori fragment
     private static final int ID_FRAGMENT_NEW_DISP = 3;
+    private static final int ID_FRAGMENT_NEW_REQ = 4;
 
     private static String TAG = MainActivity.class.getSimpleName();
 
@@ -106,6 +109,9 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             case ID_FRAGMENT_NEW_DISP:
                 fragment = new NuovaDisponibilitaFragment();
                 title = getString(R.string.title_newDisp);
+            case ID_FRAGMENT_NEW_REQ:
+                fragment = new NuovaRichiestaFragment();
+                title = getString(R.string.title_newReq);
             default:
                 break;
         }
@@ -136,8 +142,8 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         String title = getString(R.string.app_name);
         if (name.equals("SendNewRequest")){
 
-            //fragment = new SendNewRequest();
-            //title = getString(R.string.title_newReq);
+            fragment = new SendNewRequest();
+            title = getString(R.string.title_newReq);
 
         } else if (name.equals("ModificaDisponibilitaFragment")){
             modifyCall=true;
