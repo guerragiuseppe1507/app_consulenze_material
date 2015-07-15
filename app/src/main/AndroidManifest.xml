@@ -40,6 +40,13 @@
             android:label="@string/title_activity_registrazione" >
 
         </activity>
+
+        <activity
+            android:name="it.uniba.di.sss1415.app_consulenze.fragment.RichiesteFragment"
+            android:noHistory="true"
+            android:label="@string/title_activity_richieste" >
+
+        </activity>
     </application>
 
 </manifest>

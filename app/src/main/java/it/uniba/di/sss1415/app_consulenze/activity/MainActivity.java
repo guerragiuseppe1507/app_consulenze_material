@@ -1,8 +1,10 @@
 package it.uniba.di.sss1415.app_consulenze.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -11,14 +13,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.fragment.HomeFragment;
-import it.uniba.di.sss1415.app_consulenze.fragment.MessagesFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.MieDispFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.ModificaProfiloFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.NuovaDisponibilitaFragment;
+import it.uniba.di.sss1415.app_consulenze.fragment.RichiesteFragment;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 
 
@@ -27,7 +28,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
     private static final int ID_FRAGMENT_HOME = 0; //TO-DO nomi provvisori fragment
     private static final int ID_FRAGMENT_MIE_DISP = 1;
-    private static final int ID_FRAGMENT_MEX = 2; //TO-DO nomi provvisori fragment
+    private static final int ID_FRAGMENT_RICHIESTE = 2; //TO-DO nomi provvisori fragment
     private static final int ID_FRAGMENT_NEW_DISP = 3;
 
     private static String TAG = MainActivity.class.getSimpleName();
@@ -89,6 +90,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     public void displayView(int position) {
         modifyCall=false;
         Fragment fragment = null;
+        FragmentActivity fragmentActivity = null;
         String title = getString(R.string.app_name);
         switch (position) {
             case ID_FRAGMENT_HOME:
@@ -99,8 +101,8 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 fragment = new MieDispFragment();
                 title = getString(R.string.title_friends);
                 break;
-            case ID_FRAGMENT_MEX:
-                fragment = new MessagesFragment();
+            case ID_FRAGMENT_RICHIESTE:
+                fragmentActivity = new RichiesteFragment();
                 title = getString(R.string.title_messages);
                 break;
             case ID_FRAGMENT_NEW_DISP:
@@ -118,6 +120,10 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
             // set the toolbar title
             getSupportActionBar().setTitle(title);
+        } else if (fragmentActivity != null){
+
+
+            startActivity(new Intent(this, RichiesteFragment.class));
         }
     }
 

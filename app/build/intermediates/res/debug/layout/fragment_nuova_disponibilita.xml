@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="it.uniba.di.sss1415.app_consulenze.fragment.MessagesFragment">
+    tools:context="it.uniba.di.sss1415.app_consulenze.fragment.RichiesteFragment">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -202,4 +202,4 @@
                 android:singleLine="true" />
         </LinearLayout>
     </ScrollView>
-</RelativeLayout><!-- From: file:/C:/Users/Giuseppe/AndroidStudioProjects/ProgettoSmart/app_consulenze_material/app/src/main/res/layout/fragment_nuova_disponibilita.xml -->
+</RelativeLayout><!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/layout/fragment_nuova_disponibilita.xml -->
