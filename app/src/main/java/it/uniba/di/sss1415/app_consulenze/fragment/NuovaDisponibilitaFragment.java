@@ -22,11 +22,14 @@ import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.fragment.SummaryAvailability;
+import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -141,6 +144,23 @@ public class NuovaDisponibilitaFragment extends Fragment {
         //radio checked
         rb1 = (RadioButton) v.findViewById(R.id.radioButton);
         rb2 = (RadioButton) v.findViewById(R.id.radioButton2);
+
+        if(((MainActivity)getActivity()).isModifyCall()){
+
+
+            MieDisp d = ((MainActivity)getActivity()).getMiaDispScelta();
+            expertise.setSelection(5);
+            dataIn.setText(d.getData());
+            oraInizio.setText(d.getOraInizio());
+            oraFine.setText(d.getOraFine());
+            if(!d.getRipetizione().equals("")){
+                rip.setChecked(true);
+                rb1.setChecked(true);
+                dataFn.setText(d.getFineRipetizione());
+
+            }
+
+        }
 
         oraInizio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -360,7 +380,8 @@ public class NuovaDisponibilitaFragment extends Fragment {
                         oraInizio.getText().toString(),
                         oraFine.getText().toString(),
                         repChecked,
-                        untilDate
+                        untilDate,
+                        ((MainActivity)getActivity()).isModifyCall()
                 );
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 dialogSummary.show(ft,"summary");

@@ -16,10 +16,12 @@ import android.widget.Toast;
 import java.util.Random;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
+import it.uniba.di.sss1415.app_consulenze.util.DisponibilitaDB;
 
 
 /**
@@ -32,6 +34,7 @@ public class SummaryAvailability extends DialogFragment {
     String eTime;
     String rep;
     String until;
+    Boolean change;
 
     TextView expTV ;
     TextView dateTV;
@@ -46,10 +49,11 @@ public class SummaryAvailability extends DialogFragment {
     private AvailabilityTask availabilityTask = null;
 
     private static final String TIPO_ELEMENTO = "dispon";
-    private static final String ACCESSO = "write";
+    private static final String ACCESSO_WRITE = "write";
+    private static final String ACCESSO_CHANGE = "change";
 
     private String user ;
-    public static SummaryAvailability newInstance(String exp , String date, String sTime , String eTime, String rep, String until){
+    public static SummaryAvailability newInstance(String exp , String date, String sTime , String eTime, String rep, String until, Boolean change){
         SummaryAvailability sa = new SummaryAvailability();
         Bundle args = new Bundle();
         args.putString("exp", exp);
@@ -58,6 +62,7 @@ public class SummaryAvailability extends DialogFragment {
         args.putString("eTime", eTime);
         args.putString("rep", rep);
         args.putString("until", until);
+        args.putBoolean("change",change);
 
         sa.setArguments(args);
         return  sa;
@@ -75,6 +80,7 @@ public class SummaryAvailability extends DialogFragment {
         eTime = getArguments().getString("eTime");
         rep = getArguments().getString("rep");
         until = getArguments().getString("until");
+        change = getArguments().getBoolean("change");
 
     }
 
@@ -94,8 +100,11 @@ public class SummaryAvailability extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // invio dati al server
-                        availabilityTask = new AvailabilityTask(exp, date, sTime, eTime, rep, until, user);
+                        availabilityTask = new AvailabilityTask(exp, date, sTime, eTime, rep, until, user, change);
                         availabilityTask.execute();
+
+                       // DisponibilitaDB obj = new DisponibilitaDB(getString(R.string.serverQuery),"3496", date, sTime, eTime, exp);
+                        //obj.inviaRichiestaScrittura();
 
 
                     }
@@ -126,11 +135,7 @@ public class SummaryAvailability extends DialogFragment {
         return d;
     }
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if(availabilityTask!=null)availabilityTask.cancel(true);
-    }
+
 
     // connection to server
     public class AvailabilityTask extends AsyncTask<String, Void, String> {
@@ -142,9 +147,10 @@ public class SummaryAvailability extends DialogFragment {
         private String rep;
         private String until;
         private String user;
+        private boolean change;
 
 
-        AvailabilityTask(String mExp, String mDate, String mSTime, String mETime, String mRep, String mUntil, String mUser) {
+        AvailabilityTask(String mExp, String mDate, String mSTime, String mETime, String mRep, String mUntil, String mUser, Boolean change) {
             exp = mExp;
             date = mDate;
             sTime = mSTime;
@@ -152,6 +158,7 @@ public class SummaryAvailability extends DialogFragment {
             rep = mRep;
             until = mUntil;
             user = mUser;
+            this.change = change;
         }
 
         @Override
@@ -160,10 +167,15 @@ public class SummaryAvailability extends DialogFragment {
             Random gen = new Random();
             int id = gen.nextInt(10000) + 1001;
             String idS = Integer.toString(id);
+            if(change){
+                conn.setParametri(TIPO_ELEMENTO, ACCESSO_CHANGE, idS, date, sTime, eTime, exp, rep, until, user);
+            }else{
+                conn.setParametri(TIPO_ELEMENTO, ACCESSO_WRITE, idS , date, sTime, eTime, exp, rep, until, user);
+            }
 
-            conn.setParametri(TIPO_ELEMENTO, ACCESSO, idS , date, sTime, eTime, exp, rep, until, user);
             Log.i("PARAMETRI = ", conn.getParametri());
             System.out.println("id generato  : " + idS);
+
 
             return conn.newConnect();
 
@@ -178,12 +190,12 @@ public class SummaryAvailability extends DialogFragment {
 
                 creaMessaggio(getActivity().getResources().getString(R.string.conn_timeout));
 
-            } else if (result.equals(ServerMsgs.NO_USER_FOUND)) {
-
-                creaMessaggio("fail");
-            } else {
-
-                creaMessaggio("New availability inserted");
+            }else {
+                if(change){
+                    creaMessaggio("Availability edited");
+                }else{
+                    creaMessaggio("New availability inserted");
+                }
             }
 
             availabilityTask = null;

@@ -17,7 +17,7 @@ import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.fragment.HomeFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.MessagesFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.MieDispFragment;
-import it.uniba.di.sss1415.app_consulenze.fragment.ModificaDisponibilitaFragment;
+import it.uniba.di.sss1415.app_consulenze.fragment.ModificaProfiloFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.NuovaDisponibilitaFragment;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 
@@ -36,6 +36,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     private FragmentDrawer drawerFragment;
 
     private MieDisp miaDispScelta;
+    private boolean modifyCall = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +74,9 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            showFragment("ModificaProfiloFragment");
         }
 
-        if(id == R.id.action_search){
-            Toast.makeText(getApplicationContext(), "Search action is selected!", Toast.LENGTH_SHORT).show();
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -90,6 +87,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     }
 
     public void displayView(int position) {
+        modifyCall=false;
         Fragment fragment = null;
         String title = getString(R.string.app_name);
         switch (position) {
@@ -128,7 +126,12 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     }
 
 
+    public boolean isModifyCall(){return modifyCall;}
+    public void setModifyCall(Boolean b){modifyCall = b;}
+
+
     public void showFragment(String name){
+        modifyCall=false;
         Fragment fragment = null;
         String title = getString(R.string.app_name);
         if (name.equals("SendNewRequest")){
@@ -137,9 +140,14 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             //title = getString(R.string.title_newReq);
 
         } else if (name.equals("ModificaDisponibilitaFragment")){
-            fragment = new ModificaDisponibilitaFragment();
+            modifyCall=true;
+            fragment = new NuovaDisponibilitaFragment();
             title = getString(R.string.title_editDisp);
 
+
+        }else if (name.equals("ModificaProfiloFragment")){
+            fragment = new ModificaProfiloFragment();
+            title = getString(R.string.title_editProfile);
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -153,6 +161,10 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     }
 
     public void setMiaDispScelta(String id, String data, String oraInizio, String oraFine, String intervento, String ripetizione, String fineRipetizione){
+        miaDispScelta = new MieDisp( id, data,  oraInizio,oraFine, intervento,ripetizione, fineRipetizione);
+    }
 
+    public MieDisp getMiaDispScelta(){
+       return miaDispScelta;
     }
 }

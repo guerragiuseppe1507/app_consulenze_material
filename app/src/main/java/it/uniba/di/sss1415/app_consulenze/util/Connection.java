@@ -49,13 +49,17 @@ public class Connection {
         }
 
     }
+    public void setParametri(String parametri){
+        parametriServer = parametri;
+
+    }
 
     public String getParametri(){
         return parametriServer;
     }
 
 
-    public String newConnect1() {
+    public String newConnect() {
 
         URL url;
         HttpURLConnection conn = null;
@@ -113,53 +117,5 @@ public class Connection {
         }
 
     }
-
-    public String newConnect() {
-
-        URL url;
-        HttpURLConnection conn = null;
-        try {
-
-            byte[] postData = getParametri().toString().getBytes("UTF-8");
-            int postDataLength = postData.length;
-            url = new URL(registrationUrl);
-            conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(10000);
-            conn.setConnectTimeout(15000);
-            conn.setRequestMethod("POST");
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
-            conn.setInstanceFollowRedirects(false);
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
-            conn.setUseCaches(false);
-            conn.getOutputStream().write(postData);
-            conn.connect();
-            InputStream stream = conn.getInputStream();
-            String data = convertStreamToString(stream);
-            //A QUA
-
-            Log.i("RISULTATO " + data, new StringBuilder().toString()); //QUA PUO USCIRE IL JSON O LA STRINGA
-            stream.close();
-            return data;
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            return null;
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    static String convertStreamToString(InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
-    }
-
-
 
 }

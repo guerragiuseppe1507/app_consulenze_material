@@ -32,6 +32,7 @@
     <string name="title_home">Home</string>
     <string name="title_newDisp">New Availability</string>
     <string name="title_editDisp">Edit Availability</string>
+    <string name="title_editProfile">Edit Profile</string>
 
     <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
 
