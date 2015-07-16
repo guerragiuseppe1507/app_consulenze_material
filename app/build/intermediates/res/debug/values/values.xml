@@ -114,13 +114,19 @@
         <item>Vicenza (VI)</item>
         <item>Viterbo (VT)</item>
     </string-array>
+    <string-array name="interventi">
+        <item>aneurismi arteriosi</item>
+        <item>by-pass</item>
+        <item>stenosi</item>
+    </string-array>
     <!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
         <item>@string/nav_item_friends</item>
-        <item>@string/nav_item_notifications</item>
+        <item>@string/nav_item_request</item>
         <item>@string/title_newDisp</item>
+        <item>@string/title_newReq</item>
     </string-array>
     <!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/values/arrays.xml -->
     <eat-comment/>
@@ -144,6 +150,13 @@
         <item>Plastic Surgery</item>
         <item>Psychology</item>
         <item>Urology</item>
+    </string-array>
+    <string-array name="tutor">
+        <item>Dott. Mario Rossi Score : 11</item>
+        <item>Dott. Dario Spaccaossa Score : 5</item>
+        <item>Dott. Paolo Cardioso Score : 8</item>
+        <item>Dott. Umberto Radione Score : 3</item>
+
     </string-array>
     <!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
@@ -483,12 +496,14 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="albo_label">Enrolled in the Register on:</string>
+    <string name="anno">Registration year</string>
     <string name="app_name">Consulenze App</string>
     <!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="cognome">Surname</string>
     <string name="congiunzione_to">To</string>
     <!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/values/response_messages.xml -->
     <eat-comment/>
@@ -497,6 +512,7 @@
     <eat-comment/>
     <string name="drawer_close">Close</string>
     <string name="drawer_open">Open</string>
+    <string name="email">Email</string>
     <string name="email_label">Email:</string>
     <string name="error_field_required">This field is required</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -509,17 +525,23 @@
     <eat-comment/>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_link">Already have account? Login here</string>
+    <string name="mod_prof">Edit</string>
     <string name="name_label">Name:</string>
     <string name="nav_item_friends">Mie Disponibilità</string>
     <string name="nav_item_home">Home</string>
-    <string name="nav_item_notifications">Messages</string>
+    <string name="nav_item_request">Richieste</string>
+    <string name="nome">name</string>
     <string name="number_label">Registration Number:</string>
+    <string name="numero">Registration Number</string>
+    <string name="password">Password</string>
     <string name="password_label">Password:</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="province_label">Province:</string>
     <string name="reg_btn">Register New Account</string>
+    <string name="score">Score</string>
     <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
+    <string name="spec_prim">Expertise</string>
     <string name="specialtiesLabel_textView">Expertise</string>
     <string name="specialties_label">Specialization:</string>
     <!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
@@ -539,15 +561,20 @@
     <string name="summary_rep">Repetition</string>
     <string name="summary_untilDate">Until</string>
     <string name="surname_label">Surname:</string>
+    <string name="tab_received">Ricevute</string>
+    <string name="tab_sent">Inviate</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_registrazione">Registrazione</string>
     <string name="title_activity_richieste">Richieste</string>
+    <string name="title_button_Search">SEARCH</string>
     <string name="title_editDisp">Edit Availability</string>
     <string name="title_editProfile">Edit Profile</string>
     <string name="title_friends">Mie Disponibilità</string>
     <string name="title_home">Home</string>
-    <string name="title_messages">Messages</string>
     <string name="title_newDisp">New Availability</string>
+    <string name="title_newReq">New Request</string>
+    <string name="title_request">Richieste</string>
+    <string name="txtProv">Provincia</string>
     <string name="year_label">Registration Year:</string>
     <!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,17 +20,14 @@ import it.uniba.di.sss1415.app_consulenze.fragment.HomeFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.MieDispFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.ModificaProfiloFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.NuovaDisponibilitaFragment;
-<<<<<<< HEAD
 import it.uniba.di.sss1415.app_consulenze.fragment.SendNewRequest;
-=======
 import it.uniba.di.sss1415.app_consulenze.fragment.RichiesteFragment;
->>>>>>> f54a8c0fc91a91d9a2be12d90c5a3fbd6e4f4038
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.fragment.NuovaRichiestaFragment;
 
 
 
-public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener {
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
     private static final int ID_FRAGMENT_HOME = 0; //TO-DO nomi provvisori fragment
     private static final int ID_FRAGMENT_MIE_DISP = 1;
@@ -61,7 +59,21 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         drawerFragment.setDrawerListener(this);
 
         // display the first navigation drawer view on app launch
-        displayView(0);
+        Intent intent = getIntent();
+        if(intent == null) {
+
+            displayView(0);
+        } else {
+            if (intent.getStringExtra("profiloSelected") == null) {
+
+                displayView(intent.getIntExtra("menuItemSelected", 0));
+
+            }  else {
+
+                showFragment(intent.getStringExtra("profiloSelected"));
+            }
+        }
+
     }
 
 
@@ -109,7 +121,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 break;
             case ID_FRAGMENT_RICHIESTE:
                 fragmentActivity = new RichiesteFragment();
-                title = getString(R.string.title_messages);
+                title = getString(R.string.title_request);
                 break;
             case ID_FRAGMENT_NEW_DISP:
                 fragment = new NuovaDisponibilitaFragment();

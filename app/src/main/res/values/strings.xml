@@ -7,7 +7,7 @@
 
     <string name="nav_item_home">Home</string>
     <string name="nav_item_friends">Mie Disponibilità</string>
-    <string name="nav_item_notifications">Messages</string>
+    <string name="nav_item_request">Richieste</string>
 
     <!-- strings _nuova_disponibilita -->
 
@@ -19,16 +19,21 @@
     <string name="summaryEditButton">Edit</string>
     <string name="summaryTitle">SUMMARY</string>
 
+    <!-- strings richieste -->
+
+    <string name="tab_sent">Inviate</string>
+    <string name="tab_received">Ricevute</string>
+
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
         <item>@string/nav_item_friends</item>
-        <item>@string/nav_item_notifications</item>
+        <item>@string/nav_item_request</item>
         <item>@string/title_newDisp</item>
         <item>@string/title_newReq</item>
     </string-array>
 
-    <string name="title_messages">Messages</string>
+    <string name="title_request">Richieste</string>
     <string name="title_friends">Mie Disponibilità</string>
     <string name="title_home">Home</string>
     <string name="title_newDisp">New Availability</string>
