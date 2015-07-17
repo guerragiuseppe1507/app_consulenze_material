@@ -11,6 +11,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteInviate;
 
 /**
@@ -53,7 +54,7 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
         viewHolder.tvNomeTutorRequest.setText(request.getNomeTutor());
         viewHolder.tvCognomeTutorRequest.setText(request.getCognomeTutor());
 
-     }
+    }
 
     @Override
     public int getItemCount() {

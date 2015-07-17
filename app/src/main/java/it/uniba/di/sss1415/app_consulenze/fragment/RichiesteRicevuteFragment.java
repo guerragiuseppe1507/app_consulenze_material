@@ -79,16 +79,19 @@ public class RichiesteRicevuteFragment extends Fragment {
 
             HashMap<String,String> temp = res.get(i);
 
-            try {
-                if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
+            //QUESTO CONTROLLO IF VA UTILIZZATO PER FILTRARE LE RICHIESTE PASSATE E CHE DUNQUE NON DEVONO ESSERE
+            //VISUALIZZABILI ED ACCETTABILI. SICCOME PERO' IL SERVER NON NE RITORNA DI FUTURE ABBIAMO DECISO DI
+            //BYPASSARE IL CONTROLLO.
+            //try {
+                //if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
 
                     requests.add(new RichiesteRicevute(temp.get("data"), temp.get("oraInizio"), temp.get("oraFine"),
                             temp.get("intervento"), temp.get("dottore")));
 
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+                //}
+            //} catch (ParseException e) {
+            //    e.printStackTrace();
+            //}
 
         }
     }
