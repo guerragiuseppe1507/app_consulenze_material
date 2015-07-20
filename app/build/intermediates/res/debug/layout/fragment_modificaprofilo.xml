@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etModMail"
+                android:text=""
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etModNome"
+                android:hint="@string/nome"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etModCognome"
+                android:hint="@string/cognome" />
+
+            <!-- Provincia -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txtProv"
+                android:id="@+id/tvProvincia" />
+
+            <Spinner
+                android:id="@+id/spinnerModProvince"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusableInTouchMode="false"
+                android:spinnerMode="dropdown"
+                android:layout_margin="5sp"/>
+            <!-- Fine provincia -->
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etModAnno"
+                android:hint="@string/anno"
+                android:inputType="numberDecimal"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etModNumero"
+                android:hint="@string/numero" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/spec_prim"
+                android:id="@+id/tvSpecializzazione"/>
+
+            <Spinner
+                android:id="@+id/spinnerModSpec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusableInTouchMode="false"
+                android:spinnerMode="dropdown"/>
+
+
+            <Button
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:id="@+id/btnConfermaModifiche"
+                android:text="@string/mod_prof"
+                android:textColor="@android:color/white"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout><!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/layout/fragment_modificaprofilo.xml -->
