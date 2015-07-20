@@ -503,6 +503,8 @@
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="bottone_accetta">Accept</string>
+    <string name="bottone_rifiuta">Decline</string>
     <string name="cognome">Surname</string>
     <string name="congiunzione_to">To</string>
     <!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/values/response_messages.xml -->

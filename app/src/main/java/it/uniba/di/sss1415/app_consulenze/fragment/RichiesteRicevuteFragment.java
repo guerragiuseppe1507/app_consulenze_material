@@ -1,15 +1,19 @@
 package it.uniba.di.sss1415.app_consulenze.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -33,7 +37,7 @@ import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 /**
  * Created by Valerio on 16/07/2015.
  */
-public class RichiesteRicevuteFragment extends Fragment {
+public class RichiesteRicevuteFragment extends Fragment implements RichiesteRicevuteAdapter.RecyclerViewClickListener{
     private static final String NOME_RICHIESTA = "richiesteValutare";
     private static final String TIPO_ACCESSO = "read";
     public static final String ARG_PAGE = "ARG_PAGE";
@@ -41,6 +45,7 @@ public class RichiesteRicevuteFragment extends Fragment {
     private RichiesteRicevuteAdapter richiesteRicevuteAdapter;
     private LinearLayoutManager layoutManager;
     private RecyclerView recyclerView;
+    private LinearLayout confirm;
 
     private ShowReceivedRequestTask dispTask = null;
     private Connection conn;
@@ -65,6 +70,27 @@ public class RichiesteRicevuteFragment extends Fragment {
         conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
         dispTask = new ShowReceivedRequestTask();
         dispTask.execute();
+
+
+    }
+
+    @Override
+    public void recyclerViewClicked(View v , int position){
+        confirm.setVisibility(View.VISIBLE);
+
+        int nChild = recyclerView.getChildCount();
+
+        for (int i = 0 ; i < nChild ; i++){
+
+            LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(i)).getChildAt(0)).getChildAt(0);
+
+            itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(Color.WHITE);
+        }
+
+        LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0)).getChildAt(0);
+
+        itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(getResources().getColor(R.color.colorAccent));
+
     }
 
     private void createAndPopulateCountriesArray(ArrayList<HashMap<String,String>> res) {
@@ -101,6 +127,9 @@ public class RichiesteRicevuteFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_richieste_ricevute, container, false);
 
+        confirm = (LinearLayout) view.findViewById(R.id.richieste_ricevute_confirm);
+        confirm.setVisibility(View.GONE);
+
         layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView = (RecyclerView) view.findViewById(R.id.richieste_ricevute_recycler);
@@ -112,7 +141,7 @@ public class RichiesteRicevuteFragment extends Fragment {
     }
 
     private void setRecycler(){
-        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests);
+        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this);
         recyclerView.setAdapter(richiesteRicevuteAdapter);
     }
 

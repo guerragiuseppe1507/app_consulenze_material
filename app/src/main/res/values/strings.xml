@@ -90,5 +90,7 @@
     <string name="score">Score</string>
     <string name="mod_prof">Edit</string>
     <string name="title_button_Search">SEARCH</string>
+    <string name="bottone_accetta">Accept</string>
+    <string name="bottone_rifiuta">Decline</string>
 
 </resources>

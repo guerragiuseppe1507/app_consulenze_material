@@ -1,6 +1,7 @@
 package it.uniba.di.sss1415.app_consulenze.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +22,16 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
 
     private Context context;
     private ArrayList<RichiesteRicevute> items;
+    private static RecyclerViewClickListener itemListener;
 
-    public RichiesteRicevuteAdapter(Context context, ArrayList<RichiesteRicevute> items) {
+    public interface RecyclerViewClickListener{
+        public void recyclerViewClicked(View v , int position);
+    }
+
+    public RichiesteRicevuteAdapter(Context context, ArrayList<RichiesteRicevute> items, RecyclerViewClickListener listener) {
         this.context = context;
         this.items = items;
+        this.itemListener = listener;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -63,7 +70,7 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
 
 
 
-        public RichiesteRicevuteHolder(Context context, View itemView) {
+        public RichiesteRicevuteHolder(Context context, final View itemView) {
             super(itemView);
             this.context = context;
             tvDataRequest = (TextView) itemView.findViewById(R.id.tvDataRequestReceived);
@@ -78,6 +85,8 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
         @Override
         public void onClick(View v) {
             Toast.makeText(context, tvDataRequest.getText().toString(), Toast.LENGTH_SHORT).show();
+            itemListener.recyclerViewClicked(v, this.getPosition());
+
         }
 
     }
