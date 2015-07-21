@@ -2,15 +2,18 @@ package it.uniba.di.sss1415.app_consulenze.fragment;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -25,11 +28,12 @@ import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.adapter.AppuntamentiAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.Appuntamenti;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
+import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 import it.uniba.di.sss1415.app_consulenze.util.ServerResponseDataSorter;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements RecyclerViewClickListener {
 
 
 
@@ -109,11 +113,25 @@ public class HomeFragment extends Fragment {
     }
 
     private void setRecycler(){
-        appuntamentiAdapter = new AppuntamentiAdapter(getActivity(), appuntamenti);
+        appuntamentiAdapter = new AppuntamentiAdapter(getActivity(), appuntamenti, this);
         recyclerView.setAdapter(appuntamentiAdapter);
     }
 
+    @Override
+    public void recyclerViewClicked(View v, int position) {
+        int nChild = recyclerView.getChildCount();
 
+        for (int i = 0 ; i < nChild ; i++){
+
+            LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(i)).getChildAt(0)).getChildAt(0);
+
+            itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(Color.WHITE);
+        }
+
+        LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0)).getChildAt(0);
+
+        itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(getResources().getColor(R.color.colorAccent));
+    }
 
 
     public class ShowAppuntamentiTask extends AsyncTask<String, Void, String> {

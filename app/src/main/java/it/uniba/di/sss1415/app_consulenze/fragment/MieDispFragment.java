@@ -1,15 +1,18 @@
 package it.uniba.di.sss1415.app_consulenze.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -25,16 +28,19 @@ import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.adapter.DispListAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
+import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 import it.uniba.di.sss1415.app_consulenze.util.ServerResponseDataSorter;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
-public class MieDispFragment extends Fragment {
+public class MieDispFragment extends Fragment implements RecyclerViewClickListener {
 
     private RecyclerView recyclerView;
     ArrayList<MieDisp> disps;
     private DispListAdapter dispListAdapter;
     private LinearLayoutManager layoutManager;
+
+    private CardView cardViewClicked;
 
     private ShowDispTask dispTask = null;
     private Connection conn;
@@ -100,7 +106,7 @@ public class MieDispFragment extends Fragment {
     }
 
     private void setRecycler(){
-        dispListAdapter = new DispListAdapter(getActivity(), disps);
+        dispListAdapter = new DispListAdapter(getActivity(), disps, this);
         recyclerView.setAdapter(dispListAdapter);
     }
 
@@ -109,6 +115,26 @@ public class MieDispFragment extends Fragment {
     public void onDetach() {
         super.onStop();
         if(dispTask!=null)dispTask.cancel(true);
+    }
+
+    @Override
+    public void recyclerViewClicked(View v, int position) {
+
+        int nChild = recyclerView.getChildCount();
+
+            for (int i = 0 ; i < nChild ; i++) {
+
+                LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(i)).getChildAt(0)).getChildAt(0);
+
+                itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(Color.WHITE);
+
+            }
+
+        LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0)).getChildAt(0);
+
+        itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(getResources().getColor(R.color.colorAccent));
+
+        cardViewClicked = ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0));
     }
 
     public class ShowDispTask extends AsyncTask<String, Void, String> {

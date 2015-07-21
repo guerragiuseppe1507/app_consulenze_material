@@ -59,7 +59,7 @@
                 android:layout_height="10px"
                 android:layout_weight="1"
                 />
-            
+
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout><!-- From: file:/C:/Users/Valerio/AndroidStudioProjects/app_consulenze_material/app/src/main/res/layout/item_richieste_inviate.xml -->
