@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
+import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
 /**
  * Created by Giuseppe on 07/07/2015.
@@ -25,10 +26,12 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
 
     private Context context;
     private ArrayList<MieDisp> items;
+    private RecyclerViewClickListener itemListener;
 
-    public DispListAdapter(Context context, ArrayList<MieDisp> items) {
+    public DispListAdapter(Context context, ArrayList<MieDisp> items, RecyclerViewClickListener listener) {
         this.context = context;
         this.items = items;
+        this.itemListener = listener;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -115,7 +118,7 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(context, tvData.getText().toString(), Toast.LENGTH_SHORT).show();
+            itemListener.recyclerViewClicked(v, this.getPosition());
         }
 
     }

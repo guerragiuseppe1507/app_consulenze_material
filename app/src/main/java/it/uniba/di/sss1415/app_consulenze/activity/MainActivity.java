@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             case ID_FRAGMENT_NEW_REQ:
                 fragment = new NuovaRichiestaFragment();
                 title = getString(R.string.title_newReq);
+                break;
             default:
                 break;
         }

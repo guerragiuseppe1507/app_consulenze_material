@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.istances.Appuntamenti;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
+import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
 /**
  * Created by Giuseppe on 13/07/2015.
@@ -21,10 +22,12 @@ public class AppuntamentiAdapter extends  RecyclerView.Adapter<AppuntamentiAdapt
 
     private Context context;
     private ArrayList<Appuntamenti> items;
+    private RecyclerViewClickListener itemListener;
 
-    public AppuntamentiAdapter(Context context, ArrayList<Appuntamenti> items) {
+    public AppuntamentiAdapter(Context context, ArrayList<Appuntamenti> items, RecyclerViewClickListener listener) {
         this.context = context;
         this.items = items;
+        this.itemListener = listener;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -81,7 +84,7 @@ public class AppuntamentiAdapter extends  RecyclerView.Adapter<AppuntamentiAdapt
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(context, tvData.getText().toString(), Toast.LENGTH_SHORT).show();
+            itemListener.recyclerViewClicked(v, this.getPosition());
         }
 
     }

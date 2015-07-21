@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteInviate;
+import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
 /**
  * Created by Valerio on 17/07/2015.
@@ -21,13 +22,15 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
 
     private Context context;
     private ArrayList<RichiesteInviate> items;
+    private RecyclerViewClickListener itemListener;
 
-    public RichiesteInviateAdapter(Context context, ArrayList<RichiesteInviate> items) {
+    public RichiesteInviateAdapter(Context context, ArrayList<RichiesteInviate> items, RecyclerViewClickListener listener) {
         this.context = context;
         this.items = items;
+        this.itemListener = listener;
     }
 
-     // Create new views (invoked by the layrout manage)
+     // Create new views (invoked by the layout manager)
      @Override
      public RichiesteInviateHolder onCreateViewHolder (ViewGroup parent,int viewType){
      View view = LayoutInflater.from(context).inflate(R.layout.item_richieste_inviate, parent, false);
@@ -80,7 +83,7 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(context, tvDataRequest.getText().toString(), Toast.LENGTH_SHORT).show();
+            itemListener.recyclerViewClicked(v, this.getPosition());
         }
 
     }

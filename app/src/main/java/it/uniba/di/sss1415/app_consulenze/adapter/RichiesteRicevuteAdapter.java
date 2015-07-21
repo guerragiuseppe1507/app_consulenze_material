@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteInviate;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteRicevute;
+import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
 /**
  * Created by Valerio on 17/07/2015.
@@ -22,11 +23,7 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
 
     private Context context;
     private ArrayList<RichiesteRicevute> items;
-    private static RecyclerViewClickListener itemListener;
-
-    public interface RecyclerViewClickListener{
-        public void recyclerViewClicked(View v , int position);
-    }
+    private RecyclerViewClickListener itemListener;
 
     public RichiesteRicevuteAdapter(Context context, ArrayList<RichiesteRicevute> items, RecyclerViewClickListener listener) {
         this.context = context;
@@ -84,7 +81,6 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(context, tvDataRequest.getText().toString(), Toast.LENGTH_SHORT).show();
             itemListener.recyclerViewClicked(v, this.getPosition());
 
         }
