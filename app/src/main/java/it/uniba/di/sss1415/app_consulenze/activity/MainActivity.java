@@ -22,6 +22,7 @@ import it.uniba.di.sss1415.app_consulenze.fragment.ModificaProfiloFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.NuovaDisponibilitaFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.SendNewRequest;
 import it.uniba.di.sss1415.app_consulenze.fragment.RichiesteFragment;
+import it.uniba.di.sss1415.app_consulenze.fragment.SendNewRequestCustom;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.fragment.NuovaRichiestaFragment;
 
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             case ID_FRAGMENT_NEW_DISP:
                 fragment = new NuovaDisponibilitaFragment();
                 title = getString(R.string.title_newDisp);
+                break;
             case ID_FRAGMENT_NEW_REQ:
                 fragment = new NuovaRichiestaFragment();
                 title = getString(R.string.title_newReq);
@@ -151,6 +153,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public void showNewDisp(View v){
         displayView(ID_FRAGMENT_NEW_DISP);
     }
+    public void showRichiestaCustom(View v){
+        showFragment("SendNewRequestCustom");
+    }
 
 
     public boolean isModifyCall(){return modifyCall;}
@@ -175,6 +180,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         }else if (name.equals("ModificaProfiloFragment")){
             fragment = new ModificaProfiloFragment();
             title = getString(R.string.title_editProfile);
+        }else if (name.equals("SendNewRequestCustom")){
+            fragment = new SendNewRequestCustom();
+            title = getString(R.string.title_newReq);
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();

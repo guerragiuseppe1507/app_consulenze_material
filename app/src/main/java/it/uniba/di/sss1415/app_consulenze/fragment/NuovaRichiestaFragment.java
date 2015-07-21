@@ -1,18 +1,29 @@
 package it.uniba.di.sss1415.app_consulenze.fragment;
 
+import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
+import it.uniba.di.sss1415.app_consulenze.util.Connection;
 
 /**
  * Created by Pasen on 14/07/2015.
@@ -33,14 +44,20 @@ public class NuovaRichiestaFragment extends Fragment {
     View v;
     Button search;
 
+    Connection conn;
+    ArrayList<String> interventiMedici;
 
-    ArrayAdapter<CharSequence> adapterSpec;
-    ArrayAdapter<CharSequence> adapterInt;
 
-   // private LeggiBrancaMedica listBranc = null;
-   // private Connection conn;
 
-   // private static final String NOME_RICHIESTA = "expertise";
+    ArrayAdapter<String> adapterSpec;
+    ArrayAdapter<String> adapterInt;
+
+    RichiestaInterventiTask mAuthTask;
+
+    // private LeggiBrancaMedica listBranc = null;
+    // private Connection conn;
+
+    // private static final String NOME_RICHIESTA = "expertise";
     //private static final String TIPO_ACCESSO = "read";
 
 
@@ -75,21 +92,13 @@ public class NuovaRichiestaFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
+        conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
         //listBranc = new LeggiBrancaMedica() ;
         //listBranc.execute();
 
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        adapterSpec = ArrayAdapter.createFromResource(this.getActivity(),
-                R.array.specialties, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapterSpec.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        adapterInt = ArrayAdapter.createFromResource(this.getActivity(),
-                R.array.interventi, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapterInt.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterSpec =  new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, UserSessionInfo.getInstance().getBranche());
 
 
         if (getArguments() != null) {
@@ -108,7 +117,7 @@ public class NuovaRichiestaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         v = inflater.inflate(R.layout.fragment_nuova_richiesta, container, false);
+        v = inflater.inflate(R.layout.fragment_nuova_richiesta, container, false);
 
 
         // Populate the Spinner with the specialties array
@@ -119,7 +128,7 @@ public class NuovaRichiestaFragment extends Fragment {
         // Populate the Spinner with the specialties array
         interventi = (Spinner) v.findViewById(R.id.interSpinner);
         // Apply the adapter to the spinner
-        interventi.setAdapter(adapterInt);
+
 
 
         specTV = (TextView) v.findViewById(R.id.specTextView);
@@ -127,12 +136,39 @@ public class NuovaRichiestaFragment extends Fragment {
 
 
         search = (Button) v.findViewById(R.id.searchButton);
+        interventi.setVisibility(View.INVISIBLE);
+        interTV.setVisibility(View.VISIBLE);
+        interTV.setText("Scegli una Specializzazione");
+        expertise.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String specializzazione_selezionata = expertise.getSelectedItem().toString();
+                System.out.println("HAI SCELTO " + specializzazione_selezionata);
+
+                if(mAuthTask!=null)mAuthTask.cancel(true);
+                mAuthTask = new RichiestaInterventiTask(specializzazione_selezionata);
+                mAuthTask.execute();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // passare al nuovo fragment per visualizzare le date disponibili per tale intevento
-                ((MainActivity)getActivity()).showFragment("SendNewRequest");
+                if (!interventi.getSelectedItem().equals("")){
+                    UserSessionInfo.interventoScelto = interventi.getSelectedItem().toString();
+                    ((MainActivity) getActivity()).showFragment("SendNewRequest");
+                }else {
+                    creaMessaggio("Seleziona un intervento");
+                }
+
             }
         });
 
@@ -170,6 +206,82 @@ public class NuovaRichiestaFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+
+    /**
+     * Represents an asynchronous login/registration task used to authenticate
+     * the user.
+     */
+    public class RichiestaInterventiTask extends AsyncTask<String, Void, String> {
+
+        private String selectedItem;
+
+        RichiestaInterventiTask(String selectedItem) {
+            this.selectedItem = selectedItem;
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            System.out.println("nuovarichiesta");
+
+            JSONObject o = new JSONObject();
+            try {
+                o.put("campoMedico", selectedItem);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            conn.setParametri("accesso:write, elemento:interventiMedici, jsonDaScrivere:" + o.toString() );
+
+
+
+            return conn.newConnect();
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            System.out.println(result);
+            setInterventi(result);
+
+            mAuthTask = null;
+
+        }
+
+        @Override
+        protected void onCancelled() {
+            mAuthTask = null;
+        }
+    }
+
+    public void setInterventi(String res) {
+        String[] temp = res.split(",");
+        this.interventiMedici = new ArrayList<String>();
+        for (int i = 0; i < temp.length; i++) {
+            this.interventiMedici.add(temp[i]);
+        }
+
+        if (interventiMedici.size() > 1) {
+            interventi.setVisibility(View.VISIBLE);
+            interTV.setVisibility(View.VISIBLE);
+            interTV.setText("Intervento");
+
+
+            adapterInt = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, interventiMedici);
+            interventi.setAdapter(adapterInt);
+
+        }else{
+            interventi.setVisibility(View.INVISIBLE);
+            interTV.setVisibility(View.VISIBLE);
+            interTV.setText("Nessun intervento disponibile");
+        }
+
+
+    }
+
+    public void creaMessaggio(CharSequence message){
+        Context context = v.getContext();
+        Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toastMessage.show();
     }
 
 

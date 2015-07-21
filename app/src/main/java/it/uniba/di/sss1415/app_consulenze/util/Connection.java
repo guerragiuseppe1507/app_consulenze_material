@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
@@ -105,6 +106,8 @@ public class Connection {
             Log.i("STRINGA RIC = ", response.toString());
             return response.toString();
 
+        } catch (UnknownHostException e) {
+            return ToastMsgs.CONN_PROBLEM;
         } catch (SocketTimeoutException e) {
             return ToastMsgs.CONN_TIMEOUT;
         } catch (IOException e){

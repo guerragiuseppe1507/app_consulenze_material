@@ -31,6 +31,7 @@ public class UserSessionInfo {
     private String annoIscr;
     private String numeroIscr;
     private String primariaEx; //prima expertise
+    public static String interventoScelto;
 
     //Di seguito i metodi che permettono di accedere in lettura e scrittura alla mail
     public void setParams(Context c , String dati){

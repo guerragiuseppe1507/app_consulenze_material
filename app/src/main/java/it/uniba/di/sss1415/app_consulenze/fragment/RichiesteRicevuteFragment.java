@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,13 +32,14 @@ import it.uniba.di.sss1415.app_consulenze.istances.RichiesteInviate;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteRicevute;
 import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
+import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 import it.uniba.di.sss1415.app_consulenze.util.ServerResponseDataSorter;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 /**
  * Created by Valerio on 16/07/2015.
  */
-public class RichiesteRicevuteFragment extends Fragment implements RichiesteRicevuteAdapter.RecyclerViewClickListener{
+public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewClickListener {
     private static final String NOME_RICHIESTA = "richiesteValutare";
     private static final String TIPO_ACCESSO = "read";
     public static final String ARG_PAGE = "ARG_PAGE";
@@ -46,6 +48,10 @@ public class RichiesteRicevuteFragment extends Fragment implements RichiesteRice
     private LinearLayoutManager layoutManager;
     private RecyclerView recyclerView;
     private LinearLayout confirm;
+    private Button bottoneAccetta;
+    private Button bottoneDeclina;
+
+    private CardView cardViewClicked;
 
     private ShowReceivedRequestTask dispTask = null;
     private Connection conn;
@@ -75,7 +81,7 @@ public class RichiesteRicevuteFragment extends Fragment implements RichiesteRice
     }
 
     @Override
-    public void recyclerViewClicked(View v , int position){
+    public void recyclerViewClicked(View v , int position) {
         confirm.setVisibility(View.VISIBLE);
 
         int nChild = recyclerView.getChildCount();
@@ -90,6 +96,8 @@ public class RichiesteRicevuteFragment extends Fragment implements RichiesteRice
         LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0)).getChildAt(0);
 
         itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(getResources().getColor(R.color.colorAccent));
+
+        cardViewClicked = ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0));
 
     }
 
@@ -109,12 +117,12 @@ public class RichiesteRicevuteFragment extends Fragment implements RichiesteRice
             //VISUALIZZABILI ED ACCETTABILI. SICCOME PERO' IL SERVER NON NE RITORNA DI FUTURE ABBIAMO DECISO DI
             //BYPASSARE IL CONTROLLO.
             //try {
-                //if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
+            //if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
 
-                    requests.add(new RichiesteRicevute(temp.get("data"), temp.get("oraInizio"), temp.get("oraFine"),
-                            temp.get("intervento"), temp.get("dottore")));
+            requests.add(new RichiesteRicevute(temp.get("data"), temp.get("oraInizio"), temp.get("oraFine"),
+                    temp.get("intervento"), temp.get("dottore")));
 
-                //}
+            //}
             //} catch (ParseException e) {
             //    e.printStackTrace();
             //}
@@ -127,6 +135,8 @@ public class RichiesteRicevuteFragment extends Fragment implements RichiesteRice
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_richieste_ricevute, container, false);
 
+        bottoneAccetta = (Button) view.findViewById(R.id.bottone_accetta_richiesta);
+        bottoneDeclina = (Button) view.findViewById(R.id.bottone_rifiuta_richiesta);
         confirm = (LinearLayout) view.findViewById(R.id.richieste_ricevute_confirm);
         confirm.setVisibility(View.GONE);
 
@@ -137,6 +147,25 @@ public class RichiesteRicevuteFragment extends Fragment implements RichiesteRice
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        bottoneAccetta.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+
+                cardViewClicked.setVisibility(View.GONE);
+                creaMessaggio("Richiesta accettata");
+
+            }
+        });
+
+        bottoneDeclina.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                cardViewClicked.setVisibility(View.GONE);
+                creaMessaggio("Richiesta rifiutata");
+            }
+        });
         return view;
     }
 

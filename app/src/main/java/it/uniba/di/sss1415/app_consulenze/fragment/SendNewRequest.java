@@ -46,7 +46,7 @@ public class SendNewRequest extends Fragment {
     private ShowDispTask dispTask = null;
     private Connection conn;
 
-    private static final String NOME_RICHIESTA = "dateDispon";
+    private static final String NOME_RICHIESTA = "dispon";
     private static final String TIPO_ACCESSO = "read";
 
 
