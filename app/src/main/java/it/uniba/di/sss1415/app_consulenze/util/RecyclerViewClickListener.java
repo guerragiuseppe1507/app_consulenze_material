@@ -6,5 +6,5 @@ import android.view.View;
  * Created by Valerio on 21/07/2015.
  */
 public interface RecyclerViewClickListener{
-    public void recyclerViewClicked(View v , int position);
+    public void recyclerViewClicked(View v , int position , int offSet);
 }

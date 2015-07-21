@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,12 +24,14 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
 
     private Context context;
     private ArrayList<RichiesteRicevute> items;
-    private RecyclerViewClickListener itemListener;
+    private static RecyclerViewClickListener itemListener;
+    private int clickedPos;
 
-    public RichiesteRicevuteAdapter(Context context, ArrayList<RichiesteRicevute> items, RecyclerViewClickListener listener) {
+    public RichiesteRicevuteAdapter(Context context, ArrayList<RichiesteRicevute> items, RecyclerViewClickListener listener, int clickedPos) {
         this.context = context;
         this.items = items;
         this.itemListener = listener;
+        this.clickedPos=clickedPos;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -48,6 +51,9 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
         viewHolder.tvOraFineRequest.setText(request.getOraFine());
         viewHolder.tvInterventoRequest.setText(request.getIntervento());
         viewHolder.tvDottoreRequest.setText(request.getDottore());
+        if(this.clickedPos == position){
+            viewHolder.selectedRichiesta.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+        }
 
     }
 
@@ -64,7 +70,8 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
         public TextView tvOraFineRequest;
         public TextView tvInterventoRequest;
         public TextView tvDottoreRequest;
-
+        public TextView selectedRichiesta;
+        public LinearLayout parent;
 
 
         public RichiesteRicevuteHolder(Context context, final View itemView) {
@@ -75,14 +82,15 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
             tvOraFineRequest = (TextView) itemView.findViewById(R.id.tvOraFineRequestReceived);
             tvInterventoRequest = (TextView) itemView.findViewById(R.id.tvInterventoRequestReceived);
             tvDottoreRequest = (TextView) itemView.findViewById(R.id.tvDottoreRequestReceived);
+            selectedRichiesta = (TextView) itemView.findViewById(R.id.selectedRichiestaRic);
+            parent = (LinearLayout) itemView.findViewById(R.id.item_richieste_ricevute);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            itemListener.recyclerViewClicked(v, this.getPosition());
-
+            itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
         }
 
     }

@@ -106,7 +106,7 @@ public class MieDispFragment extends Fragment implements RecyclerViewClickListen
     }
 
     private void setRecycler(){
-        dispListAdapter = new DispListAdapter(getActivity(), disps, this);
+        dispListAdapter = new DispListAdapter(getActivity(), disps, this,-1);
         recyclerView.setAdapter(dispListAdapter);
     }
 
@@ -118,23 +118,16 @@ public class MieDispFragment extends Fragment implements RecyclerViewClickListen
     }
 
     @Override
-    public void recyclerViewClicked(View v, int position) {
+    public void recyclerViewClicked(View v , int position, int offset){
+        int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
+        dispListAdapter = new DispListAdapter(getActivity(), disps, this,position);
+        recyclerView.setAdapter(dispListAdapter);
+        layoutManager.scrollToPosition(mScrollPosition);
 
-        int nChild = recyclerView.getChildCount();
+        layoutManager.scrollToPositionWithOffset(position, offset);
 
-            for (int i = 0 ; i < nChild ; i++) {
+        System.out.println(mScrollPosition+" "+(offset));
 
-                LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(i)).getChildAt(0)).getChildAt(0);
-
-                itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(Color.WHITE);
-
-            }
-
-        LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0)).getChildAt(0);
-
-        itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(getResources().getColor(R.color.colorAccent));
-
-        cardViewClicked = ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0));
     }
 
     public class ShowDispTask extends AsyncTask<String, Void, String> {

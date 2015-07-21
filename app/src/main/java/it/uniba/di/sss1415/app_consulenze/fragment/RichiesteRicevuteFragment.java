@@ -81,23 +81,16 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
     }
 
     @Override
-    public void recyclerViewClicked(View v , int position) {
+    public void recyclerViewClicked(View v , int position, int offset){
         confirm.setVisibility(View.VISIBLE);
+        int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
+        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,position);
+        recyclerView.setAdapter(richiesteRicevuteAdapter);
+        layoutManager.scrollToPosition(mScrollPosition);
 
-        int nChild = recyclerView.getChildCount();
+        layoutManager.scrollToPositionWithOffset(position,offset);
 
-        for (int i = 0 ; i < nChild ; i++){
-
-            LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(i)).getChildAt(0)).getChildAt(0);
-
-            itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(Color.WHITE);
-        }
-
-        LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0)).getChildAt(0);
-
-        itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(getResources().getColor(R.color.colorAccent));
-
-        cardViewClicked = ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0));
+        //System.out.println(mScrollPosition+" "+(offset));
 
     }
 
@@ -170,7 +163,7 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
     }
 
     private void setRecycler(){
-        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this);
+        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,-1);
         recyclerView.setAdapter(richiesteRicevuteAdapter);
     }
 

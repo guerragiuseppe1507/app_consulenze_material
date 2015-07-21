@@ -118,7 +118,7 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
     }
 
     private void setRecycler(){
-        richiesteInviateAdapter = new RichiesteInviateAdapter(getActivity(),requests, this);
+        richiesteInviateAdapter = new RichiesteInviateAdapter(getActivity(),requests, this,-1);
         recyclerView.setAdapter(richiesteInviateAdapter);
     }
 
@@ -129,21 +129,18 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
     }
 
     @Override
-    public void recyclerViewClicked(View v, int position) {
+    public void recyclerViewClicked(View v , int position, int offset){
+        int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
+        richiesteInviateAdapter = new RichiesteInviateAdapter(getActivity(), requests, this,position);
+        recyclerView.setAdapter(richiesteInviateAdapter);
+        layoutManager.scrollToPosition(mScrollPosition);
 
-        int nChild = recyclerView.getChildCount();
+        layoutManager.scrollToPositionWithOffset(position,offset);
 
-        for (int i = 0 ; i < nChild ; i++){
+        System.out.println(mScrollPosition + " " + (offset));
 
-            LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(i)).getChildAt(0)).getChildAt(0);
-
-            itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(Color.WHITE);
-        }
-
-        LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0)).getChildAt(0);
-
-        itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(getResources().getColor(R.color.colorAccent));
     }
+
 
     public class ShowSentRequestTask extends AsyncTask<String, Void, String> {
 

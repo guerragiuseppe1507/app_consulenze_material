@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,11 +28,13 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
     private Context context;
     private ArrayList<MieDisp> items;
     private RecyclerViewClickListener itemListener;
+    private int clickedPos;
 
-    public DispListAdapter(Context context, ArrayList<MieDisp> items, RecyclerViewClickListener listener) {
+    public DispListAdapter(Context context, ArrayList<MieDisp> items, RecyclerViewClickListener listener, int clickedPos) {
         this.context = context;
         this.items = items;
         this.itemListener = listener;
+        this.clickedPos=clickedPos;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -59,6 +62,10 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
         } else {
             viewHolder.tvRipetizione.setText(disp.getRipetizione());
             viewHolder.tvFineRipetizione.setText(disp.getFineRipetizione());
+        }
+
+        if(this.clickedPos == position){
+            viewHolder.selectedDispon.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
         }
 
         final String id = disp.getId();
@@ -100,6 +107,8 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
         public TextView tvRipetizione;
         public TextView tvFineRipetizione;
         public ImageButton ibEdit;
+        public TextView selectedDispon;
+        public LinearLayout parent;
 
 
         public MieDispHolder(Context context, View itemView) {
@@ -112,13 +121,15 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
             tvRipetizione = (TextView) itemView.findViewById(R.id.tvRipetizione);
             tvFineRipetizione = (TextView) itemView.findViewById(R.id.tvFineRipetizione);
             ibEdit = (ImageButton) itemView.findViewById(R.id.miaDispBtnEdit);
+            selectedDispon = (TextView) itemView.findViewById(R.id.selectedDispon);
+            parent = (LinearLayout) itemView.findViewById(R.id.item_miadisp);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            itemListener.recyclerViewClicked(v, this.getPosition());
+            itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
         }
 
     }

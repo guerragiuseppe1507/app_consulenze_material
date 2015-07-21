@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,11 +24,13 @@ public class AppuntamentiAdapter extends  RecyclerView.Adapter<AppuntamentiAdapt
     private Context context;
     private ArrayList<Appuntamenti> items;
     private RecyclerViewClickListener itemListener;
+    private int clickedPos;
 
-    public AppuntamentiAdapter(Context context, ArrayList<Appuntamenti> items, RecyclerViewClickListener listener) {
+    public AppuntamentiAdapter(Context context, ArrayList<Appuntamenti> items, RecyclerViewClickListener listener, int clickedPos) {
         this.context = context;
         this.items = items;
         this.itemListener = listener;
+        this.clickedPos=clickedPos;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -48,7 +51,9 @@ public class AppuntamentiAdapter extends  RecyclerView.Adapter<AppuntamentiAdapt
         viewHolder.tvTipoAppuntamento.setText(appuntamenti.getTipo());
         viewHolder.tvIntervento.setText(appuntamenti.getIntervento());
         viewHolder.tvDottore.setText(appuntamenti.getDottore());
-
+        if(this.clickedPos == position){
+            viewHolder.selectedAppuntamento.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+        }
 
 
     }
@@ -67,6 +72,8 @@ public class AppuntamentiAdapter extends  RecyclerView.Adapter<AppuntamentiAdapt
         public TextView tvTipoAppuntamento;
         public TextView tvIntervento;
         public TextView tvDottore;
+        public TextView selectedAppuntamento;
+        public LinearLayout parent;
 
 
         public AppuntamentiHolder(Context context, View itemView) {
@@ -78,13 +85,15 @@ public class AppuntamentiAdapter extends  RecyclerView.Adapter<AppuntamentiAdapt
             tvTipoAppuntamento = (TextView) itemView.findViewById(R.id.appuntamenti_tvTipoAppuntamento);
             tvIntervento = (TextView) itemView.findViewById(R.id.appuntamenti_tvIntervento);
             tvDottore = (TextView) itemView.findViewById(R.id.appuntamenti_tvDottore);
+            selectedAppuntamento = (TextView) itemView.findViewById(R.id.selectedAppuntamento);
+            parent = (LinearLayout) itemView.findViewById(R.id.item_appuntamenti);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            itemListener.recyclerViewClicked(v, this.getPosition());
+            itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
         }
 
     }

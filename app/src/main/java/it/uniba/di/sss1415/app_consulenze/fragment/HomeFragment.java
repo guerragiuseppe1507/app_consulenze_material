@@ -113,24 +113,21 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
     }
 
     private void setRecycler(){
-        appuntamentiAdapter = new AppuntamentiAdapter(getActivity(), appuntamenti, this);
+        appuntamentiAdapter = new AppuntamentiAdapter(getActivity(), appuntamenti, this,-1);
         recyclerView.setAdapter(appuntamentiAdapter);
     }
 
     @Override
-    public void recyclerViewClicked(View v, int position) {
-        int nChild = recyclerView.getChildCount();
+    public void recyclerViewClicked(View v , int position, int offset){
+        int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
+        appuntamentiAdapter = new AppuntamentiAdapter(getActivity(), appuntamenti, this,position);
+        recyclerView.setAdapter(appuntamentiAdapter);
+        layoutManager.scrollToPosition(mScrollPosition);
 
-        for (int i = 0 ; i < nChild ; i++){
+        layoutManager.scrollToPositionWithOffset(position,offset);
 
-            LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(i)).getChildAt(0)).getChildAt(0);
+        System.out.println(mScrollPosition + " " + (offset));
 
-            itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(Color.WHITE);
-        }
-
-        LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0)).getChildAt(0);
-
-        itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(getResources().getColor(R.color.colorAccent));
     }
 
 

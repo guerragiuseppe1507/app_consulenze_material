@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,11 +24,13 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
     private Context context;
     private ArrayList<RichiesteInviate> items;
     private RecyclerViewClickListener itemListener;
+    private int clickedPos;
 
-    public RichiesteInviateAdapter(Context context, ArrayList<RichiesteInviate> items, RecyclerViewClickListener listener) {
+    public RichiesteInviateAdapter(Context context, ArrayList<RichiesteInviate> items, RecyclerViewClickListener listener, int clickedPos) {
         this.context = context;
         this.items = items;
         this.itemListener = listener;
+        this.clickedPos=clickedPos;
     }
 
      // Create new views (invoked by the layout manager)
@@ -48,6 +51,9 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
         viewHolder.tvInterventoRequest.setText(request.getIntervento());
         viewHolder.tvNomeTutorRequest.setText(request.getNomeTutor());
         viewHolder.tvCognomeTutorRequest.setText(request.getCognomeTutor());
+        if(this.clickedPos == position){
+            viewHolder.selectedRichiesta.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+        }
 
     }
 
@@ -65,6 +71,8 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
         public TextView tvInterventoRequest;
         public TextView tvNomeTutorRequest;
         public TextView tvCognomeTutorRequest;
+        public TextView selectedRichiesta;
+        public LinearLayout parent;
 
 
 
@@ -77,13 +85,16 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
             tvInterventoRequest = (TextView) itemView.findViewById(R.id.tvInterventoRequest);
             tvNomeTutorRequest = (TextView) itemView.findViewById(R.id.tvNomeTutorRequest);
             tvCognomeTutorRequest = (TextView) itemView.findViewById(R.id.tvCognomeTutorRequest);
+            selectedRichiesta = (TextView) itemView.findViewById(R.id.selectedRichiestaInv);
+            parent = (LinearLayout) itemView.findViewById(R.id.item_richieste_inviate);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            itemListener.recyclerViewClicked(v, this.getPosition());
+
+            itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
         }
 
     }
