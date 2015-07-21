@@ -49,8 +49,14 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
         viewHolder.tvOraInizioRequest.setText(request.getOraInizio());
         viewHolder.tvOraFineRequest.setText(request.getOraFine());
         viewHolder.tvInterventoRequest.setText(request.getIntervento());
-        viewHolder.tvNomeTutorRequest.setText(request.getNomeTutor());
-        viewHolder.tvCognomeTutorRequest.setText(request.getCognomeTutor());
+        if(request.getNomeTutor().equals("")){
+            viewHolder.tvNomeTutorRequest.setVisibility(View.GONE);
+            viewHolder.tvCognomeTutorRequest.setVisibility(View.GONE);
+        }else{
+            viewHolder.tvNomeTutorRequest.setText(request.getNomeTutor());
+            viewHolder.tvCognomeTutorRequest.setText(request.getCognomeTutor());
+        }
+
         if(this.clickedPos == position){
             viewHolder.selectedRichiesta.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
         }
