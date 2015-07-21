@@ -1,15 +1,18 @@
 package it.uniba.di.sss1415.app_consulenze.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,13 +31,14 @@ import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteInviate;
 import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
+import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 import it.uniba.di.sss1415.app_consulenze.util.ServerResponseDataSorter;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 /**
  * Created by Valerio on 15/07/2015.
  */
-public class RichiesteInviateFragment extends Fragment {
+public class RichiesteInviateFragment extends Fragment implements RecyclerViewClickListener {
 
     private static final String NOME_RICHIESTA = "mieRichiesteInserite";
     private static final String TIPO_ACCESSO = "read";
@@ -114,7 +118,7 @@ public class RichiesteInviateFragment extends Fragment {
     }
 
     private void setRecycler(){
-        richiesteInviateAdapter = new RichiesteInviateAdapter(getActivity(),requests);
+        richiesteInviateAdapter = new RichiesteInviateAdapter(getActivity(),requests, this);
         recyclerView.setAdapter(richiesteInviateAdapter);
     }
 
@@ -122,6 +126,23 @@ public class RichiesteInviateFragment extends Fragment {
     public void onDetach() {
         super.onStop();
         if(dispTask!=null)dispTask.cancel(true);
+    }
+
+    @Override
+    public void recyclerViewClicked(View v, int position) {
+
+        int nChild = recyclerView.getChildCount();
+
+        for (int i = 0 ; i < nChild ; i++){
+
+            LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(i)).getChildAt(0)).getChildAt(0);
+
+            itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(Color.WHITE);
+        }
+
+        LinearLayout itemViewClicked = (LinearLayout) ((CardView) ((LinearLayout) recyclerView.getChildAt(position)).getChildAt(0)).getChildAt(0);
+
+        itemViewClicked.getChildAt(itemViewClicked.getChildCount() - 1).setBackgroundColor(getResources().getColor(R.color.colorAccent));
     }
 
     public class ShowSentRequestTask extends AsyncTask<String, Void, String> {
