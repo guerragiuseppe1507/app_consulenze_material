@@ -2,6 +2,7 @@ package it.uniba.di.sss1415.app_consulenze.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteInviate;
@@ -26,12 +28,14 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
     private ArrayList<RichiesteRicevute> items;
     private static RecyclerViewClickListener itemListener;
     private int clickedPos;
+    private HashMap<String,String> hide = new HashMap<String,String>();
 
-    public RichiesteRicevuteAdapter(Context context, ArrayList<RichiesteRicevute> items, RecyclerViewClickListener listener, int clickedPos) {
+    public RichiesteRicevuteAdapter(Context context, ArrayList<RichiesteRicevute> items, RecyclerViewClickListener listener, int clickedPos ,HashMap<String,String> hide) {
         this.context = context;
         this.items = items;
         this.itemListener = listener;
         this.clickedPos=clickedPos;
+        this.hide = hide;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -53,7 +57,19 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
         viewHolder.tvDottoreRequest.setText(request.getDottore());
         if(this.clickedPos == position){
             viewHolder.selectedRichiesta.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+
+
+
         }
+
+
+
+        if (hide.values().contains(Integer.toString(position))) {
+            viewHolder.item.setVisibility(View.GONE);
+            viewHolder.parent.setVisibility(View.GONE);
+            viewHolder.parent.setPadding(0,0,0,0);
+        }
+
 
     }
 
@@ -71,7 +87,8 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
         public TextView tvInterventoRequest;
         public TextView tvDottoreRequest;
         public TextView selectedRichiesta;
-        public LinearLayout parent;
+        public CardView item;
+        private LinearLayout parent;
 
 
         public RichiesteRicevuteHolder(Context context, final View itemView) {
@@ -83,7 +100,8 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
             tvInterventoRequest = (TextView) itemView.findViewById(R.id.tvInterventoRequestReceived);
             tvDottoreRequest = (TextView) itemView.findViewById(R.id.tvDottoreRequestReceived);
             selectedRichiesta = (TextView) itemView.findViewById(R.id.selectedRichiestaRic);
-            parent = (LinearLayout) itemView.findViewById(R.id.item_richieste_ricevute);
+            item = (CardView) itemView.findViewById(R.id.item_richieste_ricevute);
+            parent = (LinearLayout) itemView.findViewById(R.id.item_richieste_ricevute_parent);
 
             itemView.setOnClickListener(this);
         }

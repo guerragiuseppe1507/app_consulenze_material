@@ -50,6 +50,9 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
     private LinearLayout confirm;
     private Button bottoneAccetta;
     private Button bottoneDeclina;
+    private int clickedPosition;
+    private HashMap<String,String> clickedPositions = new HashMap<String,String>();
+    private int clickedOffset;
 
     private CardView cardViewClicked;
 
@@ -81,15 +84,32 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
     }
 
     @Override
-    public void recyclerViewClicked(View v , int position, int offset){
+     public void recyclerViewClicked(View v , int position, int offset){
         confirm.setVisibility(View.VISIBLE);
+        this.clickedPosition = position;
+        this.clickedOffset = offset;
+
+        System.out.println("AAAAAAAAAAAAAA "+position);
+        System.out.println("AAAAAAAAAAAAAA "+offset);
         int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
-        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,position);
+        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,position,clickedPositions);
         recyclerView.setAdapter(richiesteRicevuteAdapter);
         layoutManager.scrollToPosition(mScrollPosition);
 
-        layoutManager.scrollToPositionWithOffset(position,offset);
+        layoutManager.scrollToPositionWithOffset(position, offset);
+        //System.out.println(mScrollPosition+" "+(offset));
 
+    }
+
+    private void hideSelected(int position, int offset){
+        confirm.setVisibility(View.GONE);
+        clickedPositions.put(Integer.toString(position), Integer.toString(position));
+        int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
+        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,position,clickedPositions);
+        recyclerView.setAdapter(richiesteRicevuteAdapter);
+        //layoutManager.scrollToPosition(mScrollPosition);
+
+        //layoutManager.scrollToPositionWithOffset(position, offset);
         //System.out.println(mScrollPosition+" "+(offset));
 
     }
@@ -144,8 +164,7 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
             @Override
             public void onClick(View v){
 
-
-                cardViewClicked.setVisibility(View.GONE);
+                hideSelected(clickedPosition, clickedOffset);
                 creaMessaggio("Richiesta accettata");
 
             }
@@ -155,7 +174,7 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
             @Override
             public void onClick(View v){
 
-                cardViewClicked.setVisibility(View.GONE);
+                hideSelected(clickedPosition, clickedOffset);
                 creaMessaggio("Richiesta rifiutata");
             }
         });
@@ -163,7 +182,7 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
     }
 
     private void setRecycler(){
-        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,-1);
+        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,-1,clickedPositions);
         recyclerView.setAdapter(richiesteRicevuteAdapter);
     }
 
