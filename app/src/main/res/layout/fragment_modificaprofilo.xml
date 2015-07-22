@@ -5,9 +5,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -15,28 +16,85 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/tvModMail"
+                android:text="@string/mail"
+                android:layout_marginTop="20dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/etModMail"
                 android:text=""
+                android:layout_below="@+id/tvModMail"
+                android:layout_marginBottom="10dp"
                 />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvModScore"
+                android:text="@string/score"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/etModMail"/>
+
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etModScore"
+                android:text=""
+                android:layout_below="@+id/tvModScore"
+                android:numStars="5"
+                android:stepSize="0.1"
+                />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etModScore2"
+                android:text=""
+                android:layout_below="@+id/etModScore"
+                android:layout_marginBottom="10dp"
+                android:numStars="5"
+                android:stepSize="0.1"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvModNome"
+                android:text="@string/nome"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/etModScore2"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etModNome"
-                android:hint="@string/nome"/>
-
+                android:layout_below="@+id/tvModNome"
+                android:layout_marginBottom="10dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvModCognome"
+                android:text="@string/cognome"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/etModNome"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etModCognome"
-                android:hint="@string/cognome" />
+                android:layout_below="@+id/tvModCognome"
+                android:layout_marginBottom="10dp"/>
 
             <!-- Provincia -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txtProv"
-                android:id="@+id/tvProvincia" />
+                android:id="@+id/tvProvincia"
+                android:layout_below="@+id/etModCognome"
+                android:layout_marginTop="10dp"/>
 
             <Spinner
                 android:id="@+id/spinnerModProvince"
@@ -45,27 +103,50 @@
                 android:clickable="true"
                 android:focusableInTouchMode="false"
                 android:spinnerMode="dropdown"
-                android:layout_margin="5sp"/>
+                android:layout_margin="5sp"
+                android:layout_below="@+id/tvProvincia"
+                android:layout_marginBottom="10dp"/>
             <!-- Fine provincia -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvModAnno"
+                android:text="@string/anno"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/spinnerModProvince"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etModAnno"
-                android:hint="@string/anno"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal"
+                android:layout_below="@+id/tvModAnno"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvModNumero"
+                android:text="@string/numero"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/etModAnno"
+                />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etModNumero"
-                android:hint="@string/numero" />
+                android:layout_below="@+id/tvModNumero"
+                android:layout_marginBottom="10dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/spec_prim"
-                android:id="@+id/tvSpecializzazione"/>
+                android:id="@+id/tvSpecializzazione"
+                android:layout_below="@+id/etModNumero"
+                android:layout_marginTop="10dp"/>
 
             <Spinner
                 android:id="@+id/spinnerModSpec"
@@ -73,18 +154,19 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusableInTouchMode="false"
-                android:spinnerMode="dropdown"/>
+                android:spinnerMode="dropdown"
+                android:layout_below="@+id/tvSpecializzazione"
+                android:layout_marginBottom="20dp"/>
 
-
-            <Button
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:id="@+id/btnConfermaModifiche"
-                android:text="@string/mod_prof"
-                android:textColor="@android:color/white"
-                />
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </ScrollView>
+
+    <Button
+        android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:id="@+id/btnConfermaModifiche"
+        android:text="@string/mod_prof"
+        android:textColor="@android:color/white"
+        android:layout_gravity="bottom"/>
 
 </LinearLayout>

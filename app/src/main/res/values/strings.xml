@@ -81,16 +81,17 @@
     <!-- Chiavi shared preferences -->
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="txtProv">Provincia</string>
+    <string name="txtProv">Province</string>
     <string name="anno">Registration year</string>
     <string name="numero">Registration Number</string>
     <string name="cognome">Surname</string>
-    <string name="nome">name</string>
+    <string name="nome">Name</string>
     <string name="spec_prim">Expertise</string>
     <string name="score">Score</string>
     <string name="mod_prof">Edit</string>
     <string name="title_button_Search">SEARCH</string>
     <string name="bottone_accetta">Accept</string>
     <string name="bottone_rifiuta">Decline</string>
+    <string name="mail">Mail</string>
 
 </resources>
