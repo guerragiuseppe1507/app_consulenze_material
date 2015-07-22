@@ -27,9 +27,10 @@ public class RichiesteFragment extends AppCompatActivity implements   FragmentDr
 
     private static final int ID_FRAGMENT_HOME = 0; //TO-DO nomi provvisori fragment
     private static final int ID_FRAGMENT_MIE_DISP = 1;
-    private static final int ID_FRAGMENT_RICHIESTE = 2; //TO-DO nomi provvisori fragment
-    private static final int ID_FRAGMENT_NEW_DISP = 3;
+    private static final int ID_FRAGMENT_NEW_DISP = 2;
+    private static final int ID_FRAGMENT_RICHIESTE = 3; //TO-DO nomi provvisori fragment
     private static final int ID_FRAGMENT_NEW_REQ = 4;
+    private static final int ID_FRAGMENT_VALUTA_TUTOR = 5;
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -82,14 +83,19 @@ public class RichiesteFragment extends AppCompatActivity implements   FragmentDr
             case ID_FRAGMENT_MIE_DISP:
                 i.putExtra("menuItemSelected" , ID_FRAGMENT_MIE_DISP);
                 break;
+            case ID_FRAGMENT_NEW_DISP:
+                i.putExtra("menuItemSelected" , ID_FRAGMENT_NEW_DISP);
+                break;
             case ID_FRAGMENT_RICHIESTE:
                 fragmentActivity = new RichiesteFragment();
                 title = getString(R.string.title_request);
                 break;
-            case ID_FRAGMENT_NEW_DISP:
-                i.putExtra("menuItemSelected" , ID_FRAGMENT_NEW_DISP);
             case ID_FRAGMENT_NEW_REQ:
                 i.putExtra("menuItemSelected" , ID_FRAGMENT_NEW_REQ);
+                break;
+            case ID_FRAGMENT_VALUTA_TUTOR:
+                i.putExtra("menuItemSelected" , ID_FRAGMENT_VALUTA_TUTOR);
+                break;
             default:
                 break;
         }

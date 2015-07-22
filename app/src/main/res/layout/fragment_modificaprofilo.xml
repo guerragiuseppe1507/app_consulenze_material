@@ -18,7 +18,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvModMail"
                 android:text="@string/mail"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:textColor="@color/primary_material_dark"/>
 
 
             <TextView
@@ -36,7 +37,8 @@
                 android:id="@+id/tvModScore"
                 android:text="@string/score"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/etModMail"/>
+                android:layout_below="@+id/etModMail"
+                android:textColor="@color/primary_material_dark"/>
 
 
             <RatingBar
@@ -65,7 +67,8 @@
                 android:id="@+id/tvModNome"
                 android:text="@string/nome"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/etModScore2"/>
+                android:layout_below="@+id/etModScore2"
+                android:textColor="@color/primary_material_dark"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -79,7 +82,8 @@
                 android:id="@+id/tvModCognome"
                 android:text="@string/cognome"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/etModNome"/>
+                android:layout_below="@+id/etModNome"
+                android:textColor="@color/primary_material_dark"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,7 +98,8 @@
                 android:text="@string/txtProv"
                 android:id="@+id/tvProvincia"
                 android:layout_below="@+id/etModCognome"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:textColor="@color/primary_material_dark"/>
 
             <Spinner
                 android:id="@+id/spinnerModProvince"
@@ -114,7 +119,8 @@
                 android:id="@+id/tvModAnno"
                 android:text="@string/anno"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/spinnerModProvince"/>
+                android:layout_below="@+id/spinnerModProvince"
+                android:textColor="@color/primary_material_dark"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -131,6 +137,7 @@
                 android:text="@string/numero"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/etModAnno"
+                android:textColor="@color/primary_material_dark"
                 />
 
             <EditText
@@ -146,7 +153,8 @@
                 android:text="@string/spec_prim"
                 android:id="@+id/tvSpecializzazione"
                 android:layout_below="@+id/etModNumero"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:textColor="@color/primary_material_dark"/>
 
             <Spinner
                 android:id="@+id/spinnerModSpec"
