@@ -1,18 +1,18 @@
 package it.uniba.di.sss1415.app_consulenze.adapter;
 
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.fragment.TutorRating;
 import it.uniba.di.sss1415.app_consulenze.istances.Tutors;
 import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
@@ -20,11 +20,14 @@ import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
  * Created by Pasen on 21/07/2015.
  */
 public class TutorsAdapter  extends  RecyclerView.Adapter<TutorsAdapter.TutorsHolder>  {
+
     private Context context;
     private ArrayList<Tutors> items;
     private RecyclerViewClickListener itemListener;
     private int clickedPos;
-    private FloatingActionButton val;
+
+    TutorRating dialogRate;
+
 
     public TutorsAdapter(Context context, ArrayList<Tutors> items, RecyclerViewClickListener listener, int clickedPos) {
         this.context = context;
@@ -57,26 +60,28 @@ public class TutorsAdapter  extends  RecyclerView.Adapter<TutorsAdapter.TutorsHo
             viewHolder.selectedTutor.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
         }
 
-        final String id = tutor.getNome();
-        final String data = tutor.getCognome();
-        final String orainizio = tutor.getScore();
+        final String NAME = tutor.getNome();
+        final String SURNAME = tutor.getCognome();
+        final String SCORE = tutor.getScore();
 
 
-       // da capire se servira'
-        /*
-        viewHolder.ibEdit.setOnClickListener(new View.OnClickListener() {
+
+        viewHolder.rateTut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)context).setMiaDispScelta(id,data,orainizio);
-                showEdit();
+                // capire se funziona collegato con TutorFragment
+                dialogRate = TutorRating.newInstance(NAME,SURNAME,SCORE);
+
+
             }
-        });*/
+        });
 
     }
-   // collegato con button edit in questo caso da capire se può servire per valutazione tutor o visualizzare profilo
-    public void showEdit(){
+   // collegato con button rate  capire se funziona non serve per adesso
+    public  TutorRating showEdit(){
 
-       // ((MainActivity)context).showFragment("ModificaDisponibilitaFragment");
+
+       return dialogRate;
     }
 
     @Override
@@ -90,7 +95,7 @@ public class TutorsAdapter  extends  RecyclerView.Adapter<TutorsAdapter.TutorsHo
         public TextView tvNome;
         public TextView tvCognome;
         public TextView tvScore;
-        public ImageButton ibEdit;
+        public Button rateTut;
         public TextView selectedTutor;
         public LinearLayout parent;
 
@@ -102,7 +107,7 @@ public class TutorsAdapter  extends  RecyclerView.Adapter<TutorsAdapter.TutorsHo
             tvCognome = (TextView) itemView.findViewById(R.id.tvCognomeT);
             tvScore = (TextView) itemView.findViewById(R.id.tvScoreT);
 
-           // ibEdit = (ImageButton) itemView.findViewById(R.id.miaDispBtnEdit);  non serve per adesso da capire
+            rateTut = (Button) itemView.findViewById(R.id.rateBtn);
             selectedTutor = (TextView) itemView.findViewById(R.id.selectedTutor);
             parent = (LinearLayout) itemView.findViewById(R.id.item_tutor);
 

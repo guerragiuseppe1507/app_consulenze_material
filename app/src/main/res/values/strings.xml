@@ -20,6 +20,9 @@
     <string name="summaryEditButton">Edit</string>
     <string name="summaryTitle">SUMMARY</string>
 
+    <!-- strings _rating tutor  -->
+    <string name="dialogTutorRatingBtn">Send</string>
+
     <!-- strings richieste -->
 
     <string name="tab_sent">Sent</string>

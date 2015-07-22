@@ -12,20 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/valutaTutor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_edit"
-        android:layout_gravity="bottom|right"
 
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp"
-        android:baselineAlignBottom="false"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="10dp"
-        android:onClick="DialogRatingTutor" />
 
 
 </RelativeLayout>
