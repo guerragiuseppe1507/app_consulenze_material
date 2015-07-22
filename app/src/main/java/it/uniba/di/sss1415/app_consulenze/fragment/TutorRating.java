@@ -116,7 +116,7 @@ public class TutorRating extends DialogFragment {
 
                     }
                 })
-                .setNegativeButton(R.string.summaryEditButton, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.summary_cancel_button, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         TutorRating.this.getDialog().cancel();
                     }
@@ -173,7 +173,7 @@ public class TutorRating extends DialogFragment {
                 sadSel.setVisibility(View.INVISIBLE);
 
                 addScore.setText("+" + Integer.toString(nt));
-                addScore.setTextColor(Color.YELLOW);
+                addScore.setTextColor(getResources().getColor(R.color.colorAccent));
                 vote = Integer.parseInt(voto) + nt;
                 voto = Integer.toString(vote);
 

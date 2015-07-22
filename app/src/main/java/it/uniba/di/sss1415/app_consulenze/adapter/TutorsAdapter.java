@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.fragment.TutorRating;
 import it.uniba.di.sss1415.app_consulenze.istances.Tutors;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
 /**
@@ -53,35 +54,10 @@ public class TutorsAdapter  extends  RecyclerView.Adapter<TutorsAdapter.TutorsHo
         viewHolder.tvCognome.setText(tutor.getCognome());
         viewHolder.tvScore.setText(tutor.getScore());
 
-
-
-
         if(this.clickedPos == position){
             viewHolder.selectedTutor.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
         }
 
-        final String NAME = tutor.getNome();
-        final String SURNAME = tutor.getCognome();
-        final String SCORE = tutor.getScore();
-
-
-
-        viewHolder.rateTut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // capire se funziona collegato con TutorFragment
-                dialogRate = TutorRating.newInstance(NAME,SURNAME,SCORE);
-
-
-            }
-        });
-
-    }
-   // collegato con button rate  capire se funziona non serve per adesso
-    public  TutorRating showEdit(){
-
-
-       return dialogRate;
     }
 
     @Override
@@ -95,7 +71,6 @@ public class TutorsAdapter  extends  RecyclerView.Adapter<TutorsAdapter.TutorsHo
         public TextView tvNome;
         public TextView tvCognome;
         public TextView tvScore;
-        public Button rateTut;
         public TextView selectedTutor;
         public LinearLayout parent;
 
@@ -106,10 +81,8 @@ public class TutorsAdapter  extends  RecyclerView.Adapter<TutorsAdapter.TutorsHo
             tvNome = (TextView) itemView.findViewById(R.id.tvNomeT);
             tvCognome = (TextView) itemView.findViewById(R.id.tvCognomeT);
             tvScore = (TextView) itemView.findViewById(R.id.tvScoreT);
-
-            rateTut = (Button) itemView.findViewById(R.id.rateBtn);
             selectedTutor = (TextView) itemView.findViewById(R.id.selectedTutor);
-            parent = (LinearLayout) itemView.findViewById(R.id.item_tutor);
+            parent = (LinearLayout) itemView.findViewById(R.id.item_valuta_tutor_parent);
 
             itemView.setOnClickListener(this);
         }
@@ -117,7 +90,9 @@ public class TutorsAdapter  extends  RecyclerView.Adapter<TutorsAdapter.TutorsHo
         @Override
         public void onClick(View v) {
             itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            UserSessionInfo.tutorScelto = new Tutors(tvNome.getText().toString(),tvCognome.getText().toString(),tvScore.getText().toString());
         }
 
     }
+
 }

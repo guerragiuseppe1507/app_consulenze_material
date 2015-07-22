@@ -13,6 +13,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ import java.util.HashMap;
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.adapter.TutorsAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.Tutors;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
 import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
@@ -40,6 +43,9 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
     private LinearLayoutManager layoutManager;
     FragmentTransaction ft;
     TutorRating sd;
+    private Button buttonRate;
+    private Button buttonProfile;
+    private TutorRating dialogRate;
 
    // private CardView cardViewClicked;
 
@@ -52,6 +58,7 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
     CardView cardViewClicked;
 
     TextView name;
+    private LinearLayout tutorOp;
 
     public TutorFragment() {
         // Required empty public constructor
@@ -93,6 +100,10 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_valuta_tutor, container, false);
+        tutorOp = (LinearLayout) view.findViewById(R.id.tutor_op);
+        tutorOp.setVisibility(View.GONE);
+        buttonRate = (Button) view.findViewById(R.id.rateBtn);
+        buttonProfile = (Button) view.findViewById(R.id.viewProfileBtn);
         layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView = (RecyclerView) view.findViewById(R.id.tutor_recycler);
@@ -101,7 +112,25 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
+        buttonRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Tutors t = UserSessionInfo.tutorScelto;
+                dialogRate = TutorRating.newInstance(t.getNome(),t.getCognome(),t.getScore());
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                dialogRate.show(ft,"Rate");
+
+            }
+        });
+
+        buttonProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                creaMessaggio("TO-DO");
+            }
+        });
 
 
 
@@ -122,6 +151,7 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
 
     @Override
     public void recyclerViewClicked(View v , int position, int offset){
+        tutorOp.setVisibility(View.VISIBLE);
         int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
         tutorAdapter = new TutorsAdapter(getActivity(), tutor, this,position);
         recyclerView.setAdapter(tutorAdapter);

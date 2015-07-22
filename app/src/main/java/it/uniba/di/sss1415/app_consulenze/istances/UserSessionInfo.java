@@ -32,6 +32,7 @@ public class UserSessionInfo {
     private String numeroIscr;
     private String primariaEx; //prima expertise
     public static String interventoScelto;
+    public static Tutors tutorScelto;
 
     //Di seguito i metodi che permettono di accedere in lettura e scrittura alla mail
     public void setParams(Context c , String dati){
