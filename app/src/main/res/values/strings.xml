@@ -5,9 +5,9 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="nav_item_home">Home</string>
+    <string name="nav_item_home">Appointments</string>
     <string name="nav_item_friends">My Availability</string>
-    <string name="nav_item_request">Richieste</string>
+    <string name="nav_item_request">Requests</string>
     <string name="nav_item_tutor">Rating Tutor</string>
 
     <!-- strings _nuova_disponibilita -->
@@ -20,29 +20,32 @@
     <string name="summaryEditButton">Edit</string>
     <string name="summaryTitle">SUMMARY</string>
 
+    <!-- strings _rating tutor  -->
+    <string name="dialogTutorRatingBtn">Send</string>
+
     <!-- strings richieste -->
 
-    <string name="tab_sent">Inviate</string>
-    <string name="tab_received">Ricevute</string>
+    <string name="tab_sent">Sent</string>
+    <string name="tab_received">Received</string>
 
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
         <item>@string/nav_item_friends</item>
-        <item>@string/nav_item_request</item>
         <item>@string/title_newDisp</item>
+        <item>@string/nav_item_request</item>
         <item>@string/title_newReq</item>
         <item>@string/title_valTutor</item>
     </string-array>
 
-    <string name="title_request">Richieste</string>
+    <string name="title_request">Requests</string>
     <string name="title_friends">My availability</string>
-    <string name="title_home">Home</string>
+    <string name="title_home">Appointments</string>
     <string name="title_newDisp">New Availability</string>
     <string name="title_editDisp">Edit Availability</string>
     <string name="title_editProfile">Edit Profile</string>
     <string name="title_newReq">New Request</string>
-    <string name="title_valTutor">Rating Tutor</string>
+    <string name="title_valTutor">Tutor Rating</string>
 
     <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
 
@@ -58,7 +61,7 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="title_activity_registrazione">Registrazione</string>
+    <string name="title_activity_registrazione">Register</string>
 
     <!-- Strings related to registration -->
     <string name="name_label">Name:</string>
@@ -74,7 +77,7 @@
     <string name="login_link">Already have account? Login here</string>
 
     <!-- Strings related to richieste -->
-    <string name="title_activity_richieste">Richieste</string>
+    <string name="title_activity_richieste">Requests</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -96,5 +99,13 @@
     <string name="bottone_accetta">Accept</string>
     <string name="bottone_rifiuta">Decline</string>
     <string name="mail">Mail</string>
+    <string name="new_request_spec">Expertise</string>
+    <string name="new_request_operation">Operation</string>
+    <string name="new_request_date">Date</string>
+    <string name="new_request_start">Start Time</string>
+    <string name="new_request_default_time">--:--</string>
+    <string name="new_request_end">End Time</string>
+    <string name="new_request_tutor_choice">Tutor</string>
+    <string name="new_request_send_button">SEND</string>
 
 </resources>

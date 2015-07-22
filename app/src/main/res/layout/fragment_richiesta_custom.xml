@@ -33,9 +33,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Date"
+                android:text="@string/new_request_date"
                 android:id="@+id/DateTV"
-
+                android:textColor="@color/primary_material_dark"
                 />
 
 
@@ -63,8 +63,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Start time"
-                android:id="@+id/oraITV" />
+                android:text="@string/new_request_start"
+                android:id="@+id/oraITV"
+                android:textColor="@color/primary_material_dark"/>
 
             <TextView
                 android:layout_width="fill_parent"
@@ -73,7 +74,7 @@
                 android:inputType="date"
                 android:ems="10"
                 android:id="@+id/oraIET"
-                android:text="--:--"
+                android:text="@string/new_request_default_time"
                 android:singleLine="true"
                 android:textSize="20dp"
                 />
@@ -90,8 +91,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="End time"
+                android:text="@string/new_request_end"
                 android:id="@+id/oraFTextView"
+                android:textColor="@color/primary_material_dark"
                 />
 
             <TextView
@@ -101,7 +103,7 @@
                 android:inputType="date"
                 android:ems="10"
                 android:id="@+id/oraFineET"
-                android:text="--:--"
+                android:text="@string/new_request_default_time"
                 android:singleLine="true"
                 android:textSize="20dp"
                 />
@@ -118,8 +120,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Scegli  Tutor"
+                android:text="@string/new_request_tutor_choice"
                 android:id="@+id/tutorSelTextView"
+                android:textColor="@color/primary_material_dark"
 
                 />
             <Spinner
@@ -136,7 +139,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/login_link_text_size"
                 android:textColor="@color/whiteText"
-                android:text="Send Request"
+                android:text="@string/new_request_send_button"
                 android:id="@+id/sendButton"
                 android:singleLine="true" />
         </LinearLayout>

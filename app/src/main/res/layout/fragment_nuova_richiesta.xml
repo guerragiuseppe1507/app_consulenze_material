@@ -18,9 +18,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Specializzazione"
+        android:text="@string/new_request_spec"
         android:id="@+id/specTextView"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:textColor="@color/primary_material_dark"/>
         <Spinner
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -28,15 +29,17 @@
         android:layout_below="@+id/specialties_label"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="@dimen/et_marginBottom"
+
             android:visibility="visible" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Intervento"
+            android:text="@string/new_request_operation"
             android:id="@+id/interTextView"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:textColor="@color/primary_material_dark"/>
 
         <Spinner
             android:layout_width="fill_parent"

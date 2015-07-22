@@ -50,6 +50,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Date"
                 android:id="@+id/DateTextView"
+                android:textColor="@color/primary_material_dark"
 
                 />
 
@@ -79,7 +80,9 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Start time"
-                android:id="@+id/oraInizioTextView" />
+                android:id="@+id/oraInizioTextView"
+                android:textColor="@color/primary_material_dark"/>
+
 
             <TextView
                 android:layout_width="fill_parent"
@@ -107,6 +110,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="End time"
                 android:id="@+id/oraFIneTextView"
+                android:textColor="@color/primary_material_dark"
                 />
 
             <TextView

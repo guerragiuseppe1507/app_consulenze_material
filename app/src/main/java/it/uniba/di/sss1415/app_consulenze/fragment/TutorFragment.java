@@ -1,9 +1,11 @@
 package it.uniba.di.sss1415.app_consulenze.fragment;
 
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,6 +38,8 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
     ArrayList<Tutors> tutor;
     private TutorsAdapter tutorAdapter;
     private LinearLayoutManager layoutManager;
+    FragmentTransaction ft;
+    TutorRating sd;
 
    // private CardView cardViewClicked;
 
@@ -99,6 +103,8 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
 
 
 
+
+
         return view;
     }
 
@@ -123,6 +129,19 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
         layoutManager.scrollToPositionWithOffset(position, offset);
 
         System.out.println(mScrollPosition+" "+(offset));
+
+
+
+
+    }
+
+    public  void showDialog(TutorRating vf){
+        // da capire se funziona
+
+        sd =  vf;
+
+        ft = getFragmentManager().beginTransaction();
+        sd.show(ft,"rate");
 
     }
 

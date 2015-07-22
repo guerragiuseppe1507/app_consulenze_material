@@ -34,7 +34,7 @@ import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 public class ModificaProfiloFragment extends Fragment {
 
     private boolean login=false;
-    private TextView ETemail;
+    private TextView ETemail, ScoreValue;
     private EditText ETnome, ETcognome, ETanno, ETnumero;
     private Spinner lista_province;
     private Spinner lista_branche_mediche;
@@ -75,12 +75,14 @@ public class ModificaProfiloFragment extends Fragment {
         ETcognome= (EditText) v.findViewById(R.id.etModCognome);
         ETanno= (EditText) v.findViewById(R.id.etModAnno);
         ETnumero= (EditText) v.findViewById(R.id.etModNumero);
+        ScoreValue = (TextView) v.findViewById(R.id.etModScore);
 
         ETemail.setText(UserSessionInfo.getInstance().getEmail());
         ETnome.setText(UserSessionInfo.getInstance().getNome());
         ETcognome.setText(UserSessionInfo.getInstance().getCognome());
         ETanno.setText(UserSessionInfo.getInstance().getAnnoIscr());
         ETnumero.setText(UserSessionInfo.getInstance().getNome());
+        ScoreValue.setText(UserSessionInfo.getInstance().getScore());
         // inizializzazione spinner province
         lista_province = (Spinner) v.findViewById(R.id.spinnerModProvince);
         adapter = ArrayAdapter.createFromResource(getActivity(), R.array.arrayProvince,

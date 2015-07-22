@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private static final int ID_FRAGMENT_HOME = 0; //TO-DO nomi provvisori fragment
     private static final int ID_FRAGMENT_MIE_DISP = 1;
-    private static final int ID_FRAGMENT_RICHIESTE = 2; //TO-DO nomi provvisori fragment
-    private static final int ID_FRAGMENT_NEW_DISP = 3;
+    private static final int ID_FRAGMENT_NEW_DISP = 2;
+    private static final int ID_FRAGMENT_RICHIESTE = 3; //TO-DO nomi provvisori fragment
     private static final int ID_FRAGMENT_NEW_REQ = 4;
     private static final int ID_FRAGMENT_VALUTA_TUTOR = 5;
 
@@ -121,13 +121,13 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 fragment = new MieDispFragment();
                 title = getString(R.string.title_friends);
                 break;
-            case ID_FRAGMENT_RICHIESTE:
-                fragmentActivity = new RichiesteFragment();
-                title = getString(R.string.title_request);
-                break;
             case ID_FRAGMENT_NEW_DISP:
                 fragment = new NuovaDisponibilitaFragment();
                 title = getString(R.string.title_newDisp);
+                break;
+            case ID_FRAGMENT_RICHIESTE:
+                fragmentActivity = new RichiesteFragment();
+                title = getString(R.string.title_request);
                 break;
             case ID_FRAGMENT_NEW_REQ:
                 fragment = new NuovaRichiestaFragment();
