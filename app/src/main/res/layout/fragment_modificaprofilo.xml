@@ -11,7 +11,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -40,26 +42,14 @@
                 android:layout_below="@+id/etModMail"
                 android:textColor="@color/primary_material_dark"/>
 
-
-            <RatingBar
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etModScore"
-                android:text=""
-                android:layout_below="@+id/tvModScore"
-                android:numStars="5"
-                android:stepSize="0.1"
-                />
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/etModScore2"
-                android:text=""
-                android:layout_below="@+id/etModScore"
                 android:layout_marginBottom="10dp"
-                android:numStars="5"
-                android:stepSize="0.1"
-                />
+                android:layout_below="@+id/tvModScore"/>
+
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -67,7 +57,7 @@
                 android:id="@+id/tvModNome"
                 android:text="@string/nome"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/etModScore2"
+                android:layout_below="@+id/etModScore"
                 android:textColor="@color/primary_material_dark"/>
 
             <EditText
@@ -175,6 +165,8 @@
         android:id="@+id/btnConfermaModifiche"
         android:text="@string/mod_prof"
         android:textColor="@android:color/white"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
 </LinearLayout>
