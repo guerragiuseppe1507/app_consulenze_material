@@ -88,9 +88,6 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
         confirm.setVisibility(View.VISIBLE);
         this.clickedPosition = position;
         this.clickedOffset = offset;
-
-        System.out.println("AAAAAAAAAAAAAA "+position);
-        System.out.println("AAAAAAAAAAAAAA "+offset);
         int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
         richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,position,clickedPositions);
         recyclerView.setAdapter(richiesteRicevuteAdapter);
