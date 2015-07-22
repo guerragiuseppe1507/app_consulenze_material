@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -20,11 +19,12 @@ import it.uniba.di.sss1415.app_consulenze.fragment.HomeFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.MieDispFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.ModificaProfiloFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.NuovaDisponibilitaFragment;
-import it.uniba.di.sss1415.app_consulenze.fragment.SendNewRequest;
-import it.uniba.di.sss1415.app_consulenze.fragment.RichiesteFragment;
-import it.uniba.di.sss1415.app_consulenze.fragment.SendNewRequestCustom;
-import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.fragment.NuovaRichiestaFragment;
+import it.uniba.di.sss1415.app_consulenze.fragment.RichiesteFragment;
+import it.uniba.di.sss1415.app_consulenze.fragment.SendNewRequest;
+import it.uniba.di.sss1415.app_consulenze.fragment.SendNewRequestCustom;
+import it.uniba.di.sss1415.app_consulenze.fragment.TutorFragment;
+import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 
 
 
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private static final int ID_FRAGMENT_RICHIESTE = 2; //TO-DO nomi provvisori fragment
     private static final int ID_FRAGMENT_NEW_DISP = 3;
     private static final int ID_FRAGMENT_NEW_REQ = 4;
+    private static final int ID_FRAGMENT_VALUTA_TUTOR = 5;
 
     private static String TAG = MainActivity.class.getSimpleName();
 
@@ -131,6 +132,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             case ID_FRAGMENT_NEW_REQ:
                 fragment = new NuovaRichiestaFragment();
                 title = getString(R.string.title_newReq);
+                break;
+            case ID_FRAGMENT_VALUTA_TUTOR:
+               fragment = new TutorFragment();
+                title = getString(R.string.title_valTutor);
                 break;
             default:
                 break;

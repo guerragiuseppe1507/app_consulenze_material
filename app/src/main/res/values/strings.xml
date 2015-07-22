@@ -6,8 +6,9 @@
     <string name="drawer_close">Close</string>
 
     <string name="nav_item_home">Home</string>
-    <string name="nav_item_friends">Mie Disponibilità</string>
+    <string name="nav_item_friends">My Availability</string>
     <string name="nav_item_request">Richieste</string>
+    <string name="nav_item_tutor">Rating Tutor</string>
 
     <!-- strings _nuova_disponibilita -->
 
@@ -31,15 +32,17 @@
         <item>@string/nav_item_request</item>
         <item>@string/title_newDisp</item>
         <item>@string/title_newReq</item>
+        <item>@string/title_valTutor</item>
     </string-array>
 
     <string name="title_request">Richieste</string>
-    <string name="title_friends">Mie Disponibilità</string>
+    <string name="title_friends">My availability</string>
     <string name="title_home">Home</string>
     <string name="title_newDisp">New Availability</string>
     <string name="title_editDisp">Edit Availability</string>
     <string name="title_editProfile">Edit Profile</string>
     <string name="title_newReq">New Request</string>
+    <string name="title_valTutor">Rating Tutor</string>
 
     <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
 
