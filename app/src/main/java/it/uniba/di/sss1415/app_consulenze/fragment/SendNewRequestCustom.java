@@ -59,7 +59,7 @@ public class SendNewRequestCustom extends Fragment {
 
     ArrayList<String> tutorList;
     ShowTutors mTutorTask;
-
+    View v;
 
     SummaryRequestCustom dialogSummary ;
 
@@ -105,7 +105,7 @@ public class SendNewRequestCustom extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adapterTutor = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tutorList);
+
         // Create an ArrayAdapter using the string array and a default spinner layout
 
 
@@ -123,26 +123,25 @@ public class SendNewRequestCustom extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_richiesta_custom, container, false);
+        v = inflater.inflate(R.layout.fragment_richiesta_custom, container, false);
 
 
-        // Populate the Spinner with the specialties array
-        tutor = (Spinner) v.findViewById(R.id.tutorSpinner);
+
+
 
         // Apply the adapter to the spinner
-        tutor.setAdapter(adapterTutor);
-        send = (Button) v.findViewById(R.id.sendButton);
 
+        send = (Button) v.findViewById(R.id.sendButtonCU);
+        tutor = (Spinner) v.findViewById(R.id.tutorSpinnerCU);
         // time picker
-        oraInizio = (TextView) v.findViewById(R.id.oraIET);
-        oraFine = (TextView) v.findViewById(R.id.oraFineET);
+        oraInizio = (TextView) v.findViewById(R.id.oraICUET);
+        oraFine = (TextView) v.findViewById(R.id.oraFineCUET);
         //data picker
-        dataIn = (TextView) v.findViewById(R.id.dateET);
+        dataIn = (TextView) v.findViewById(R.id.dateCuET);
         interventoSel = (TextView) v.findViewById(R.id.labelIntervScelta);
         interventoSel.setText(UserSessionInfo.interventoScelto);
 
-        mTutorTask = new ShowTutors();
-        mTutorTask.execute();
+
 
 
         oraInizio.setOnClickListener(new View.OnClickListener() {
@@ -283,7 +282,8 @@ public class SendNewRequestCustom extends Fragment {
 
 
 
-
+        mTutorTask = new ShowTutors();
+        mTutorTask.execute();
 
         return v;
     }
@@ -310,6 +310,7 @@ public class SendNewRequestCustom extends Fragment {
 
 
         tutors = new ArrayList<Tutors>();
+        tutorList = new ArrayList<String>();
         for(int i = 0; i < res.size(); i++) {
 
             HashMap<String,String> temp = res.get(i);
@@ -350,9 +351,9 @@ public class SendNewRequestCustom extends Fragment {
             } else {
                 try {
                     listaTut = JsonHandler.fromJsonToMapList(NOME_RICHIESTA, result);
-
-                    createAndPopulateTutorArray(listaTut);
-
+                    System.out.println(listaTut.get(0).get("nomeT"));
+                   // createAndPopulateTutorArray(listaTut);
+                   //returnView();
 
 
                 } catch (JSONException e) {
@@ -372,6 +373,17 @@ public class SendNewRequestCustom extends Fragment {
             tutorTask = null;
         }
     }
+
+    private void returnView(){
+
+
+       adapterTutor = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tutorList);
+        tutor.setAdapter(adapterTutor);
+
+
+    }
+
+
     public void creaMessaggio(CharSequence message){
         Context context = getActivity().getApplicationContext();
         Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
