@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.Stack;
+
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.fragment.HomeFragment;
 import it.uniba.di.sss1415.app_consulenze.fragment.MieDispFragment;
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private static final int ID_FRAGMENT_VALUTA_TUTOR = 5;
 
     private static String TAG = MainActivity.class.getSimpleName();
+
+    public Stack<String> fragmentBackStack = new Stack<String>();
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -64,15 +68,15 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         Intent intent = getIntent();
         if(intent == null) {
 
-            displayView(0);
+            displayView(0,false);
         } else {
             if (intent.getStringExtra("profiloSelected") == null) {
 
-                displayView(intent.getIntExtra("menuItemSelected", 0));
+                displayView(intent.getIntExtra("menuItemSelected", 0),false);
 
             }  else {
 
-                showFragment(intent.getStringExtra("profiloSelected"));
+                showFragment(intent.getStringExtra("profiloSelected"),false);
             }
         }
 
@@ -95,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            showFragment("ModificaProfiloFragment");
+            showFragment("ModificaProfiloFragment",false);
         }
 
 
@@ -104,10 +108,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     @Override
     public void onDrawerItemSelected(View view, int position) {
-            displayView(position);
+            displayView(position , false);
     }
 
-    public void displayView(int position) {
+    public void displayView(int position ,Boolean isBackPressed) {
         modifyCall=false;
         Fragment fragment = null;
         FragmentActivity fragmentActivity = null;
@@ -116,26 +120,32 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             case ID_FRAGMENT_HOME:
                 fragment = new HomeFragment();
                 title = getString(R.string.title_home);
+                if(!isBackPressed)fragmentBackStack.push("0");
                 break;
             case ID_FRAGMENT_MIE_DISP:
                 fragment = new MieDispFragment();
                 title = getString(R.string.title_friends);
+                if(!isBackPressed)fragmentBackStack.push("1");
                 break;
             case ID_FRAGMENT_NEW_DISP:
                 fragment = new NuovaDisponibilitaFragment();
                 title = getString(R.string.title_newDisp);
+                if(!isBackPressed)fragmentBackStack.push("2");
                 break;
             case ID_FRAGMENT_RICHIESTE:
                 fragmentActivity = new RichiesteFragment();
                 title = getString(R.string.title_request);
+                if(!isBackPressed)fragmentBackStack.push("3");
                 break;
             case ID_FRAGMENT_NEW_REQ:
                 fragment = new NuovaRichiestaFragment();
                 title = getString(R.string.title_newReq);
+                if(!isBackPressed)fragmentBackStack.push("4");
                 break;
             case ID_FRAGMENT_VALUTA_TUTOR:
                fragment = new TutorFragment();
                 title = getString(R.string.title_valTutor);
+                if(!isBackPressed)fragmentBackStack.push("5");
                 break;
             default:
                 break;
@@ -157,10 +167,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
     public void showNewDisp(View v){
-        displayView(ID_FRAGMENT_NEW_DISP);
+        displayView(ID_FRAGMENT_NEW_DISP ,false);
     }
     public void showRichiestaCustom(View v){
-        showFragment("SendNewRequestCustom");
+        showFragment("SendNewRequestCustom",false);
     }
 
 
@@ -168,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public void setModifyCall(Boolean b){modifyCall = b;}
 
 
-    public void showFragment(String name){
+    public void showFragment(String name ,Boolean isBackPressed){
         modifyCall=false;
         Fragment fragment = null;
         String title = getString(R.string.app_name);
@@ -176,19 +186,22 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
             fragment = new SendNewRequest();
             title = getString(R.string.title_newReq);
+            if(!isBackPressed)fragmentBackStack.push("SendNewRequest");
 
         } else if (name.equals("ModificaDisponibilitaFragment")){
             modifyCall=true;
             fragment = new NuovaDisponibilitaFragment();
             title = getString(R.string.title_editDisp);
-
+            if(!isBackPressed)fragmentBackStack.push("ModificaDisponibilitaFragment");
 
         }else if (name.equals("ModificaProfiloFragment")){
             fragment = new ModificaProfiloFragment();
             title = getString(R.string.title_editProfile);
+            if(!isBackPressed)fragmentBackStack.push("ModificaProfiloFragment");
         }else if (name.equals("SendNewRequestCustom")){
             fragment = new SendNewRequestCustom();
             title = getString(R.string.title_newReq);
+            if(!isBackPressed)fragmentBackStack.push("SendNewRequestCustom");
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -207,5 +220,21 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     public MieDisp getMiaDispScelta(){
        return miaDispScelta;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!fragmentBackStack.empty()) {
+            fragmentBackStack.pop();
+            String desired = fragmentBackStack.pop();
+            fragmentBackStack.push(desired);
+            try {
+                displayView(Integer.parseInt(desired), true);
+            } catch (NumberFormatException e) {
+                showFragment(desired, true);
+            }
+        } else {
+            super.onBackPressed();
+        }
     }
 }

@@ -164,7 +164,7 @@ public class NuovaRichiestaFragment extends Fragment {
                 // passare al nuovo fragment per visualizzare le date disponibili per tale intevento
                 if (!interventi.getSelectedItem().equals("")){
                     UserSessionInfo.interventoScelto = interventi.getSelectedItem().toString();
-                    ((MainActivity) getActivity()).showFragment("SendNewRequest");
+                    ((MainActivity) getActivity()).showFragment("SendNewRequest",false);
                 }else {
                     creaMessaggio("Seleziona un intervento");
                 }
