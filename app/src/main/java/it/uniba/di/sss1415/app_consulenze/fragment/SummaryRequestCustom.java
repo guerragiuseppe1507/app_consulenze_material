@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
@@ -100,6 +101,7 @@ public class SummaryRequestCustom extends DialogFragment {
                         // invio dati al server
                         requestTask = new RequestCustomTask(exp, date, sTime, eTime, nomeTt, cognomeTt, user);
                         requestTask.execute();
+                        ((MainActivity)getActivity()).displayView(3, false);
 
 
 

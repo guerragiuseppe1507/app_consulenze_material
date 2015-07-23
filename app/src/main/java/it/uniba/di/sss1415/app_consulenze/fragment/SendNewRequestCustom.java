@@ -47,7 +47,7 @@ public class SendNewRequestCustom extends Fragment {
     private String mParam1;
     private String mParam2;
     Spinner tutor;
-    ArrayAdapter<String> adapterTutor; // tutor
+    ArrayAdapter<String> adapterTutor;
     Button send;
     TextView oraInizio ;
     TextView oraFine ;
@@ -55,7 +55,6 @@ public class SendNewRequestCustom extends Fragment {
     TextView interventoSel;
     String nomeTutor;
     String cognomeTutor;
-    Spinner sceltaTutor;
 
     ArrayList<String> tutorList;
     ShowTutors mTutorTask;
@@ -65,8 +64,6 @@ public class SendNewRequestCustom extends Fragment {
 
     private static final String NOME_RICHIESTA = "tutor";
     private static final String TIPO_ACCESSO = "read";
-
-    private ShowTutors tutorTask = null;
     private Connection conn;
 
     ArrayList<Tutors> tutors;
@@ -107,7 +104,7 @@ public class SendNewRequestCustom extends Fragment {
 
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-
+        conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -351,9 +348,9 @@ public class SendNewRequestCustom extends Fragment {
             } else {
                 try {
                     listaTut = JsonHandler.fromJsonToMapList(NOME_RICHIESTA, result);
-                    System.out.println(listaTut.get(0).get("nomeT"));
-                   // createAndPopulateTutorArray(listaTut);
-                   //returnView();
+                    System.out.println("TUTOR RITORNATO" + listaTut.get(0).get("nomeT"));
+                    createAndPopulateTutorArray(listaTut);
+                    returnView();
 
 
                 } catch (JSONException e) {
@@ -364,13 +361,13 @@ public class SendNewRequestCustom extends Fragment {
 
 
 
-            tutorTask = null;
+            mTutorTask = null;
 
         }
 
         @Override
         protected void onCancelled() {
-            tutorTask = null;
+            mTutorTask = null;
         }
     }
 
