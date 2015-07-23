@@ -27,11 +27,32 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:padding="@dimen/ll_padding">
 
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/intervScelta"
+                android:id="@+id/sceltaTV"
+                android:textColor="@color/primary_material_dark"
+                />
 
 
             <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/et_marginTop"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/labelIntervScelta"
+                android:text="Intervento"
+                android:singleLine="true"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/et_marginTop"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/new_request_date"
                 android:id="@+id/DateTV"
@@ -45,7 +66,7 @@
                 android:layout_marginTop="@dimen/et_marginTop"
                 android:inputType="date"
                 android:ems="10"
-                android:id="@+id/dateET"
+                android:id="@+id/dateCuET"
                 android:text="dd/mm/yyyy"
                 android:singleLine="true"
                 android:textSize="20dp"
@@ -64,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/new_request_start"
-                android:id="@+id/oraITV"
+                android:id="@+id/oraICUTV"
                 android:textColor="@color/primary_material_dark"/>
 
             <TextView
@@ -73,7 +94,7 @@
                 android:layout_marginTop="@dimen/et_marginTop"
                 android:inputType="date"
                 android:ems="10"
-                android:id="@+id/oraIET"
+                android:id="@+id/oraICUET"
                 android:text="@string/new_request_default_time"
                 android:singleLine="true"
                 android:textSize="20dp"
@@ -102,7 +123,7 @@
                 android:layout_marginTop="@dimen/et_marginTop"
                 android:inputType="date"
                 android:ems="10"
-                android:id="@+id/oraFineET"
+                android:id="@+id/oraFineCUET"
                 android:text="@string/new_request_default_time"
                 android:singleLine="true"
                 android:textSize="20dp"
@@ -128,7 +149,7 @@
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tutorSpinner"
+                android:id="@+id/tutorSpinnerCU"
                 android:layout_below="@+id/specialties_label"
                 android:layout_alignParentStart="true" />
 
@@ -140,7 +161,7 @@
                 android:textSize="@dimen/login_link_text_size"
                 android:textColor="@color/whiteText"
                 android:text="@string/new_request_send_button"
-                android:id="@+id/sendButton"
+                android:id="@+id/sendButtonCU"
                 android:singleLine="true" />
         </LinearLayout>
     </ScrollView>

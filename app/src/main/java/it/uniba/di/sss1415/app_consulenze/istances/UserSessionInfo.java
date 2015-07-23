@@ -105,6 +105,8 @@ public class UserSessionInfo {
 
     public String getExp(){return primariaEx;}
 
+
+
     public void setBranche(String branche){
         String[] temp =branche.split(",");
         this.branche = new ArrayList<String>();
