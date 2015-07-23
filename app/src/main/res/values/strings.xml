@@ -114,5 +114,7 @@
     <string name="from">From</string>
     <string name="request_received_operation">Operation :</string>
     <string name="request_received_dottore">Doctor :</string>
+    <string name="action_logout">Logout</string>
+    <string name="new_request_summary_button">Summary</string>
 
 </resources>

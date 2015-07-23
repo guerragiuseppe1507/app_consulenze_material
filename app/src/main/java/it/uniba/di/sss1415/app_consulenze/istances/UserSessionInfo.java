@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by Valerio on 13/07/2015.
@@ -32,10 +34,13 @@ public class UserSessionInfo {
     private String primariaEx; //prima expertise
     public static String interventoScelto;
     public static Tutors tutorScelto;
+    public static Stack<String> backStackFragment = new Stack<String>();
 
     //Di seguito i metodi che permettono di accedere in lettura e scrittura alla mail
     public void setParams(Context c , String dati){
         String notset = "Not set yet";
+
+        UserSessionInfo.backStackFragment = new Stack<String>();
 
         String[] datiRicevuti = dati.toString().split(",",10);
 

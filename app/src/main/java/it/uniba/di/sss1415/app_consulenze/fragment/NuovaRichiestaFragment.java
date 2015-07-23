@@ -139,7 +139,6 @@ public class NuovaRichiestaFragment extends Fragment {
         interventi.setVisibility(View.INVISIBLE);
         interTV.setVisibility(View.VISIBLE);
         interTV.setText("Scegli una Specializzazione");
-
         expertise.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override

@@ -27,7 +27,7 @@ import it.uniba.di.sss1415.app_consulenze.fragment.SendNewRequest;
 import it.uniba.di.sss1415.app_consulenze.fragment.SendNewRequestCustom;
 import it.uniba.di.sss1415.app_consulenze.fragment.TutorFragment;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
-
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private static String TAG = MainActivity.class.getSimpleName();
 
-    public Stack<String> fragmentBackStack = new Stack<String>();
+
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -102,6 +102,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             showFragment("ModificaProfiloFragment",false);
         }
 
+        if (id == R.id.action_logout) {
+            toLogin();
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -120,32 +124,32 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             case ID_FRAGMENT_HOME:
                 fragment = new HomeFragment();
                 title = getString(R.string.title_home);
-                if(!isBackPressed)fragmentBackStack.push("0");
+                if(!isBackPressed)pushaNelBackstack("0");
                 break;
             case ID_FRAGMENT_MIE_DISP:
                 fragment = new MieDispFragment();
                 title = getString(R.string.title_friends);
-                if(!isBackPressed)fragmentBackStack.push("1");
+                if(!isBackPressed)pushaNelBackstack("1");
                 break;
             case ID_FRAGMENT_NEW_DISP:
                 fragment = new NuovaDisponibilitaFragment();
                 title = getString(R.string.title_newDisp);
-                if(!isBackPressed)fragmentBackStack.push("2");
+                if(!isBackPressed)pushaNelBackstack("2");
                 break;
             case ID_FRAGMENT_RICHIESTE:
                 fragmentActivity = new RichiesteFragment();
                 title = getString(R.string.title_request);
-                if(!isBackPressed)fragmentBackStack.push("3");
+                if(!isBackPressed)pushaNelBackstack("3");
                 break;
             case ID_FRAGMENT_NEW_REQ:
                 fragment = new NuovaRichiestaFragment();
                 title = getString(R.string.title_newReq);
-                if(!isBackPressed)fragmentBackStack.push("4");
+                if(!isBackPressed)pushaNelBackstack("4");
                 break;
             case ID_FRAGMENT_VALUTA_TUTOR:
                fragment = new TutorFragment();
                 title = getString(R.string.title_valTutor);
-                if(!isBackPressed)fragmentBackStack.push("5");
+                if(!isBackPressed)pushaNelBackstack("5");
                 break;
             default:
                 break;
@@ -167,10 +171,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
     public void showNewDisp(View v){
-        displayView(ID_FRAGMENT_NEW_DISP ,false);
+        displayView(ID_FRAGMENT_NEW_DISP, false);
     }
     public void showRichiestaCustom(View v){
-        showFragment("SendNewRequestCustom",false);
+        showFragment("SendNewRequestCustom", false);
     }
 
 
@@ -186,22 +190,22 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
             fragment = new SendNewRequest();
             title = getString(R.string.title_newReq);
-            if(!isBackPressed)fragmentBackStack.push("SendNewRequest");
+            if(!isBackPressed)pushaNelBackstack("SendNewRequest");
 
         } else if (name.equals("ModificaDisponibilitaFragment")){
             modifyCall=true;
             fragment = new NuovaDisponibilitaFragment();
             title = getString(R.string.title_editDisp);
-            if(!isBackPressed)fragmentBackStack.push("ModificaDisponibilitaFragment");
+            if(!isBackPressed)pushaNelBackstack("ModificaDisponibilitaFragment");
 
         }else if (name.equals("ModificaProfiloFragment")){
             fragment = new ModificaProfiloFragment();
             title = getString(R.string.title_editProfile);
-            if(!isBackPressed)fragmentBackStack.push("ModificaProfiloFragment");
+            if(!isBackPressed)pushaNelBackstack("ModificaProfiloFragment");
         }else if (name.equals("SendNewRequestCustom")){
             fragment = new SendNewRequestCustom();
             title = getString(R.string.title_newReq);
-            if(!isBackPressed)fragmentBackStack.push("SendNewRequestCustom");
+            if(!isBackPressed)pushaNelBackstack("SendNewRequestCustom");
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -222,19 +226,41 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
        return miaDispScelta;
     }
 
+    public void  pushaNelBackstack(String wanted){
+        String last;
+        try{
+            last = UserSessionInfo.backStackFragment.pop();
+            UserSessionInfo.backStackFragment.push(last);
+
+            if (!last.equals(wanted)){
+                UserSessionInfo.backStackFragment.push(wanted);
+            }
+
+        } catch (RuntimeException e){
+            UserSessionInfo.backStackFragment.push(wanted);
+        }
+    }
+
     @Override
     public void onBackPressed() {
-        if(!fragmentBackStack.empty()) {
-            fragmentBackStack.pop();
-            String desired = fragmentBackStack.pop();
-            fragmentBackStack.push(desired);
-            try {
-                displayView(Integer.parseInt(desired), true);
-            } catch (NumberFormatException e) {
-                showFragment(desired, true);
-            }
-        } else {
-            super.onBackPressed();
+        String desired = "";
+        try {
+            UserSessionInfo.backStackFragment.pop();
+            desired = UserSessionInfo.backStackFragment.pop();
+            UserSessionInfo.backStackFragment.push(desired);
+
+            displayView(Integer.parseInt(desired), true);
+        } catch (NumberFormatException e) {
+            showFragment(desired, true);
+        } catch (RuntimeException e){
+            toLogin();
         }
+
+    }
+
+    private void toLogin(){
+        //il logout fa partire l'activity di login
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
