@@ -162,7 +162,7 @@ public class NuovaRichiestaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // passare al nuovo fragment per visualizzare le date disponibili per tale intevento
-                if (!interventi.getSelectedItem().equals("")){
+                if (interventi.getSelectedItem() != null){
                     UserSessionInfo.interventoScelto = interventi.getSelectedItem().toString();
                     ((MainActivity) getActivity()).showFragment("SendNewRequest",false);
                 }else {

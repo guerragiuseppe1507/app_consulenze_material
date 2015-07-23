@@ -6,6 +6,12 @@
     android:orientation="vertical"
     tools:context="it.uniba.di.sss1415.app_consulenze.fragment.RichiesteFragment">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/fragment_nuova_disponibilita_layout"
@@ -13,6 +19,7 @@
         android:layout_height="fill_parent"
         android:fillViewport="true"
         android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_weight="1"
 
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="it.uniba.di.sss1415.app_consulenze.nuovaDisponibilitaFragment">
@@ -195,15 +202,18 @@
                     />
             </LinearLayout>
 
-            <Button
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textStyle="bold"
-                android:textSize="@dimen/login_link_text_size"
-                android:textColor="@color/whiteText"
-                android:text="Summary"
-                android:id="@+id/RiepilogoButton"
-                android:singleLine="true" />
+
         </LinearLayout>
     </ScrollView>
+
+        <Button
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/login_link_text_size"
+            android:textColor="@color/whiteText"
+            android:text="@string/new_request_summary_button"
+            android:id="@+id/RiepilogoButton"
+            android:singleLine="true" />
+
+    </LinearLayout>
 </RelativeLayout>

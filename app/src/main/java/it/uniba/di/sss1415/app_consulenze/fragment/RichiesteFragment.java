@@ -19,6 +19,7 @@ import android.view.View;
 
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.activity.FragmentDrawer;
+import it.uniba.di.sss1415.app_consulenze.activity.LoginActivity;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.adapter.TabsPagerAdapter;
 
@@ -63,6 +64,12 @@ public class RichiesteFragment extends AppCompatActivity implements   FragmentDr
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    public void showNewRequest(View v){
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("menuItemSelected", ID_FRAGMENT_NEW_REQ);
+        startActivity(i);
     }
 
     @Override
@@ -130,6 +137,12 @@ public class RichiesteFragment extends AppCompatActivity implements   FragmentDr
             i.putExtra("profiloSelected","ModificaProfiloFragment");
 
             startActivity(i);
+        }
+
+        if (id == R.id.action_logout) {
+            //il logout fa partire l'activity di login
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         }
 
 
