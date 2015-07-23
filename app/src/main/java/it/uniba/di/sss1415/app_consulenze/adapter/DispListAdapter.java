@@ -89,7 +89,7 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
 
     public void showEdit(){
 
-        ((MainActivity)context).showFragment("ModificaDisponibilitaFragment");
+        ((MainActivity)context).showFragment("ModificaDisponibilitaFragment",false);
     }
 
     @Override

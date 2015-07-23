@@ -16,43 +16,112 @@
         card_view:cardElevation="5dp"
         card_view:cardUseCompatPadding="true" >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
             android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tvDataRequestReceivedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/start_date"
+                android:textStyle="bold"
+                />
             <TextView
                 android:id="@+id/tvDataRequestReceived"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_alignBaseline="@+id/tvDataRequestReceivedLabel"
+                android:layout_toRightOf="@+id/tvDataRequestReceivedLabel"
+                android:layout_marginLeft="15dp"
+                />
+
+
+
+            <TextView
+                android:id="@+id/tvOraInizioRequestReceivedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/from"
+                android:textStyle="bold"
+                android:layout_below="@+id/tvDataRequestReceivedLabel"
+
                 />
             <TextView
                 android:id="@+id/tvOraInizioRequestReceived"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_alignBaseline="@+id/tvOraInizioRequestReceivedLabel"
+                android:layout_toRightOf="@+id/tvOraInizioRequestReceivedLabel"
+                android:layout_marginLeft="15dp"
+                />
+            <TextView
+                android:id="@+id/tvOraFineRequestReceivedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:text="@string/congiunzione_to"
+                android:layout_alignBaseline="@+id/tvOraInizioRequestReceivedLabel"
+                android:layout_toRightOf="@+id/tvOraInizioRequestReceived"
+                android:layout_marginLeft="30dp"
                 />
             <TextView
                 android:id="@+id/tvOraFineRequestReceived"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_alignBaseline="@+id/tvOraInizioRequestReceivedLabel"
+                android:layout_toRightOf="@+id/tvOraFineRequestReceivedLabel"
+                android:layout_marginLeft="15dp"
+                />
+
+
+            <TextView
+                android:id="@+id/tvInterventoRequestReceivedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:text="@string/request_received_operation"
+                android:layout_below="@+id/tvOraInizioRequestReceivedLabel"
                 />
             <TextView
                 android:id="@+id/tvInterventoRequestReceived"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_alignBaseline="@+id/tvInterventoRequestReceivedLabel"
+                android:layout_toRightOf="@+id/tvInterventoRequestReceivedLabel"
+                android:layout_marginLeft="15dp"
+                />
+
+            <TextView
+                android:id="@+id/tvDottoreRequestReceivedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="@string/request_received_dottore"
+                android:layout_below="@+id/tvInterventoRequestReceivedLabel"
                 />
             <TextView
                 android:id="@+id/tvDottoreRequestReceived"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_alignBaseline="@+id/tvDottoreRequestReceivedLabel"
+                android:layout_toRightOf="@+id/tvDottoreRequestReceivedLabel"
+                android:layout_marginLeft="15dp"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
         <TextView
             android:id="@+id/selectedRichiestaRic"
             android:layout_width="fill_parent"

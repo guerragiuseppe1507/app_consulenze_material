@@ -167,7 +167,7 @@ public class NuovaRichiestaFragment extends Fragment {
 
                 if (interventi.getSelectedItem() != null){
                     UserSessionInfo.interventoScelto = interventi.getSelectedItem().toString();
-                    ((MainActivity) getActivity()).showFragment("SendNewRequest");
+                    ((MainActivity) getActivity()).showFragment("SendNewRequest",false);
                 }else {
                     creaMessaggio("Seleziona un intervento");
                 }
