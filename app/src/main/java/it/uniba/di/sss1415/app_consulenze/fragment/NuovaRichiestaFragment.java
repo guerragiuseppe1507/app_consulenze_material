@@ -139,6 +139,7 @@ public class NuovaRichiestaFragment extends Fragment {
         interventi.setVisibility(View.INVISIBLE);
         interTV.setVisibility(View.VISIBLE);
         interTV.setText("Scegli una Specializzazione");
+
         expertise.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -162,7 +163,9 @@ public class NuovaRichiestaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // passare al nuovo fragment per visualizzare le date disponibili per tale intevento
-                if (!interventi.getSelectedItem().equals("")){
+                //!interventi.getSelectedItem().equals("")
+
+                if (interventi.getSelectedItem() != null){
                     UserSessionInfo.interventoScelto = interventi.getSelectedItem().toString();
                     ((MainActivity) getActivity()).showFragment("SendNewRequest");
                 }else {

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intervScelta">Selected operation</string>
+    <string name="summary_operation">Comfirm operation for</string>
+</resources>

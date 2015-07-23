@@ -108,5 +108,7 @@
     <string name="new_request_tutor_choice">Tutor</string>
     <string name="new_request_send_button">SEND</string>
     <string name="summary_cancel_button">Back</string>
+    <string name="intervScelta">Selected operation</string>
+    <string name="summary_operation">Comfirm operation for</string>
 
 </resources>

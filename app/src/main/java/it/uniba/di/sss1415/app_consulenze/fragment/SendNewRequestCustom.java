@@ -2,9 +2,12 @@ package it.uniba.di.sss1415.app_consulenze.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +18,20 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.istances.Tutors;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
+import it.uniba.di.sss1415.app_consulenze.util.Connection;
+import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
+import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 /**
  * Created by Pasen on 15/07/2015.
@@ -34,16 +47,31 @@ public class SendNewRequestCustom extends Fragment {
     private String mParam1;
     private String mParam2;
     Spinner tutor;
-    ArrayAdapter<CharSequence> adapter; // tutor
+    ArrayAdapter<String> adapterTutor; // tutor
     Button send;
     TextView oraInizio ;
     TextView oraFine ;
     TextView dataIn ;
+    TextView interventoSel;
+    String nomeTutor;
+    String cognomeTutor;
+    Spinner sceltaTutor;
+
+    ArrayList<String> tutorList;
+    ShowTutors mTutorTask;
 
 
+    SummaryRequestCustom dialogSummary ;
 
+    private static final String NOME_RICHIESTA = "tutor";
+    private static final String TIPO_ACCESSO = "read";
 
+    private ShowTutors tutorTask = null;
+    private Connection conn;
 
+    ArrayList<Tutors> tutors;
+
+    int positionTutor;
 
 
 
@@ -77,11 +105,8 @@ public class SendNewRequestCustom extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
+        adapterTutor = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tutorList);
         // Create an ArrayAdapter using the string array and a default spinner layout
-        adapter = ArrayAdapter.createFromResource(this.getActivity(),
-                R.array.tutor, android.R.layout.simple_spinner_item);
 
 
         if (getArguments() != null) {
@@ -105,7 +130,7 @@ public class SendNewRequestCustom extends Fragment {
         tutor = (Spinner) v.findViewById(R.id.tutorSpinner);
 
         // Apply the adapter to the spinner
-        tutor.setAdapter(adapter);
+        tutor.setAdapter(adapterTutor);
         send = (Button) v.findViewById(R.id.sendButton);
 
         // time picker
@@ -113,6 +138,11 @@ public class SendNewRequestCustom extends Fragment {
         oraFine = (TextView) v.findViewById(R.id.oraFineET);
         //data picker
         dataIn = (TextView) v.findViewById(R.id.dateET);
+        interventoSel = (TextView) v.findViewById(R.id.labelIntervScelta);
+        interventoSel.setText(UserSessionInfo.interventoScelto);
+
+        mTutorTask = new ShowTutors();
+        mTutorTask.execute();
 
 
         oraInizio.setOnClickListener(new View.OnClickListener() {
@@ -229,21 +259,25 @@ public class SendNewRequestCustom extends Fragment {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               Tutors temp ;
+                positionTutor = tutor.getSelectedItemPosition();
+                temp = tutors.get(positionTutor);
 
 
 
-                //TODO Instance  object of dialog summary
-                /*dialogSummary = SummaryAvailability.newInstance(
-                        expertise.getSelectedItem().toString(),
+
+
+                dialogSummary = SummaryRequestCustom.newInstance(
+                        interventoSel.getText().toString(),
                         dataIn.getText().toString(),
                         oraInizio.getText().toString(),
                         oraFine.getText().toString(),
-                        repChecked,
-                        untilDate
+                        temp.getNome(),
+                        temp.getCognome()
                 );
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 dialogSummary.show(ft,"summary");
-                */
+
             }
         });
 
@@ -268,5 +302,80 @@ public class SendNewRequestCustom extends Fragment {
     }
 
 
+
+    private void createAndPopulateTutorArray(ArrayList<HashMap<String,String>> res) {
+
+
+
+
+
+        tutors = new ArrayList<Tutors>();
+        for(int i = 0; i < res.size(); i++) {
+
+            HashMap<String,String> temp = res.get(i);
+
+
+
+                    tutors.add(new Tutors(temp.get("nomeT"), temp.get("cognomeT"), temp.get("scoreT")));
+                    tutorList.add(temp.get("cognomeT") + "  " + temp.get("nomeT") + "  Score : " + temp.get("scoreT") );
+
+
+        }
+    }
+
+
+    public class ShowTutors extends AsyncTask<String, Void, String> {
+
+        ShowTutors() {}
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            conn.setParametri(NOME_RICHIESTA,TIPO_ACCESSO);
+
+            return conn.newConnect();
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            System.out.println(result);
+
+            ArrayList<HashMap<String,String>> listaTut;
+
+            if (result.equals(ToastMsgs.CONN_TIMEOUT)){
+
+                creaMessaggio(getActivity().getApplicationContext().getResources().getString(R.string.conn_timeout));
+            } else {
+                try {
+                    listaTut = JsonHandler.fromJsonToMapList(NOME_RICHIESTA, result);
+
+                    createAndPopulateTutorArray(listaTut);
+
+
+
+                } catch (JSONException e) {
+                    creaMessaggio(ToastMsgs.JSON_TO_ARRAY_ERROR);
+                    e.printStackTrace();
+                }
+            }
+
+
+
+            tutorTask = null;
+
+        }
+
+        @Override
+        protected void onCancelled() {
+            tutorTask = null;
+        }
+    }
+    public void creaMessaggio(CharSequence message){
+        Context context = getActivity().getApplicationContext();
+        Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toastMessage.show();
+    }
 
 }

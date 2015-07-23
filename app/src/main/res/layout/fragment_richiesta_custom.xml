@@ -27,11 +27,32 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:padding="@dimen/ll_padding">
 
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/intervScelta"
+                android:id="@+id/sceltaTV"
+                android:textColor="@color/primary_material_dark"
+                />
 
 
             <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/et_marginTop"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/labelIntervScelta"
+                android:text="Intervento"
+                android:singleLine="true"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/et_marginTop"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/new_request_date"
                 android:id="@+id/DateTV"

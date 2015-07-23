@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Valerio on 13/07/2015.
@@ -100,6 +99,8 @@ public class UserSessionInfo {
     public void setExp(String input) {primariaEx = input;}
 
     public String getExp(){return primariaEx;}
+
+
 
     public void setBranche(String branche){
         String[] temp =branche.split(",");
