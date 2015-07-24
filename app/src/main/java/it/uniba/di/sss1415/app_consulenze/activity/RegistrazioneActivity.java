@@ -201,13 +201,10 @@ public class RegistrazioneActivity extends Activity {
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this); //new
         editor = prefs.edit(); //new
-        System.out.println("SHARED PREV:"+ prefs.getAll());
         editor.clear();
         editor.putString("email",mail).apply(); // new
         editor.putString("password",pass).apply(); // new
         editor.commit();
-
-        System.out.println("SHARED PREF :"+ prefs.getAll());
     }
 
     public void creaMessaggio(CharSequence message){

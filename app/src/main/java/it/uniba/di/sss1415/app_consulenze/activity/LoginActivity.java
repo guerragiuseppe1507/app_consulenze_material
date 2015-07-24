@@ -76,7 +76,6 @@ public class LoginActivity extends Activity{
 
             credEmail = pref.getString("email", "");
             credPassword = pref.getString("password", "");
-            System.out.println();
 
         }catch (NullPointerException noCred){
             credEmail = "";
@@ -240,6 +239,7 @@ public class LoginActivity extends Activity{
                 } else if(!brancheMediche) {
                     //datiUser = new DatiUtente(result);
                     creaIstanza(result);
+                    salvaInPref(mEmail, mPassword);
                     toMain();
                     creaMessaggio(getApplicationContext().getResources().getString(R.string.success_login));
 
@@ -276,6 +276,15 @@ public class LoginActivity extends Activity{
     public void toRegistraUtente(){
         Intent intent = new Intent(this, RegistrazioneActivity.class);
         startActivity(intent);
+    }
+
+    public void salvaInPref(String mail , String pass){
+
+        pref = PreferenceManager.getDefaultSharedPreferences(this); //new
+        editor = pref.edit(); //new
+        editor.putString("email",mail).apply(); // new
+        editor.putString("password",pass).apply(); // new
+        editor.commit();
     }
 
 }
