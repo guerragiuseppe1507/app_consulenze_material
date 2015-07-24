@@ -22,13 +22,11 @@ import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
-import it.uniba.di.sss1415.app_consulenze.fragment.SummaryAvailability;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 
@@ -269,19 +267,19 @@ public class NuovaDisponibilitaFragment extends Fragment {
                         //controllo giorno della settimana
                         switch (sss){
 
-                            case "Monday" : day = "(Ogni lunedi)";
+                            case "Monday" : day = getResources().getString(R.string.everyDay1);
                                 break;
-                            case "Tuesday" : day = "(Ogni martedi)";
+                            case "Tuesday" : day = getResources().getString(R.string.everyDay2);
                                 break;
-                            case "Wednesday" : day = "(Ogni mercoledi)";
+                            case "Wednesday" : day = getResources().getString(R.string.everyDay3);
                                 break;
-                            case "Thursday" : day = "(Ogni giovedi)" ;
+                            case "Thursday" : day = getResources().getString(R.string.everyDay4) ;
                                 break;
-                            case "Friday" : day =  "(Ogni venerdi)";
+                            case "Friday" : day = getResources().getString(R.string.everyDay5);
                                 break;
-                            case "Saturday": day = "(Ogni sabato)";
+                            case "Saturday": day = getResources().getString(R.string.everyDay6);
                                 break;
-                            case "Sunday" : day = "(Ogni domenica)" ;
+                            case "Sunday" : day = getResources().getString(R.string.everyDay7);
 
                                 break;
                             default:break;
@@ -289,8 +287,8 @@ public class NuovaDisponibilitaFragment extends Fragment {
 
 
 
-                        rb1.setText("Ogni settimana. " + day);
-                        rb2.setText("Ogni due settimane " + day);
+                        rb1.setText(getResources().getString(R.string.everyWeek) + " "  + day);
+                        rb2.setText(getResources().getString(R.string.everyTwoWeek) + " "  + day);
 
                     }
                 }, year, month, day);
