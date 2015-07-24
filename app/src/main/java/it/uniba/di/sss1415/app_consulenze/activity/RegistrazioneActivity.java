@@ -3,6 +3,7 @@ package it.uniba.di.sss1415.app_consulenze.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,11 +20,13 @@ import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
-
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 
 
 public class RegistrazioneActivity extends Activity {
+
+    SharedPreferences prefs ; //new
+    SharedPreferences.Editor editor ; //new
 
     private Connection conn;
     private String parametriServer;
@@ -50,6 +53,8 @@ public class RegistrazioneActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
         //TODO implementazione
+
+
 
         conn = new Connection(getApplicationContext().getResources().getString(R.string.serverQuery));
 
@@ -163,7 +168,10 @@ public class RegistrazioneActivity extends Activity {
                 u.setNumIscr(mNumero);
                 u.setExp("Not set yet");
                 u.setPassword(mPassword);
-                toMain();
+
+
+                salvaInPref(mEmail,mPassword);
+                toLogin(); // new prima c'era toMain
                 creaMessaggio(getApplicationContext().getResources().getString(R.string.success_register));
 
             }
@@ -186,6 +194,18 @@ public class RegistrazioneActivity extends Activity {
     public void toMain(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void salvaInPref(String mail , String pass){
+
+        prefs =  this.getPreferences(Context.MODE_PRIVATE); //new
+        editor = prefs.edit(); //new
+
+        editor.putString("email",mail); // new
+        editor.putString("password",pass); // new
+        editor.commit();
+
+
     }
 
     public void creaMessaggio(CharSequence message){

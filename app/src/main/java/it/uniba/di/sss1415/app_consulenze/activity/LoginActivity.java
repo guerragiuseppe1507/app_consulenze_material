@@ -3,6 +3,7 @@ package it.uniba.di.sss1415.app_consulenze.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,7 +15,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import app_consulenze_material.R;
-
 import it.uniba.di.sss1415.app_consulenze.istances.DatiUtente;
 import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.Connection;
@@ -27,6 +27,10 @@ import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
  */
 public class LoginActivity extends Activity{
 
+    SharedPreferences pref;
+    SharedPreferences.Editor editor ;
+
+
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
@@ -34,6 +38,10 @@ public class LoginActivity extends Activity{
     private static final String[] CREDENTIALS = new String[]{
             "asdsd@foo.com", "4XSRG08ZP2IHQUX"
     };
+
+    private String credEmail;   // new
+    private String credPassword;// new
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -51,10 +59,28 @@ public class LoginActivity extends Activity{
     private static final String ACCESSO = "write";
     private static final String TIPO_ELEMENTO = "accediSistema";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
+
+        pref = this.getPreferences(Context.MODE_PRIVATE);
+       // editor = pref.edit();
+        //editor.putString("email", CREDENTIALS[0]); // new
+        //editor.putString("password", CREDENTIALS[1]); // new
+       // editor.commit();
+        try {
+
+            credEmail = pref.getString("email", "");
+            credPassword = pref.getString("password", "");
+        }catch (NullPointerException noCred){
+            credEmail = "";
+            credPassword = "";
+
+        }
+
 
         conn = new Connection(getApplicationContext().getResources().getString(R.string.serverQuery));
         System.out.println(getApplicationContext().getResources().getString(R.string.serverQuery));
@@ -63,10 +89,12 @@ public class LoginActivity extends Activity{
         mAuthTask.execute();
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        mEmailView.setText(CREDENTIALS[0]);
+        mEmailView.setText(credEmail);
+        //mEmailView.setText(CREDENTIALS[0]);
 
         mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setText(CREDENTIALS[1]);
+        mPasswordView.setText(credPassword);
+       // mPasswordView.setText(CREDENTIALS[1]);
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {

@@ -118,5 +118,14 @@
     <string name="new_request_summary_button">Summary</string>
     <string name="bottone_modifica_miaDisp">Edit</string>
     <string name="bottone_cancella_miaDisp">Delete</string>
+    <string name="everyWeek">Every week.</string>
+    <string name="everyTwoWeek">Every two week</string>
+    <string name="everyDay1">(Every Monday)</string>
+    <string name="everyDay2">(Every Tuesday)</string>
+    <string name="everyDay3">(Every Wednesday)</string>
+    <string name="everyDay4">(Every Thursday)</string>
+    <string name="everyDay5">(Every Friday)</string>
+    <string name="everyDay6">(Every Saturday)</string>
+    <string name="everyDay7">(Every Sunday)</string>
 
 </resources>

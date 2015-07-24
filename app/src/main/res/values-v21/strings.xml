@@ -2,4 +2,11 @@
 <resources>
     <string name="intervScelta">Selected operation</string>
     <string name="summary_operation">Comfirm operation for</string>
+    <string name="everyWeek">Every week.</string>
+    <string name="everyDay2">(Every Tuesday)</string>
+    <string name="everyDay3">(Every Wednesday)</string>
+    <string name="everyDay4">(Every Thursday)</string>
+    <string name="everyDay5">(Every Friday)</string>
+    <string name="everyDay6">(Every Saturday)</string>
+    <string name="everyDay7">(Every Sunday)</string>
 </resources>
