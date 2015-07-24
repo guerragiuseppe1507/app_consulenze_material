@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -66,7 +67,7 @@ public class LoginActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
 
-        pref = this.getPreferences(Context.MODE_PRIVATE);
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
        // editor = pref.edit();
         //editor.putString("email", CREDENTIALS[0]); // new
         //editor.putString("password", CREDENTIALS[1]); // new
@@ -75,6 +76,8 @@ public class LoginActivity extends Activity{
 
             credEmail = pref.getString("email", "");
             credPassword = pref.getString("password", "");
+            System.out.println();
+
         }catch (NullPointerException noCred){
             credEmail = "";
             credPassword = "";
