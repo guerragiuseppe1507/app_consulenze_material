@@ -17,17 +17,17 @@ import java.util.Random;
 
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
-import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
-import it.uniba.di.sss1415.app_consulenze.util.ServerMsgs;
+import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
-import it.uniba.di.sss1415.app_consulenze.util.DisponibilitaDB;
 
 
 /**
  * Created by Pasen on 09/07/2015.
  */
 public class SummaryAvailability extends DialogFragment {
+
+    final String NOTSET = "NOT SET";
     String exp ;
     String date;
     String sTime;
@@ -102,9 +102,7 @@ public class SummaryAvailability extends DialogFragment {
                         // invio dati al server
                         availabilityTask = new AvailabilityTask(exp, date, sTime, eTime, rep, until, user, change);
                         availabilityTask.execute();
-
-                       // DisponibilitaDB obj = new DisponibilitaDB(getString(R.string.serverQuery),"3496", date, sTime, eTime, exp);
-                        //obj.inviaRichiestaScrittura();
+                       ((MainActivity)getActivity()).displayView(1, false);
 
 
                     }
@@ -128,8 +126,10 @@ public class SummaryAvailability extends DialogFragment {
         dateTV.setText((date));
         sTimeTV.setText(sTime);
         eTimeTV.setText(eTime);
-        repTV.setText(rep);
-        untilTV.setText(until);
+
+        if(rep.equalsIgnoreCase("")){ repTV.setText(NOTSET);}else{ repTV.setText(rep);}
+        if(until.equalsIgnoreCase("")){ untilTV.setText(NOTSET);}else{ untilTV.setText(until);}
+
 
 
         return d;

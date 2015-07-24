@@ -75,10 +75,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="medium text"
+                android:text="ora Inizio"
                 android:id="@+id/startTimeTV"
                 android:textStyle="bold"
-                android:paddingLeft="@dimen/ll_padding"
+                android:paddingLeft="6dp"
                 />
 
             <TextView
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/congiunzione_to"
-                android:paddingLeft="@dimen/ll_padding"
+                android:paddingLeft="6dp"
 
                  />
 
@@ -94,9 +94,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
+                android:text="ora fine"
                 android:id="@+id/endTimeTV"
-                android:paddingLeft="@dimen/ll_padding"
+                android:paddingLeft="6dp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -116,7 +116,7 @@
         android:textStyle="bold" />
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
@@ -133,7 +133,6 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/untilDateTV"
-                android:paddingLeft="@dimen/ll_padding"
                 android:textStyle="bold" />
         </LinearLayout>
 
