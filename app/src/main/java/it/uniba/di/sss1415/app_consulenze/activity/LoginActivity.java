@@ -67,10 +67,10 @@ public class LoginActivity extends Activity{
         setContentView(R.layout.sign_in);
 
         pref = this.getPreferences(Context.MODE_PRIVATE);
-       // editor = pref.edit();
-        //editor.putString("email", CREDENTIALS[0]); // new
-        //editor.putString("password", CREDENTIALS[1]); // new
-       // editor.commit();
+        editor = pref.edit();
+        editor.putString("email", CREDENTIALS[0]); // new
+        editor.putString("password", CREDENTIALS[1]); // new
+        editor.commit();
         try {
 
             credEmail = pref.getString("email", "");
