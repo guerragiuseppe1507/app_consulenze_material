@@ -61,24 +61,29 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
-        drawerFragment.setDrawerListener(this);
 
         // display the first navigation drawer view on app launch
         Intent intent = getIntent();
         if(intent == null) {
+            drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar, "main");
+            drawerFragment.setDrawerListener(this);
+            displayView(0, false);
 
-            displayView(0,false);
         } else {
             if (intent.getStringExtra("profiloSelected") == null) {
-
+                drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar,Integer.toString(intent.getIntExtra("menuItemSelected", 0)));
+                drawerFragment.setDrawerListener(this);
                 displayView(intent.getIntExtra("menuItemSelected", 0),false);
 
-            }  else {
 
+            } else {
+                drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar,intent.getStringExtra("profiloSelected"));
+                drawerFragment.setDrawerListener(this);
                 showFragment(intent.getStringExtra("profiloSelected"),false);
+
             }
         }
+
 
     }
 
@@ -100,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             showFragment("ModificaProfiloFragment",false);
+            drawerFragment.selectMenuPosition(this,-1);
         }
 
         if (id == R.id.action_logout) {
@@ -172,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     public void showNewDisp(View v){
         displayView(ID_FRAGMENT_NEW_DISP, false);
+        drawerFragment.selectMenuPosition(this, ID_FRAGMENT_NEW_DISP);
     }
     public void showRichiestaCustom(View v){
         showFragment("SendNewRequestCustom", false);
@@ -196,6 +203,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             modifyCall=true;
             fragment = new NuovaDisponibilitaFragment();
             title = getString(R.string.title_editDisp);
+            drawerFragment.selectMenuPosition(this,ID_FRAGMENT_NEW_DISP);
             if(!isBackPressed)pushaNelBackstack("ModificaDisponibilitaFragment");
 
         }else if (name.equals("ModificaProfiloFragment")){
@@ -250,6 +258,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             UserSessionInfo.backStackFragment.push(desired);
 
             displayView(Integer.parseInt(desired), true);
+            if(!desired.equals("ModificaProfiloFragment")) {
+                drawerFragment.selectMenuPosition(this, Integer.parseInt(desired));
+            }else{
+                drawerFragment.selectMenuPosition(this, -1);
+            }
         } catch (NumberFormatException e) {
             showFragment(desired, true);
         } catch (RuntimeException e){

@@ -168,7 +168,7 @@ public class NuovaRichiestaFragment extends Fragment {
                     UserSessionInfo.interventoScelto = interventi.getSelectedItem().toString();
                     ((MainActivity) getActivity()).showFragment("SendNewRequest",false);
                 }else {
-                    creaMessaggio("Seleziona un intervento");
+                    creaMessaggio(getResources().getString(R.string.choseOperation));
                 }
 
             }
@@ -274,7 +274,7 @@ public class NuovaRichiestaFragment extends Fragment {
         }else{
             interventi.setVisibility(View.INVISIBLE);
             interTV.setVisibility(View.VISIBLE);
-            interTV.setText("Nessun intervento disponibile");
+            interTV.setText(getResources().getString(R.string.noOperation));
         }
 
 

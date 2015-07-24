@@ -38,6 +38,8 @@ public class FragmentDrawer extends Fragment {
     private View containerView;
     private static String[] titles = null;
     private FragmentDrawerListener drawerListener;
+    private String caller;
+    private Boolean firstOpen = true;
 
     public FragmentDrawer() {
 
@@ -74,7 +76,6 @@ public class FragmentDrawer extends Fragment {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
-
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -82,16 +83,7 @@ public class FragmentDrawer extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 drawerListener.onDrawerItemSelected(view, position);
-                int[][] a = {{0},{0}};
-                int[] b = {getResources().getColor(R.color.colorAccent)};
-                int[] c = {Color.WHITE};
-                for(int i = 0 ; i < recyclerView.getChildCount() ; i++){
-
-                    ((RelativeLayout)recyclerView.getChildAt(i)).getChildAt(0).setBackgroundTintList(new ColorStateList(a,c));
-                    ((Button)((RelativeLayout)recyclerView.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.grey));
-                }
-                ((RelativeLayout)recyclerView.getChildAt(position)).getChildAt(0).setBackgroundTintList(new ColorStateList(a,b));
-                ((Button)((RelativeLayout)recyclerView.getChildAt(position)).getChildAt(0)).setTextColor(Color.WHITE);
+                selectMenuPosition(getActivity(), position);
                 mDrawerLayout.closeDrawer(containerView);
             }
 
@@ -105,8 +97,23 @@ public class FragmentDrawer extends Fragment {
         return layout;
     }
 
+    public void selectMenuPosition(Context cont, int position){
+        int[][] a = {{0},{0}};
+        int[] b = {cont.getResources().getColor(R.color.colorAccent)};
+        int[] c = {Color.WHITE};
+        for(int i = 0 ; i < recyclerView.getChildCount() ; i++){
 
-    public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar) {
+            ((RelativeLayout)recyclerView.getChildAt(i)).getChildAt(0).setBackgroundTintList(new ColorStateList(a,c));
+            ((Button)((RelativeLayout)recyclerView.getChildAt(i)).getChildAt(0)).setTextColor(cont.getResources().getColor(R.color.grey));
+        }
+        if(position != -1) {
+            ((RelativeLayout) recyclerView.getChildAt(position)).getChildAt(0).setBackgroundTintList(new ColorStateList(a, b));
+            ((Button) ((RelativeLayout) recyclerView.getChildAt(position)).getChildAt(0)).setTextColor(Color.WHITE);
+        }
+    }
+
+    public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar,String caller) {
+        this.caller = caller;
         containerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
@@ -114,6 +121,7 @@ public class FragmentDrawer extends Fragment {
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 getActivity().invalidateOptionsMenu();
+
             }
 
             @Override
@@ -126,6 +134,7 @@ public class FragmentDrawer extends Fragment {
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
                 toolbar.setAlpha(1 - slideOffset / 2);
+                if(firstOpen)checkCaller();
             }
         };
 
@@ -137,6 +146,21 @@ public class FragmentDrawer extends Fragment {
             }
         });
 
+    }
+
+    private void checkCaller(){
+        if(caller.equals("main")){
+            selectMenuPosition(getActivity(), 0);
+        }else if(caller.equals("req")){
+            selectMenuPosition(getActivity(), 3);
+        }else if(caller.equals("ModificaProfiloFragment")){
+            selectMenuPosition(getActivity(), -1);
+        } else {
+            System.out.println(caller);
+            selectMenuPosition(getActivity(),Integer.parseInt(caller));
+        }
+
+        firstOpen = false;
     }
 
     public static interface ClickListener {

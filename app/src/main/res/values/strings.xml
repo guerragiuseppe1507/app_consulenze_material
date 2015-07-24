@@ -6,9 +6,9 @@
     <string name="drawer_close">Close</string>
 
     <string name="nav_item_home">Appointments</string>
-    <string name="nav_item_friends">My Availability</string>
-    <string name="nav_item_request">Requests</string>
-    <string name="nav_item_tutor">Rating Tutor</string>
+    <string name="nav_item_friends">My Availabilities</string>
+    <string name="nav_item_request">My Requests</string>
+    <string name="nav_item_tutor">Rate Tutors</string>
 
     <!-- strings _nuova_disponibilita -->
 
@@ -38,14 +38,14 @@
         <item>@string/title_valTutor</item>
     </string-array>
 
-    <string name="title_request">Requests</string>
-    <string name="title_friends">My availability</string>
+    <string name="title_request">My Requests</string>
+    <string name="title_friends">My availabilities</string>
     <string name="title_home">Appointments</string>
     <string name="title_newDisp">New Availability</string>
     <string name="title_editDisp">Edit Availability</string>
     <string name="title_editProfile">Edit Profile</string>
     <string name="title_newReq">New Request</string>
-    <string name="title_valTutor">Tutor Rating</string>
+    <string name="title_valTutor">Rate Tutors</string>
 
     <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
 
@@ -127,5 +127,15 @@
     <string name="everyDay5">(Every Friday)</string>
     <string name="everyDay6">(Every Saturday)</string>
     <string name="everyDay7">(Every Sunday)</string>
+    <string name="choseOperation">Chose operation first</string>
+    <string name="noOperation">No operations Avaible</string>
+    <string name="requestAccepted">Request accepted</string>
+    <string name="requestRefused">Request refused</string>
+    <string name="availabilityEdited">AvailabilityEdited</string>
+    <string name="newAvailabilityInserted">New Availability Inserted</string>
+    <string name="newRequestSent">New request Sent</string>
+    <string name="voteSent">Vote sent</string>
+    <string name="availabilityDeleted">Availability deleted</string>
+    <string name="scoretutor">Score:</string>
 
 </resources>

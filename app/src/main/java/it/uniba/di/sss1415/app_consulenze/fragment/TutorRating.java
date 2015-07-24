@@ -244,7 +244,7 @@ public class TutorRating extends DialogFragment {
 
             }else {
 
-                    creaMessaggio("Vote Sent");
+                    creaMessaggio(getResources().getString(R.string.voteSent));
 
             }
 

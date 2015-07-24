@@ -186,7 +186,7 @@ public class SummaryRequestCustom extends DialogFragment {
 
             }else {
 
-                    creaMessaggio("New request sent");
+                    creaMessaggio(getResources().getString(R.string.newRequestSent));
                     ((MainActivity)getActivity()).displayView(3, false);
             }
 

@@ -125,7 +125,7 @@ public class MieDispFragment extends Fragment implements RecyclerViewClickListen
             public void onClick(View v) {
 
                 hideSelected(clickedPosition, clickedOffset);
-                creaMessaggio("Disponibilita Eliminata");
+                creaMessaggio(getResources().getString(R.string.availabilityDeleted));
             }
         });
 

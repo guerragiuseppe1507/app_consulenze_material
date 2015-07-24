@@ -6,12 +6,23 @@
     android:layout_height="fill_parent">
 
     <View
+        android:id="@+id/sep"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/whiteText"
+        android:elevation="10dp"
+        app:borderWidth="0dp">
+
+    </View>
+
+    <View
         android:id="@+id/shadow"
         android:layout_width="fill_parent"
         android:layout_height="6dip"
         android:elevation="10dp"
         app:borderWidth="0dp"
         android:background="@drawable/drop_shadow"
+        android:layout_below="@+id/sep"
         />
 
     <android.support.v7.widget.RecyclerView
@@ -28,7 +39,6 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_plus"
         android:layout_gravity="bottom|right"
-
         app:elevation="6dp"
         app:borderWidth="0dp"
         app:pressedTranslationZ="12dp"
@@ -36,6 +46,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="10dp"
-        android:onClick="showNewRequest" />
+        android:onClick="showNewRequest"/>
 
-</RelativeLayout>
+    </RelativeLayout>

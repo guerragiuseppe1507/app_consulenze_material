@@ -22,6 +22,7 @@ import it.uniba.di.sss1415.app_consulenze.activity.FragmentDrawer;
 import it.uniba.di.sss1415.app_consulenze.activity.LoginActivity;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.adapter.TabsPagerAdapter;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 
 
 public class RichiesteFragment extends AppCompatActivity implements   FragmentDrawer.FragmentDrawerListener {
@@ -50,8 +51,9 @@ public class RichiesteFragment extends AppCompatActivity implements   FragmentDr
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar,"req");
         drawerFragment.setDrawerListener(this);
+
 
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
@@ -147,6 +149,22 @@ public class RichiesteFragment extends AppCompatActivity implements   FragmentDr
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this, MainActivity.class);
+        String desired = "";
+        UserSessionInfo.backStackFragment.pop();
+        desired = UserSessionInfo.backStackFragment.pop();
+        UserSessionInfo.backStackFragment.push(desired);
+        try{
+            i.putExtra("menuItemSelected", Integer.parseInt(desired));
+
+        } catch (NumberFormatException e) {
+            i.putExtra("menuItemSelected", desired);
+        }
+        startActivity(i);
     }
 
 }

@@ -192,9 +192,9 @@ public class SummaryAvailability extends DialogFragment {
 
             }else {
                 if(change){
-                    creaMessaggio("Availability edited");
+                    creaMessaggio(getResources().getString(R.string.availabilityEdited));
                 }else{
-                    creaMessaggio("New availability inserted");
+                    creaMessaggio(getResources().getString(R.string.newAvailabilityInserted));
                 }
             }
 

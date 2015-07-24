@@ -162,7 +162,7 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
             public void onClick(View v){
 
                 hideSelected(clickedPosition, clickedOffset);
-                creaMessaggio("Richiesta accettata");
+                creaMessaggio(getResources().getString(R.string.requestAccepted));
 
             }
         });
@@ -172,7 +172,7 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
             public void onClick(View v){
 
                 hideSelected(clickedPosition, clickedOffset);
-                creaMessaggio("Richiesta rifiutata");
+                creaMessaggio(getResources().getString(R.string.requestRefused));
             }
         });
         return view;
