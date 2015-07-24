@@ -1,66 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:id="@+id/item_richieste_inviate"
-    android:padding="15dp">
+    android:paddingTop="7dp">
 
     <android.support.v7.widget.CardView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        card_view:cardElevation="5dp"
+        card_view:cardUseCompatPadding="true">
 
-        <LinearLayout
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="5dp">
+        <TextView
+            android:id="@+id/tvDataRequestLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/start_date"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/tvDataRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignBaseline="@+id/tvDataRequestLabel"
+            android:layout_toRightOf="@+id/tvDataRequestLabel"
+            android:layout_marginLeft="15dp"
+            />
+
+
+
+        <TextView
+            android:id="@+id/tvOraInizioRequestLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/from"
+            android:textStyle="bold"
+            android:layout_below="@+id/tvDataRequestLabel"
+
+            />
+        <TextView
+            android:id="@+id/tvOraInizioRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignBaseline="@+id/tvOraInizioRequestLabel"
+            android:layout_toRightOf="@+id/tvOraInizioRequestLabel"
+            android:layout_marginLeft="15dp"
+            />
+        <TextView
+            android:id="@+id/tvOraFineRequestLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="@string/congiunzione_to"
+            android:layout_alignBaseline="@+id/tvOraInizioRequestLabel"
+            android:layout_toRightOf="@+id/tvOraInizioRequest"
+            android:layout_marginLeft="30dp"
+            />
+        <TextView
+            android:id="@+id/tvOraFineRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignBaseline="@+id/tvOraInizioRequestLabel"
+            android:layout_toRightOf="@+id/tvOraFineRequestLabel"
+            android:layout_marginLeft="15dp"
+            />
+        <TextView
+            android:id="@+id/tvDottoreRequestLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:text="@string/request_received_dottore"
+            android:layout_below="@+id/tvOraInizioRequestLabel"
+            />
+        <TextView
+            android:id="@+id/tvNomeTutorRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignBaseline="@+id/tvDottoreRequestLabel"
+            android:layout_toRightOf="@+id/tvDottoreRequestLabel"
+            android:layout_marginLeft="15dp"
+            />
+        <TextView
+            android:id="@+id/tvCognomeTutorRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignBaseline="@+id/tvDottoreRequestLabel"
+            android:layout_toRightOf="@+id/tvNomeTutorRequest"
+            android:layout_marginLeft="15dp"
+            />
+
+        <TextView
+            android:id="@+id/tvInterventoRequestLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="@string/request_received_operation"
+            android:layout_below="@+id/tvDottoreRequestLabel"
+            />
+        <TextView
+            android:id="@+id/tvInterventoRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignBaseline="@+id/tvInterventoRequestLabel"
+            android:layout_toRightOf="@+id/tvInterventoRequestLabel"
+            android:layout_marginLeft="15dp" />
+
+
+
+
+        </RelativeLayout>
+        <TextView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/tvDataRequest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
-            <TextView
-                android:id="@+id/tvOraInizioRequest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
-            <TextView
-                android:id="@+id/tvOraFineRequest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
-            <TextView
-                android:id="@+id/tvInterventoRequest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
-            <TextView
-                android:id="@+id/tvNomeTutorRequest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
-            <TextView
-                android:id="@+id/tvCognomeTutorRequest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:id="@+id/selectedRichiestaInv"
-                android:layout_height="10px"
-                android:layout_weight="1"
-                />
-
-        </LinearLayout>
+            android:id="@+id/selectedRichiestaInv"
+            android:layout_height="10px"
+            android:layout_weight="1"
+        />
     </android.support.v7.widget.CardView>
 </LinearLayout>

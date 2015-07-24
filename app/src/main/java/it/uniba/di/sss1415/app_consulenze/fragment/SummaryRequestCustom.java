@@ -101,10 +101,6 @@ public class SummaryRequestCustom extends DialogFragment {
                         // invio dati al server
                         requestTask = new RequestCustomTask(exp, date, sTime, eTime, nomeTt, cognomeTt, user);
                         requestTask.execute();
-                        ((MainActivity)getActivity()).displayView(3, false);
-
-
-
 
                     }
                 })
@@ -191,7 +187,7 @@ public class SummaryRequestCustom extends DialogFragment {
             }else {
 
                     creaMessaggio("New request sent");
-
+                    ((MainActivity)getActivity()).displayView(3, false);
             }
 
             requestTask = null;
