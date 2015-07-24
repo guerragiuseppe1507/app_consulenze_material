@@ -148,7 +148,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
 
 
             MieDisp d = ((MainActivity)getActivity()).getMiaDispScelta();
-            expertise.setSelection(5);
+            expertise.setSelection(adapter.getPosition(d.getIntervento()));
             dataIn.setText(d.getData());
             oraInizio.setText(d.getOraInizio());
             oraFine.setText(d.getOraFine());

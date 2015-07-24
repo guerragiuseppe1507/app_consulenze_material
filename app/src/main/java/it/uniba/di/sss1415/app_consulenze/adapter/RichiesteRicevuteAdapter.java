@@ -57,9 +57,6 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
         viewHolder.tvDottoreRequest.setText(request.getDottore());
         if(this.clickedPos == position){
             viewHolder.selectedRichiesta.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
-
-
-
         }
 
 

@@ -1,6 +1,7 @@
 package it.uniba.di.sss1415.app_consulenze.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,12 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
 /**
@@ -29,12 +32,14 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
     private ArrayList<MieDisp> items;
     private RecyclerViewClickListener itemListener;
     private int clickedPos;
+    private HashMap<String,String> hide = new HashMap<String,String>();
 
-    public DispListAdapter(Context context, ArrayList<MieDisp> items, RecyclerViewClickListener listener, int clickedPos) {
+    public DispListAdapter(Context context, ArrayList<MieDisp> items, RecyclerViewClickListener listener, int clickedPos,HashMap<String,String> hide) {
         this.context = context;
         this.items = items;
         this.itemListener = listener;
         this.clickedPos=clickedPos;
+        this.hide = hide;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -66,30 +71,22 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
 
         if(this.clickedPos == position){
             viewHolder.selectedDispon.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+            final String id = disp.getId();
+            final String data = disp.getData();
+            final String orainizio = disp.getOraInizio();
+            final String orafine = disp.getOraFine();
+            final String intervento = disp.getIntervento();
+            final String ripetizione = disp.getRipetizione();
+            final String fineripetizione = disp.getFineRipetizione();
+            UserSessionInfo.miaDispScelta = new MieDisp(id,data,orainizio,orafine,intervento,ripetizione,fineripetizione);
         }
 
-        final String id = disp.getId();
-        final String data = disp.getData();
-        final String orainizio = disp.getOraInizio();
-        final String orafine = disp.getOraFine();
-        final String intervento = disp.getIntervento();
-        final String ripetizione = disp.getRipetizione();
-        final String fineripetizione = disp.getFineRipetizione();
+        if (hide.values().contains(Integer.toString(position))) {
+            viewHolder.item.setVisibility(View.GONE);
+            viewHolder.parent.setVisibility(View.GONE);
+            viewHolder.parent.setPadding(0, 0, 0, 0);
+        }
 
-
-        viewHolder.ibEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainActivity)context).setMiaDispScelta(id,data,orainizio,orafine,intervento,ripetizione,fineripetizione);
-                showEdit();
-            }
-        });
-
-    }
-
-    public void showEdit(){
-
-        ((MainActivity)context).showFragment("ModificaDisponibilitaFragment",false);
     }
 
     @Override
@@ -106,8 +103,8 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
         public TextView tvIntervento;
         public TextView tvRipetizione;
         public TextView tvFineRipetizione;
-        public ImageButton ibEdit;
         public TextView selectedDispon;
+        public CardView item;
         public LinearLayout parent;
 
 
@@ -120,9 +117,9 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
             tvIntervento = (TextView) itemView.findViewById(R.id.tvIntervento);
             tvRipetizione = (TextView) itemView.findViewById(R.id.tvRipetizione);
             tvFineRipetizione = (TextView) itemView.findViewById(R.id.tvFineRipetizione);
-            ibEdit = (ImageButton) itemView.findViewById(R.id.miaDispBtnEdit);
             selectedDispon = (TextView) itemView.findViewById(R.id.selectedDispon);
-            parent = (LinearLayout) itemView.findViewById(R.id.item_miadisp);
+            item = (CardView) itemView.findViewById(R.id.item_miadisp);
+            parent = (LinearLayout) itemView.findViewById(R.id.item_miadisp_parent);
 
             itemView.setOnClickListener(this);
         }
