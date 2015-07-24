@@ -9,6 +9,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,8 +129,8 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
             //BYPASSARE IL CONTROLLO.
             //try {
             //if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
-
-            requests.add(new RichiesteRicevute(temp.get("data"), temp.get("oraInizio"), temp.get("oraFine"),
+            System.out.println("DATA "+temp.get("data"));
+            requests.add(new RichiesteRicevute(temp.get("data").substring(0, 10), temp.get("oraInizio"), temp.get("oraFine"),
                     temp.get("intervento"), temp.get("dottore")));
 
             //}

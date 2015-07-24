@@ -8,7 +8,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+
+        >
 
         <LinearLayout
             android:id="@+id/container_toolbar"
@@ -36,14 +38,15 @@
 
     </LinearLayout>
 
-
     <fragment
         android:id="@+id/fragment_navigation_drawer"
         android:name="it.uniba.di.sss1415.app_consulenze.activity.FragmentDrawer"
         android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:layout="@layout/fragment_navigation_drawer"
-        tools:layout="@layout/fragment_navigation_drawer" />
+        android:layout="@layout/fragment_navigation_drawer"
+        tools:layout="@layout/fragment_navigation_drawer"
+    />
+
 
 </android.support.v4.widget.DrawerLayout>
