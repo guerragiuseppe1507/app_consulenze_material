@@ -2,6 +2,8 @@ package it.uniba.di.sss1415.app_consulenze.activity;
 
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +82,16 @@ public class FragmentDrawer extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 drawerListener.onDrawerItemSelected(view, position);
+                int[][] a = {{0},{0}};
+                int[] b = {getResources().getColor(R.color.colorAccent)};
+                int[] c = {Color.WHITE};
+                for(int i = 0 ; i < recyclerView.getChildCount() ; i++){
+
+                    ((RelativeLayout)recyclerView.getChildAt(i)).getChildAt(0).setBackgroundTintList(new ColorStateList(a,c));
+                    ((Button)((RelativeLayout)recyclerView.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.grey));
+                }
+                ((RelativeLayout)recyclerView.getChildAt(position)).getChildAt(0).setBackgroundTintList(new ColorStateList(a,b));
+                ((Button)((RelativeLayout)recyclerView.getChildAt(position)).getChildAt(0)).setTextColor(Color.WHITE);
                 mDrawerLayout.closeDrawer(containerView);
             }
 
