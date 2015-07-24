@@ -91,7 +91,7 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
             //try {
                 //if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
 
-                    requests.add(new RichiesteInviate(temp.get("id"), temp.get("data"), temp.get("oraInizio"), temp.get("oraFine"),
+                    requests.add(new RichiesteInviate(temp.get("id"), temp.get("data").substring(0, 10), temp.get("oraInizio"), temp.get("oraFine"),
                             temp.get("intervento"), temp.get("nomeTutor"), temp.get("cognomeTutor"), temp.get("percorso")));
 
                 //}

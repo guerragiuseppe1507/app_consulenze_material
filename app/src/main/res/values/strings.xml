@@ -116,5 +116,7 @@
     <string name="request_received_dottore">Doctor :</string>
     <string name="action_logout">Logout</string>
     <string name="new_request_summary_button">Summary</string>
+    <string name="bottone_modifica_miaDisp">Edit</string>
+    <string name="bottone_cancella_miaDisp">Delete</string>
 
 </resources>

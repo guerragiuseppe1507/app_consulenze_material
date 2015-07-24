@@ -5,26 +5,74 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     tools:context="it.uniba.di.sss1415.app_consulenze.fragment.MieDispFragment">
+    <View
+        android:id="@+id/shadow"
+        android:layout_width="fill_parent"
+        android:layout_height="6dip"
+        android:elevation="10dp"
+        app:borderWidth="0dp"
+        android:background="@drawable/drop_shadow"
+        />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mieDisp_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mieDisp_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="7dp"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/mieDispFab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_plus"
-        android:layout_gravity="bottom|right"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/richieste_miedisp_confirm"
+            android:layout_alignParentBottom="true">
 
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp"
-        android:baselineAlignBottom="false"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="10dp"
-        android:onClick="showNewDisp" />
+            <Button
+                android:layout_gravity="center_vertical"
+                app:elevation="6dp"
+                app:borderWidth="0dp"
+                app:pressedTranslationZ="12dp"
+                android:textColor="@color/whiteText"
+                android:text="@string/bottone_modifica_miaDisp"
+                android:id="@+id/bottone_modifica_miaDisp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="2.5dp" />
+
+            <Button
+                android:layout_gravity="center_vertical"
+                app:elevation="6dp"
+                app:borderWidth="0dp"
+                app:pressedTranslationZ="12dp"
+                android:textColor="@color/whiteText"
+                android:text="@string/bottone_cancella_miaDisp"
+                android:id="@+id/bottone_cancella_miaDisp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="2.5dp" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_gravity="center_vertical"
+                android:id="@+id/mieDispFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_plus"
+
+                app:elevation="6dp"
+                app:borderWidth="0dp"
+                app:pressedTranslationZ="12dp"
+                android:baselineAlignBottom="false"
+                android:layout_margin="10dp"
+                android:onClick="showNewDisp"
+                />
+
+        </LinearLayout>
 
 
 </RelativeLayout>

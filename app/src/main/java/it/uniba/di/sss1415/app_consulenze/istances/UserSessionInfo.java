@@ -34,6 +34,7 @@ public class UserSessionInfo {
     private String primariaEx; //prima expertise
     public static String interventoScelto;
     public static Tutors tutorScelto;
+    public static MieDisp miaDispScelta;
     public static Stack<String> backStackFragment = new Stack<String>();
 
     //Di seguito i metodi che permettono di accedere in lettura e scrittura alla mail

@@ -129,7 +129,6 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
             //BYPASSARE IL CONTROLLO.
             //try {
             //if(formatter.parse(temp.get("data")).getTime() > d.getTime()){
-            System.out.println("DATA "+temp.get("data"));
             requests.add(new RichiesteRicevute(temp.get("data").substring(0, 10), temp.get("oraInizio"), temp.get("oraFine"),
                     temp.get("intervento"), temp.get("dottore")));
 
