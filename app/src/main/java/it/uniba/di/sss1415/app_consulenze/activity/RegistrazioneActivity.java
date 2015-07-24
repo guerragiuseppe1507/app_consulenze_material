@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -198,14 +199,15 @@ public class RegistrazioneActivity extends Activity {
 
     public void salvaInPref(String mail , String pass){
 
-        prefs =  this.getPreferences(Context.MODE_PRIVATE); //new
+        prefs = PreferenceManager.getDefaultSharedPreferences(this); //new
         editor = prefs.edit(); //new
-
-        editor.putString("email",mail); // new
-        editor.putString("password",pass); // new
+        System.out.println("SHARED PREV:"+ prefs.getAll());
+        editor.clear();
+        editor.putString("email",mail).apply(); // new
+        editor.putString("password",pass).apply(); // new
         editor.commit();
 
-
+        System.out.println("SHARED PREF :"+ prefs.getAll());
     }
 
     public void creaMessaggio(CharSequence message){
