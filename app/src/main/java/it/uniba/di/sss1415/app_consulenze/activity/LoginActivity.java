@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -71,7 +73,7 @@ public class LoginActivity extends Activity{
         //editor = pref.edit();
         //editor.putString("email", CREDENTIALS[0]); // new
         //editor.putString("password", CREDENTIALS[1]); // new
-       //editor.commit();
+        //editor.commit();
         try {
 
             credEmail = pref.getString("email", "");
@@ -107,6 +109,10 @@ public class LoginActivity extends Activity{
         });
 
         Button registraButton = (Button) findViewById(R.id.link_to_signup);
+        int[][] a = {{0},{0}};
+        int[] b = {getResources().getColor(R.color.colorAccent)};
+        mEmailSignInButton.setBackgroundTintList(new ColorStateList(a,b));
+        registraButton.setBackgroundTintList(new ColorStateList(a,b));
         registraButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
