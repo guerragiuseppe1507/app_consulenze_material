@@ -142,7 +142,7 @@
     <string name="availabilityFor">Availability for :</string>
     <string name="repetition">Repetition :</string>
     <string name="endRepetition">Repetition ends :</string>
-    <string name="allFieldsNeeded">All fields needed</string>
+    <string name="allFieldsNeeded">All fields required</string>
     <string name="requestDeleted">Request Deleted</string>
     <string name="data_label_appoint">Date :</string>
     <string name="choseExpertise">Choose expertise first</string>
@@ -152,5 +152,13 @@
     <string name="appoint_doctor">With :</string>
     <string name="profileEdited">Profile edited</string>
     <string name="chooseOne">You have to choose a smile</string>
+    <string name="nodate">Start date is required</string>
+    <string name="nostart">Start time is required</string>
+    <string name="noend">End time is required</string>
+    <string name="insertName">Insert name please</string>
+    <string name="InvalidValue">Invalid value</string>
+    <string name="insertSurname">Insert surname please</string>
+    <string name="insertYear">Insert registration year please</string>
+    <string name="insertNumber">Insert registration number please</string>
 
 </resources>

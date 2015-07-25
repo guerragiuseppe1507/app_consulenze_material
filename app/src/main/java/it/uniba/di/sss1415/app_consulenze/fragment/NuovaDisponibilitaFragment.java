@@ -3,6 +3,7 @@ package it.uniba.di.sss1415.app_consulenze.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.text.SimpleDateFormat;
@@ -65,6 +67,9 @@ public class NuovaDisponibilitaFragment extends Fragment {
     String repChecked;
     String untilDate;
     String sss;
+    Boolean dateSet = false;
+    Boolean startSet = false;
+    Boolean endSet = false;
 
 
 
@@ -164,6 +169,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
         oraInizio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final Calendar c = Calendar.getInstance();
                 int hour = c.get(Calendar.HOUR_OF_DAY);
                 int minute = c.get(Calendar.MINUTE);
@@ -185,11 +191,14 @@ public class NuovaDisponibilitaFragment extends Fragment {
                                 if(hourOfDay < 10){
                                     ora = "0" + hourOfDay;
                                 }
+                                oraInizio.setError(null);
                                 oraInizio.setText(ora + ":" + minuti + ":00");
+                                startSet = true;
                             }
                         }, hour, minute,
                         DateFormat.is24HourFormat(getActivity()));
                 tpd.show();
+
 
             }
         });
@@ -197,6 +206,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
         oraFine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final Calendar c = Calendar.getInstance();
                 int hour = c.get(Calendar.HOUR_OF_DAY);
                 int minute = c.get(Calendar.MINUTE);
@@ -221,12 +231,14 @@ public class NuovaDisponibilitaFragment extends Fragment {
                                     ora = "0" + hourOfDay;
                                 }
 
-
+                                oraFine.setError(null);
                                 oraFine.setText(ora + ":" + minuti + ":00" );
+                                endSet = true;
                             }
                         }, hour, minute,
                         DateFormat.is24HourFormat(getActivity()));
                 tpd.show();
+
 
             }
         });
@@ -235,6 +247,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
         dataIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final Calendar c = Calendar.getInstance();
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
@@ -261,9 +274,9 @@ public class NuovaDisponibilitaFragment extends Fragment {
                         if(dayOfMonth < 10){
                             giorno = "0"+ Integer.toString(dayOfMonth);
                         }
-
+                        dataIn.setError(null);
                         dataIn.setText(year + "-" + mese + "-" + giorno);
-
+                        dateSet =true;
                         //controllo giorno della settimana
                         switch (sss){
 
@@ -295,6 +308,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
 
 
                 dpd.show();
+
 
             }
         });
@@ -373,17 +387,24 @@ public class NuovaDisponibilitaFragment extends Fragment {
 
                 }
                 //Instance  object of dialog summary
-                dialogSummary = SummaryAvailability.newInstance(
-                        expertise.getSelectedItem().toString(),
-                        dataIn.getText().toString(),
-                        oraInizio.getText().toString(),
-                        oraFine.getText().toString(),
-                        repChecked,
-                        untilDate,
-                        ((MainActivity)getActivity()).isModifyCall()
-                );
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                dialogSummary.show(ft,"summary");
+
+                if(dateSet && startSet && endSet){
+                    dialogSummary = SummaryAvailability.newInstance(
+                            expertise.getSelectedItem().toString(),
+                            dataIn.getText().toString(),
+                            oraInizio.getText().toString(),
+                            oraFine.getText().toString(),
+                            repChecked,
+                            untilDate,
+                            ((MainActivity)getActivity()).isModifyCall()
+                    );
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    dialogSummary.show(ft,"summary");
+                } else {
+                    showErrors(dateSet, startSet, endSet);
+                    creaMessaggio(getActivity().getResources().getString(R.string.allFieldsNeeded));
+                }
+
             }
         });
 
@@ -392,6 +413,18 @@ public class NuovaDisponibilitaFragment extends Fragment {
 
 
         return v;
+    }
+
+    private void showErrors(Boolean date, Boolean start, Boolean end){
+        if(!date){
+            dataIn.setError(getActivity().getResources().getString(R.string.nodate));
+        }
+        if(!start){
+            oraInizio.setError(getActivity().getResources().getString(R.string.nostart));
+        }
+        if(!end){
+            oraFine.setError(getActivity().getResources().getString(R.string.noend));
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -417,6 +450,10 @@ public class NuovaDisponibilitaFragment extends Fragment {
     }
 
 
-
+    public void creaMessaggio(CharSequence message){
+        Context context = getActivity().getApplicationContext();
+        Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toastMessage.show();
+    }
 
 }

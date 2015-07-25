@@ -126,15 +126,15 @@ public class ModificaProfiloFragment extends Fragment {
 
         String error = "Edit done";
 
-        if      (nome.compareTo("")==0) {error = "insert name please"; ETnome.setError(error);}
-        else if (nome.contains(",")) {error = "invalid value"; ETnome.setError(error);}
-        else if (cognome.compareTo("")==0) {error = "insert surname please";ETcognome.setError(error);}
-        else if (cognome.contains(",")) {error = "invalid value"; ETcognome.setError(error);}
-        else if (anno.compareTo("")==0) {error = "insert year please";ETanno.setError(error);}
-        else if (anno.contains(",")) {error = "invalid value"; ETanno.setError(error);}
-        else if (numero.compareTo("")==0) {error = "insert number please";ETnumero.setError(error);}
-        else if (numero.contains(",")) {error = "invalid value"; ETnumero.setError(error);}
-        else if (spec==null || spec.compareTo("")==0) {error = "no connection";}
+        if      (nome.compareTo("")==0) {error = getActivity().getResources().getString(R.string.insertName); ETnome.setError(error);}
+        else if (nome.contains(",")) {error = getActivity().getResources().getString(R.string.InvalidValue); ETnome.setError(error);}
+        else if (cognome.compareTo("")==0) {error = getActivity().getResources().getString(R.string.insertSurname);ETcognome.setError(error);}
+        else if (cognome.contains(",")) {error = getActivity().getResources().getString(R.string.InvalidValue); ETcognome.setError(error);}
+        else if (anno.compareTo("")==0) {error = getActivity().getResources().getString(R.string.insertYear);ETanno.setError(error);}
+        else if (anno.contains(",")) {error = getActivity().getResources().getString(R.string.InvalidValue); ETanno.setError(error);}
+        else if (numero.compareTo("")==0) {error = getActivity().getResources().getString(R.string.insertNumber);ETnumero.setError(error);}
+        else if (numero.contains(",")) {error = getActivity().getResources().getString(R.string.InvalidValue); ETnumero.setError(error);}
+        else if (spec==null || spec.compareTo("")==0) {error = getActivity().getResources().getString(R.string.conn_timeout);}
         else{
             editTask = new EditProfileTask(UserSessionInfo.getInstance().getEmail(),
                     nome,

@@ -168,6 +168,7 @@ public class SendNewRequestCustom extends Fragment {
                                 if(hourOfDay < 10){
                                     ora = "0" + hourOfDay;
                                 }
+                                oraInizio.setError(null);
                                 oraInizio.setText(ora + ":" + minuti + ":00");
                                 oraiSet = true;
                             }
@@ -205,7 +206,7 @@ public class SendNewRequestCustom extends Fragment {
                                     ora = "0" + hourOfDay;
                                 }
 
-
+                                oraFine.setError(null);
                                 oraFine.setText(ora + ":" + minuti + ":00" );
                                 orafSet = true;
                             }
@@ -242,7 +243,7 @@ public class SendNewRequestCustom extends Fragment {
                         if(dayOfMonth < 10){
                             giorno = "0"+ Integer.toString(dayOfMonth);
                         }
-
+                        dataIn.setError(null);
                         dataIn.setText(year + "-" + mese + "-" + giorno);
                         dataSet = true;
 
@@ -278,6 +279,7 @@ public class SendNewRequestCustom extends Fragment {
                     dialogSummary.show(ft, "summary");
 
                 } else {
+                    showErrors(dataSet, oraiSet, orafSet);
                     creaMessaggio(getResources().getString(R.string.allFieldsNeeded));
                 }
 
@@ -290,6 +292,18 @@ public class SendNewRequestCustom extends Fragment {
         mTutorTask.execute();
 
         return v;
+    }
+
+    private void showErrors(Boolean date, Boolean start, Boolean end){
+        if(!date){
+            dataIn.setError(getActivity().getResources().getString(R.string.nodate));
+        }
+        if(!start){
+            oraInizio.setError(getActivity().getResources().getString(R.string.nostart));
+        }
+        if(!end){
+            oraFine.setError(getActivity().getResources().getString(R.string.noend));
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
