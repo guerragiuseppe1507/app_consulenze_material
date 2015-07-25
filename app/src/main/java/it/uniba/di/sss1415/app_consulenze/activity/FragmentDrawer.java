@@ -103,11 +103,11 @@ public class FragmentDrawer extends Fragment {
         int[] c = {Color.WHITE};
         for(int i = 0 ; i < recyclerView.getChildCount() ; i++){
 
-            ((RelativeLayout)recyclerView.getChildAt(i)).getChildAt(0).setBackgroundTintList(new ColorStateList(a,c));
+            ((RelativeLayout)recyclerView.getChildAt(i)).getChildAt(0).setBackgroundColor(c[0]);
             ((Button)((RelativeLayout)recyclerView.getChildAt(i)).getChildAt(0)).setTextColor(cont.getResources().getColor(R.color.grey));
         }
         if(position != -1) {
-            ((RelativeLayout) recyclerView.getChildAt(position)).getChildAt(0).setBackgroundTintList(new ColorStateList(a, b));
+            ((RelativeLayout) recyclerView.getChildAt(position)).getChildAt(0).setBackgroundColor(b[0]);
             ((Button) ((RelativeLayout) recyclerView.getChildAt(position)).getChildAt(0)).setTextColor(Color.WHITE);
         }
     }

@@ -138,13 +138,12 @@ public class NuovaRichiestaFragment extends Fragment {
         search = (Button) v.findViewById(R.id.searchButton);
         interventi.setVisibility(View.INVISIBLE);
         interTV.setVisibility(View.VISIBLE);
-        interTV.setText("Scegli una Specializzazione");
+        interTV.setText(getResources().getString(R.string.choseExpertise));
         expertise.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String specializzazione_selezionata = expertise.getSelectedItem().toString();
-                System.out.println("HAI SCELTO " + specializzazione_selezionata);
 
                 if(mAuthTask!=null)mAuthTask.cancel(true);
                 mAuthTask = new RichiestaInterventiTask(specializzazione_selezionata);
@@ -265,7 +264,7 @@ public class NuovaRichiestaFragment extends Fragment {
         if (interventiMedici.size() > 1) {
             interventi.setVisibility(View.VISIBLE);
             interTV.setVisibility(View.VISIBLE);
-            interTV.setText("Intervento");
+            interTV.setText(getResources().getString(R.string.new_request_operation));
 
 
             adapterInt = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, interventiMedici);

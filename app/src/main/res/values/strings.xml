@@ -145,5 +145,6 @@
     <string name="allFieldsNeeded">All fields needed</string>
     <string name="requestDeleted">Request Deleted</string>
     <string name="data_label_appoint">Date:</string>
+    <string name="choseExpertise">Choose expertise first</string>
 
 </resources>

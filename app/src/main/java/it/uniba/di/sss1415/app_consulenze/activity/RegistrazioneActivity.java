@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -88,6 +89,10 @@ public class RegistrazioneActivity extends Activity {
                 toLogin();
             }
         });
+        int[][] a = {{0},{0}};
+        int[] b = {getResources().getColor(R.color.colorAccent)};
+        loginButton.setBackgroundTintList(new ColorStateList(a,b));
+        regButton.setBackgroundTintList(new ColorStateList(a, b));
 
     }
 
@@ -115,8 +120,15 @@ public class RegistrazioneActivity extends Activity {
         String numero = editNumero.getText().toString();
         String provincia = spinnerProvince.getSelectedItem().toString();
 
-        mRegTask = new UserRegisterTask(email, numero, anno, provincia, password);
-        mRegTask.execute();
+        if(!editEmail.getText().toString().equals("")&&
+                !editAnnoIscrizione.getText().toString().equals("")&&
+                !editNumero.getText().toString().equals("")) {
+
+            mRegTask = new UserRegisterTask(email, numero, anno, provincia, password);
+            mRegTask.execute();
+        } else {
+            creaMessaggio(getResources().getString(R.string.allFieldsNeeded));
+        }
 
     }
 
