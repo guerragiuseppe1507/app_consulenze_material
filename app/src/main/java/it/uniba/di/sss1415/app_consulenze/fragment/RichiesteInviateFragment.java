@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +48,13 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
     private RichiesteInviateAdapter richiesteInviateAdapter;
     private LinearLayoutManager layoutManager;
     private RecyclerView recyclerView;
+    private LinearLayout confirmDialog;
+    private Button btnEdit;
+    private Button btnDelete;
+
+    private int clickedPosition;
+    private HashMap<String,String> clickedPositions = new HashMap<String,String>();
+    private int clickedOffset;
 
     private ShowSentRequestTask dispTask = null;
     private Connection conn;
@@ -107,6 +115,13 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_richieste_inviate, container, false);
 
+        confirmDialog = (LinearLayout) view.findViewById(R.id.richieste_inviate_confirm);
+        btnEdit = (Button) view.findViewById(R.id.bottone_modifica_richiesta_inviata);
+        btnDelete = (Button) view.findViewById(R.id.bottone_cancella_richiesta_ricevuta);
+        confirmDialog.setBackgroundColor(getResources().getColor(R.color.transparent));
+        btnEdit.setVisibility(View.INVISIBLE);
+        btnDelete.setVisibility(View.INVISIBLE);
+
         layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView = (RecyclerView) view.findViewById(R.id.richieste_inviate_recycler);
@@ -130,6 +145,17 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
 
     @Override
     public void recyclerViewClicked(View v , int position, int offset){
+        btnEdit.setVisibility(View.VISIBLE);
+        btnDelete.setVisibility(View.VISIBLE);
+        final float scale = getResources().getDisplayMetrics().density;
+        int padding_in_px = (int) (15 * scale + 0.5f);
+        int padding_bot_px = (int) (7 * scale + 0.5f);
+        recyclerView.setPadding(padding_in_px, 0, padding_in_px, confirmDialog.getHeight()+padding_bot_px);
+        confirmDialog.setBackgroundColor(getResources().getColor(R.color.whiteText));
+
+        this.clickedPosition = position;
+        this.clickedOffset = offset;
+
         int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
         richiesteInviateAdapter = new RichiesteInviateAdapter(getActivity(), requests, this,position);
         recyclerView.setAdapter(richiesteInviateAdapter);

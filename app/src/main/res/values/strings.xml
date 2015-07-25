@@ -128,7 +128,7 @@
     <string name="everyDay6">(Every Saturday)</string>
     <string name="everyDay7">(Every Sunday)</string>
     <string name="choseOperation">Chose operation first</string>
-    <string name="noOperation">No operations avaible</string>
+    <string name="noOperation">No operations Avaible</string>
     <string name="requestAccepted">Request accepted</string>
     <string name="requestRefused">Request refused</string>
     <string name="availabilityEdited">AvailabilityEdited</string>
@@ -137,6 +137,8 @@
     <string name="voteSent">Vote sent</string>
     <string name="availabilityDeleted">Availability deleted</string>
     <string name="scoretutor">Score:</string>
+    <string name="bottone_modifica_richiesta_inviata">Edit</string>
+    <string name="bottone_cancella_richiesta_inviata">Delete</string>
     <string name="availabilityFor">Availability for :</string>
     <string name="repetition">Repetition :</string>
     <string name="endRepetition">Repetition ends :</string>
