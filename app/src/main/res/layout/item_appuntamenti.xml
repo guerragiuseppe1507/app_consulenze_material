@@ -50,37 +50,72 @@
                 android:layout_toRightOf="@+id/tvOraInizioLabelAppoint"
                 android:layout_marginLeft="15dp"/>
             <TextView
+                android:id="@+id/tvOraFineLabelAppoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/congiunzione_to"
+                android:layout_alignBaseline="@+id/tvOraInizioLabelAppoint"
+                android:layout_toRightOf="@+id/appuntamenti_tvOraInizio"
+                android:layout_marginLeft="30dp"/>
+            <TextView
                 android:id="@+id/appuntamenti_tvOraFine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="disp"/>
+                android:layout_alignBaseline="@+id/tvOraInizioLabelAppoint"
+                android:layout_toRightOf="@+id/tvOraFineLabelAppoint"
+                android:layout_marginLeft="15dp"/>
+            <TextView
+                android:id="@+id/tvTipoAppuntamentoLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/appoint_type_label"
+                android:textStyle="bold"
+                android:layout_below="@+id/tvOraInizioLabelAppoint"/>
             <TextView
                 android:id="@+id/appuntamenti_tvTipoAppuntamento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="disp"/>
+                android:layout_alignBaseline="@+id/tvTipoAppuntamentoLabel"
+                android:layout_toRightOf="@+id/tvTipoAppuntamentoLabel"
+                android:layout_marginLeft="15dp"/>
+            <TextView
+                android:id="@+id/tvInterventoAppoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/appoint_operation"
+                android:textStyle="bold"
+                android:layout_below="@+id/tvTipoAppuntamentoLabel"/>
             <TextView
                 android:id="@+id/appuntamenti_tvIntervento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="disp"/>
+                android:layout_alignBaseline="@+id/tvInterventoAppoint"
+                android:layout_toRightOf="@+id/tvInterventoAppoint"
+                android:layout_marginLeft="15dp"/>
+            <TextView
+                android:id="@+id/tvDottoreAppoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/appoint_doctor"
+                android:textStyle="bold"
+                android:layout_below="@+id/tvInterventoAppoint"/>
             <TextView
                 android:id="@+id/appuntamenti_tvDottore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="disp"/>
-
-            <TextView
-                android:id="@+id/selectedAppuntamento"
-                android:layout_width="fill_parent"
-                android:layout_height="10px"
-                android:layout_weight="1"
-                />
+                android:layout_alignBaseline="@+id/tvDottoreAppoint"
+                android:layout_toRightOf="@+id/tvDottoreAppoint"
+                android:layout_marginLeft="15dp"/>
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/selectedAppuntamento"
+            android:layout_width="fill_parent"
+            android:layout_height="10px"
+            android:layout_weight="1"
+            />
+
     </android.support.v7.widget.CardView>
 </LinearLayout>
