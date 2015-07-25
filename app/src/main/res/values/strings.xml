@@ -146,6 +146,10 @@
     <string name="requestDeleted">Request Deleted</string>
     <string name="data_label_appoint">Date:</string>
     <string name="choseExpertise">Choose expertise first</string>
+    <string name="appoint_type">Type:</string>
+    <string name="appoint_type_label">Type:</string>
+    <string name="appoint_operation">Operation:</string>
+    <string name="appoint_doctor">Doctor:</string>
     <string name="profileEdited">Profile edited</string>
 
 </resources>
