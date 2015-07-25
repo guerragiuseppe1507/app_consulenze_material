@@ -19,6 +19,7 @@
         android:layout_gravity="bottom|right"
 
         app:elevation="6dp"
+        app:borderWidth="0dp"
         app:pressedTranslationZ="12dp"
         android:baselineAlignBottom="false"
         android:layout_alignParentBottom="true"
