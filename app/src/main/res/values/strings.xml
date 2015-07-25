@@ -164,5 +164,6 @@
     <string name="startTime">Start time :</string>
     <string name="endTime">End time :</string>
     <string name="until">Until :</string>
+    <string name="insertEmail">Insert email please</string>
 
 </resources>

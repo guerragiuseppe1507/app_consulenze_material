@@ -127,9 +127,22 @@ public class RegistrazioneActivity extends Activity {
             mRegTask = new UserRegisterTask(email, numero, anno, provincia, password);
             mRegTask.execute();
         } else {
+            checkErrors();
             creaMessaggio(getResources().getString(R.string.allFieldsNeeded));
         }
 
+    }
+
+    private void checkErrors(){
+        if(editEmail.getText().toString().equals("")){
+            editEmail.setError(getResources().getString(R.string.insertEmail));
+        }
+        if(editAnnoIscrizione.getText().toString().equals("")){
+            editAnnoIscrizione.setError(getResources().getString(R.string.insertYear));
+        }
+        if(editNumero.getText().toString().equals("")){
+            editNumero.setError(getResources().getString(R.string.insertNumber));
+        }
     }
 
     public class UserRegisterTask extends AsyncTask<String, Void, String> {

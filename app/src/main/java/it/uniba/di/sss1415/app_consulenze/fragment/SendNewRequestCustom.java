@@ -63,6 +63,14 @@ public class SendNewRequestCustom extends Fragment {
     private Boolean dataSet = false;
     private Boolean orafSet = false;
 
+    private int oraInizioHour;
+    private int oraInizioMinute;
+    private int oraFineHour;
+    private int oraFineMinute;
+    private int dataInYear;
+    private int dataInMounth;
+    private int dataInDay;
+
     SummaryRequestCustom dialogSummary ;
 
     private static final String NOME_RICHIESTA = "tutor";
@@ -147,9 +155,16 @@ public class SendNewRequestCustom extends Fragment {
         oraInizio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int hour = c.get(Calendar.HOUR_OF_DAY);
-                int minute = c.get(Calendar.MINUTE);
+                int hour;
+                int minute;
+                if(!oraiSet) {
+                    final Calendar c = Calendar.getInstance();
+                    hour = c.get(Calendar.HOUR_OF_DAY);
+                    minute = c.get(Calendar.MINUTE);
+                } else {
+                    hour = oraInizioHour;
+                    minute = oraInizioMinute;
+                }
 
                 // Create a new instance of TimePickerDialog and return it
                 TimePickerDialog tpd =  new TimePickerDialog(getActivity(),
@@ -159,6 +174,8 @@ public class SendNewRequestCustom extends Fragment {
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
                                 // Display Selected time in textbox
+                                oraInizioHour = hourOfDay;
+                                oraInizioMinute = minute;
                                 String minuti = Integer.toString(minute);
                                 if(minute < 10){
                                     minuti = "0" + minute;
@@ -182,11 +199,16 @@ public class SendNewRequestCustom extends Fragment {
         oraFine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int hour = c.get(Calendar.HOUR_OF_DAY);
-                int minute = c.get(Calendar.MINUTE);
-
-
+                int hour;
+                int minute;
+                if(!orafSet) {
+                    final Calendar c = Calendar.getInstance();
+                    hour = c.get(Calendar.HOUR_OF_DAY);
+                    minute = c.get(Calendar.MINUTE);
+                } else {
+                    hour = oraFineHour;
+                    minute = oraFineMinute;
+                }
 
                 // Create a new instance of TimePickerDialog and return it
                 TimePickerDialog tpd =  new TimePickerDialog(getActivity(),
@@ -196,6 +218,8 @@ public class SendNewRequestCustom extends Fragment {
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
                                 // Display Selected time in textbox
+                                oraFineHour = hourOfDay;
+                                oraFineMinute = minute;
                                 String minuti = Integer.toString(minute);
                                 if(minute < 10){
                                     minuti = "0" + minute;
@@ -221,19 +245,28 @@ public class SendNewRequestCustom extends Fragment {
         dataIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-
-
+                int year;
+                int month;
+                int day ;
+                if(!dataSet) {
+                    final Calendar c = Calendar.getInstance();
+                    year = c.get(Calendar.YEAR);
+                    month = c.get(Calendar.MONTH);
+                    day = c.get(Calendar.DAY_OF_MONTH);
+                } else {
+                    year = dataInYear;
+                    month = dataInMounth;
+                    day = dataInDay;
+                }
 
                 DatePickerDialog dpd = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
 
-
+                        dataInYear = year;
+                        dataInMounth = monthOfYear;
+                        dataInDay = dayOfMonth;
                         String mese = Integer.toString(monthOfYear+1);
                         if(monthOfYear+1 < 10){
                             mese = "0"+ mese;
@@ -252,7 +285,7 @@ public class SendNewRequestCustom extends Fragment {
                     }
                 }, year, month, day);
 
-
+                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 dpd.show();
 
             }
