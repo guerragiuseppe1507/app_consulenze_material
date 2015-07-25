@@ -47,8 +47,8 @@ public class TutorRating extends DialogFragment {
     TextView happySel ;
     TextView neutralSel;
     TextView sadSel;
-
-    String timeout, voteSent;
+    Boolean chosen = false;
+    String timeout, voteSent,chooseOne;
 
 
 
@@ -85,6 +85,7 @@ public class TutorRating extends DialogFragment {
         voto = getArguments().getString("score");
         timeout = getActivity().getResources().getString(R.string.conn_timeout);
         voteSent = getActivity().getResources().getString(R.string.voteSent);
+        chooseOne = getActivity().getResources().getString(R.string.chooseOne);
 
 
     }
@@ -111,9 +112,13 @@ public class TutorRating extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // invio dati al server
-                        ratingTask = new RateTask(nome, cognome, voto);
-                        ratingTask.execute();
 
+                        if (chosen) {
+                            ratingTask = new RateTask(nome, cognome, voto);
+                            ratingTask.execute();
+                        }else{
+                            creaMessaggio(chooseOne);
+                        }
 
 
 
@@ -163,7 +168,7 @@ public class TutorRating extends DialogFragment {
                 addScore.setTextColor(getResources().getColor(R.color.colorPrimary));
                 vote = Integer.parseInt(voto) + ha;
                 voto = Integer.toString(vote);
-
+                chosen = true;
 
             }
         });
@@ -179,7 +184,7 @@ public class TutorRating extends DialogFragment {
                 addScore.setTextColor(getResources().getColor(R.color.colorAccent));
                 vote = Integer.parseInt(voto) + nt;
                 voto = Integer.toString(vote);
-
+                chosen = true;
             }
         });
 
@@ -194,7 +199,7 @@ public class TutorRating extends DialogFragment {
                 addScore.setTextColor(Color.RED);
                 vote = Integer.parseInt(voto) + sd;
                 voto = Integer.toString(vote);
-
+                chosen = true;
             }
         });
 
@@ -255,10 +260,11 @@ public class TutorRating extends DialogFragment {
 
         }
 
-        public void creaMessaggio(CharSequence message) {
-            Context context = v.getContext();
-            Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
-            toastMessage.show();
-        }
+
+    }
+    public void creaMessaggio(CharSequence message) {
+        Context context = v.getContext();
+        Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toastMessage.show();
     }
 }

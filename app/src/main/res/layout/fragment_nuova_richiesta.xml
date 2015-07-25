@@ -30,7 +30,7 @@
             android:layout_width="fill_parent"
             android:layout_marginLeft="5dp"
             android:layout_height="2dp"
-            android:background="@color/grey"></TextView>
+            android:background="@color/divider"></TextView>
         </LinearLayout>
 
         <Spinner
@@ -61,7 +61,7 @@
             android:id="@+id/interTextViewLine"
             android:layout_width="fill_parent"
             android:layout_height="2dp"
-            android:background="@color/grey"
+            android:background="@color/divider"
             android:layout_marginLeft="5dp"></TextView>
         </LinearLayout>
 
