@@ -37,7 +37,7 @@ public class RegistrazioneActivity extends Activity {
     private static final String TIPO_ELEMENTO = "registrazione";
     private static final String ACCESSO = "write";
 
-
+    private String notsetYet;
     public EditText editEmail;
     private EditText editAnnoIscrizione;
     private EditText editNumero;
@@ -47,7 +47,7 @@ public class RegistrazioneActivity extends Activity {
 
     //per la generazione della password
     private static final String _CHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-    private static final int RANDOM_STR_LENGTH = 16;
+    private static final int RANDOM_STR_LENGTH = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +120,8 @@ public class RegistrazioneActivity extends Activity {
         String numero = editNumero.getText().toString();
         String provincia = spinnerProvince.getSelectedItem().toString();
 
+        notsetYet = getResources().getString(R.string.notsetyet);
+
         if(!editEmail.getText().toString().equals("")&&
                 !editAnnoIscrizione.getText().toString().equals("")&&
                 !editNumero.getText().toString().equals("")) {
@@ -187,12 +189,12 @@ public class RegistrazioneActivity extends Activity {
             } else {
                 UserSessionInfo u = UserSessionInfo.getInstance();
                 u.setEmail(mEmail);
-                u.setNome("Not set yet");
-                u.setCognome("Not set yet");
+                u.setNome(notsetYet);
+                u.setCognome(notsetYet);
                 u.setProvincia(mProvincia);
                 u.setAnnoIscr(mAnno);
                 u.setNumIscr(mNumero);
-                u.setExp("Not set yet");
+                u.setExp(notsetYet);
                 u.setPassword(mPassword);
 
 
@@ -227,8 +229,8 @@ public class RegistrazioneActivity extends Activity {
         prefs = PreferenceManager.getDefaultSharedPreferences(this); //new
         editor = prefs.edit(); //new
         editor.clear();
-        editor.putString("email",mail).apply(); // new
-        editor.putString("password",pass).apply(); // new
+        editor.putString("email", mail);// new
+        editor.putString("password",pass); // new
         editor.commit();
     }
 

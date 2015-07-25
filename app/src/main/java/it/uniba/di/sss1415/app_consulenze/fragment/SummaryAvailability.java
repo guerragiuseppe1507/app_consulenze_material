@@ -83,7 +83,7 @@ public class SummaryAvailability extends DialogFragment {
         rep = getArguments().getString("rep");
         until = getArguments().getString("until");
         change = getArguments().getBoolean("change");
-        timeoutMsg = getActivity().getResources().getString(R.string.conn_timeout);
+        timeoutMsg = getResources().getString(R.string.conn_timeout);
         editedMsg = getResources().getString(R.string.availabilityEdited);
         insertedMsg = getResources().getString(R.string.newAvailabilityInserted);
 
@@ -128,7 +128,7 @@ public class SummaryAvailability extends DialogFragment {
         repTV = (TextView) v.findViewById(R.id.repTV);
         untilTV = (TextView) v.findViewById(R.id.untilDateTV);
         expTV.setText(exp);
-        dateTV.setText((date));
+        dateTV.setText(date);
         sTimeTV.setText(sTime);
         eTimeTV.setText(eTime);
 

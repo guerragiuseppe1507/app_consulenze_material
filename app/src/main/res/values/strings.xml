@@ -85,9 +85,9 @@
 
     <!-- Strings related to Password change -->
     <string name="pwd_change_dialog_title">CHANGE PASSWORD</string>
-    <string name="old_pwd_lbl">Insert old password:</string>
-    <string name="new_pwd_lbl">Insert new password:</string>
-    <string name="conf_pwd_lbl">Confirm new password:</string>
+    <string name="old_pwd_lbl">Old password :</string>
+    <string name="new_pwd_lbl">Insert new password :</string>
+    <string name="conf_pwd_lbl">Confirm new password :</string>
     <string name="confirm_btn">Confirm</string>
     <string name="back_btn">Back</string>
 
@@ -101,7 +101,6 @@
     <string name="nome">Name</string>
     <string name="spec_prim">Expertise</string>
     <string name="score">Score</string>
-    <string name="mod_prof">Edit</string>
     <string name="mod_pwd">Change Password</string>
     <string name="mod_prof">Save</string>
     <string name="title_button_Search">SEARCH</string>
@@ -174,5 +173,9 @@
     <string name="endTime">End time :</string>
     <string name="until">Until :</string>
     <string name="insertEmail">Insert email please</string>
+    <string name="sameOldPass">New and old password are the same</string>
+    <string name="nothesame">Both fields have to be the same</string>
+    <string name="passChanged">Password changed</string>
+    <string name="notsetyet">Not set yet</string>
 
 </resources>

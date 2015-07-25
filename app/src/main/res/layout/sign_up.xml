@@ -60,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/et_marginBottom"
             android:layout_marginTop="@dimen/et_marginTop"
+            android:maxLines="1"
             android:inputType="textEmailAddress"
             android:singleLine="true"/>
         <!-- Numero --> <!-- DA CONTROLLARE -->
@@ -71,6 +72,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/et_marginBottom"
+            android:maxLines="1"
             android:layout_marginTop="@dimen/et_marginTop"
             android:inputType="number"
             android:singleLine="true"/>
@@ -82,6 +84,8 @@
         <EditText android:id="@+id/reg_num_et"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+
             android:layout_marginBottom="@dimen/et_marginBottom"
             android:layout_marginTop="@dimen/et_marginTop"
             android:inputType="number"

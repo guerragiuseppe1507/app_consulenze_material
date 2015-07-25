@@ -33,7 +33,7 @@
         android:text="@string/new_request_spec"
         android:id="@+id/specTextView"
         android:visibility="visible"
-        android:textColor="@color/primary_material_dark"/>
+        android:textStyle="bold"/>
         <TextView
             android:layout_width="fill_parent"
             android:layout_marginLeft="5dp"
@@ -64,7 +64,7 @@
             android:text="@string/new_request_operation"
             android:id="@+id/interTextView"
             android:visibility="visible"
-            android:textColor="@color/primary_material_dark"/>
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/interTextViewLine"
             android:layout_width="fill_parent"

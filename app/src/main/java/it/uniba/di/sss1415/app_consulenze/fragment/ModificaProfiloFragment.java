@@ -1,12 +1,12 @@
 package it.uniba.di.sss1415.app_consulenze.fragment;
 
-import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,7 +122,7 @@ public class ModificaProfiloFragment extends Fragment {
                 //TODO far partire la dialog
                 pwdChangeDialog = PasswordChangeDialog.newInstance();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                //pwdChangeDialog.show(ft, "changePwd"); //TODO non so perché da problemi
+                pwdChangeDialog.show(ft, "changePwd"); //TODO non so perché da problemi
 
             }
         });

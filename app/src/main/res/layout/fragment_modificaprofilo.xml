@@ -21,7 +21,7 @@
                 android:id="@+id/tvModMail"
                 android:text="@string/mail"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/primary_material_dark"/>
+                android:textStyle="bold"/>
 
 
             <TextView
@@ -40,7 +40,7 @@
                 android:text="@string/score"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/etModMail"
-                android:textColor="@color/primary_material_dark"/>
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -58,12 +58,14 @@
                 android:text="@string/nome"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/etModScore"
-                android:textColor="@color/primary_material_dark"/>
+                android:textStyle="bold"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etModNome"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:layout_below="@+id/tvModNome"
                 android:layout_marginBottom="10dp" />
             <TextView
@@ -73,11 +75,13 @@
                 android:text="@string/cognome"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/etModNome"
-                android:textColor="@color/primary_material_dark"/>
+                android:textStyle="bold"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etModCognome"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:layout_below="@+id/tvModCognome"
                 android:layout_marginBottom="10dp"/>
 
@@ -89,7 +93,7 @@
                 android:id="@+id/tvProvincia"
                 android:layout_below="@+id/etModCognome"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/primary_material_dark"/>
+                android:textStyle="bold"/>
 
             <Spinner
                 android:id="@+id/spinnerModProvince"
@@ -110,12 +114,14 @@
                 android:text="@string/anno"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/spinnerModProvince"
-                android:textColor="@color/primary_material_dark"/>
+                android:textStyle="bold"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etModAnno"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:inputType="numberDecimal"
                 android:layout_below="@+id/tvModAnno"
                 android:layout_marginBottom="10dp"/>
@@ -127,13 +133,15 @@
                 android:text="@string/numero"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/etModAnno"
-                android:textColor="@color/primary_material_dark"
+                android:textStyle="bold"
                 />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etModNumero"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:inputType="numberDecimal"
                 android:layout_below="@+id/tvModNumero"
                 android:layout_marginBottom="10dp"/>
@@ -145,7 +153,7 @@
                 android:id="@+id/tvSpecializzazione"
                 android:layout_below="@+id/etModNumero"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/primary_material_dark"/>
+                android:textStyle="bold"/>
 
             <Spinner
                 android:id="@+id/spinnerModSpec"
