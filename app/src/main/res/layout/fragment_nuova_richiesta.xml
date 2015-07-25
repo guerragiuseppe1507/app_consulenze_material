@@ -12,10 +12,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:padding="@dimen/ll_padding">
-
+        android:padding="20dp">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,16 +26,29 @@
         android:id="@+id/specTextView"
         android:visibility="visible"
         android:textColor="@color/primary_material_dark"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_height="2dp"
+            android:background="@color/grey"></TextView>
+        </LinearLayout>
+
         <Spinner
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/specialtiesSpinner2"
         android:layout_below="@+id/specialties_label"
         android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
         android:layout_marginBottom="@dimen/et_marginBottom"
 
             android:visibility="visible" />
-
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,8 +57,16 @@
             android:id="@+id/interTextView"
             android:visibility="visible"
             android:textColor="@color/primary_material_dark"/>
+        <TextView
+            android:id="@+id/interTextViewLine"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/grey"
+            android:layout_marginLeft="5dp"></TextView>
+        </LinearLayout>
 
         <Spinner
+            android:layout_marginTop="15dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/interSpinner"

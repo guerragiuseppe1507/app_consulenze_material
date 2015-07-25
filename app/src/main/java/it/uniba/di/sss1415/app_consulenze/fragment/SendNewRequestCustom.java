@@ -59,6 +59,9 @@ public class SendNewRequestCustom extends Fragment {
     ArrayList<String> tutorList;
     ShowTutors mTutorTask;
     View v;
+    private Boolean oraiSet = false;
+    private Boolean dataSet = false;
+    private Boolean orafSet = false;
 
     SummaryRequestCustom dialogSummary ;
 
@@ -166,6 +169,7 @@ public class SendNewRequestCustom extends Fragment {
                                     ora = "0" + hourOfDay;
                                 }
                                 oraInizio.setText(ora + ":" + minuti + ":00");
+                                oraiSet = true;
                             }
                         }, hour, minute,
                         DateFormat.is24HourFormat(getActivity()));
@@ -203,6 +207,7 @@ public class SendNewRequestCustom extends Fragment {
 
 
                                 oraFine.setText(ora + ":" + minuti + ":00" );
+                                orafSet = true;
                             }
                         }, hour, minute,
                         DateFormat.is24HourFormat(getActivity()));
@@ -239,6 +244,7 @@ public class SendNewRequestCustom extends Fragment {
                         }
 
                         dataIn.setText(year + "-" + mese + "-" + giorno);
+                        dataSet = true;
 
 
 
@@ -259,20 +265,21 @@ public class SendNewRequestCustom extends Fragment {
                 positionTutor = tutor.getSelectedItemPosition();
                 temp = tutors.get(positionTutor);
 
+                if(dataSet && oraiSet && orafSet) {
+                    dialogSummary = SummaryRequestCustom.newInstance(
+                            interventoSel.getText().toString(),
+                            dataIn.getText().toString(),
+                            oraInizio.getText().toString(),
+                            oraFine.getText().toString(),
+                            temp.getNome(),
+                            temp.getCognome()
+                    );
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    dialogSummary.show(ft, "summary");
 
-
-
-
-                dialogSummary = SummaryRequestCustom.newInstance(
-                        interventoSel.getText().toString(),
-                        dataIn.getText().toString(),
-                        oraInizio.getText().toString(),
-                        oraFine.getText().toString(),
-                        temp.getNome(),
-                        temp.getCognome()
-                );
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                dialogSummary.show(ft,"summary");
+                } else {
+                    creaMessaggio(getResources().getString(R.string.allFieldsNeeded));
+                }
 
             }
         });

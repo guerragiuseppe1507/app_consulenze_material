@@ -68,10 +68,10 @@ public class LoginActivity extends Activity{
         setContentView(R.layout.sign_in);
 
         pref = PreferenceManager.getDefaultSharedPreferences(this);
-        editor = pref.edit();
-        editor.putString("email", CREDENTIALS[0]); // new
-        editor.putString("password", CREDENTIALS[1]); // new
-       editor.commit();
+        //editor = pref.edit();
+        //editor.putString("email", CREDENTIALS[0]); // new
+        //editor.putString("password", CREDENTIALS[1]); // new
+       //editor.commit();
         try {
 
             credEmail = pref.getString("email", "");
@@ -227,7 +227,13 @@ public class LoginActivity extends Activity{
 
             System.out.println(result);
             if(brancheMediche){
-                UserSessionInfo.getInstance().setBranche(result);
+                if (result.equals(ToastMsgs.CONN_TIMEOUT )){
+
+                    UserSessionInfo.getInstance().setBranche(pref.getString("branche", ""));
+                }else{
+                    UserSessionInfo.getInstance().setBranche(result);
+                    salvaBrancheInPref(result);
+                }
             }else{
                 if (result.equals(ToastMsgs.CONN_TIMEOUT )&& !brancheMediche){
 
@@ -284,6 +290,14 @@ public class LoginActivity extends Activity{
         editor = pref.edit(); //new
         editor.putString("email",mail).apply(); // new
         editor.putString("password",pass).apply(); // new
+        editor.commit();
+    }
+
+    public void salvaBrancheInPref(String result){
+
+        pref = PreferenceManager.getDefaultSharedPreferences(this); //new
+        editor = pref.edit(); //new
+        editor.putString("branche",result).apply();
         editor.commit();
     }
 

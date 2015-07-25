@@ -37,6 +37,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:elevation="10dp"
+        app:borderWidth="0dp"
+        android:background="@color/whiteText"
         android:id="@+id/richieste_ricevute_confirm"
         android:layout_alignParentBottom="true">
 

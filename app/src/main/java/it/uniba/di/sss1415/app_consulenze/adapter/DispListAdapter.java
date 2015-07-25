@@ -60,12 +60,15 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
         viewHolder.tvIntervento.setText(disp.getIntervento());
 
         if(disp.getRipetizione().equals("")){
-
+            viewHolder.tvRipetizioneLabel.setVisibility(View.GONE);
             viewHolder.tvRipetizione.setVisibility(View.GONE);
+            viewHolder.tvFineRipetizioneLabel.setVisibility(View.GONE);
             viewHolder.tvFineRipetizione.setVisibility(View.GONE);
 
         } else {
+            viewHolder.tvRipetizioneLabel.setVisibility(View.VISIBLE);
             viewHolder.tvRipetizione.setText(disp.getRipetizione());
+            viewHolder.tvFineRipetizioneLabel.setVisibility(View.VISIBLE);
             viewHolder.tvFineRipetizione.setText(disp.getFineRipetizione());
         }
 
@@ -103,6 +106,8 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
         public TextView tvIntervento;
         public TextView tvRipetizione;
         public TextView tvFineRipetizione;
+        public TextView tvRipetizioneLabel;
+        public TextView tvFineRipetizioneLabel;
         public TextView selectedDispon;
         public CardView item;
         public LinearLayout parent;
@@ -117,6 +122,8 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
             tvIntervento = (TextView) itemView.findViewById(R.id.tvIntervento);
             tvRipetizione = (TextView) itemView.findViewById(R.id.tvRipetizione);
             tvFineRipetizione = (TextView) itemView.findViewById(R.id.tvFineRipetizione);
+            tvRipetizioneLabel = (TextView) itemView.findViewById(R.id.tvRipetizioneLabel);
+            tvFineRipetizioneLabel = (TextView) itemView.findViewById(R.id.tvFineRipetizioneLabel);
             selectedDispon = (TextView) itemView.findViewById(R.id.selectedDispon);
             item = (CardView) itemView.findViewById(R.id.item_miadisp);
             parent = (LinearLayout) itemView.findViewById(R.id.item_miadisp_parent);
