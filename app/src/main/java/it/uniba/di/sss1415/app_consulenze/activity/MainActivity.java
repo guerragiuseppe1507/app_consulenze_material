@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         if (id == R.id.action_logout) {
             toLogin();
+            finish();
         }
 
 

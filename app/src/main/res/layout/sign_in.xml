@@ -70,20 +70,21 @@
     </ScrollView>
     <Button android:id="@+id/email_sign_in_button"
         android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" android:text="@string/action_sign_in_short"
+        android:layout_margin="5dp" android:text="@string/action_sign_in_short"
         android:textStyle="bold"
         android:textSize="@dimen/login_link_text_size"
         android:textColor="@color/whiteText"
-        android:backgroundTint="@color/colorAccent"
+        android:background="@color/colorAccent"
         android:layout_above="@+id/link_to_signup"/>
 
     <Button android:id="@+id/link_to_signup"
         android:layout_width="match_parent" android:layout_height="wrap_content"
         android:text="@string/reg_btn"
         android:textStyle="bold"
+        android:layout_margin="5dp"
         android:textColor="@color/whiteText"
         android:textSize="@dimen/login_link_text_size"
-        android:backgroundTint="@color/colorAccent"
+        android:background="@color/colorAccent"
         android:layout_alignParentBottom="true"/>
 
 

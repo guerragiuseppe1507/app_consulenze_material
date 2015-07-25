@@ -147,6 +147,7 @@ public class RichiesteFragment extends AppCompatActivity implements   FragmentDr
             //il logout fa partire l'activity di login
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+            finish();
         }
 
 

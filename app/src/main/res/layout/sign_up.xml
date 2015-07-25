@@ -108,18 +108,19 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/reg_btn"
-        android:backgroundTint="@color/colorAccent"
+        android:background="@color/colorAccent"
         android:textSize="@dimen/login_link_text_size"
         android:textColor="@color/whiteText"
+        android:layout_margin="5dp"
         />
     <!-- Link to Login Screen -->
 
     <Button android:id="@+id/link_to_login"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_margin="5dp"
         android:gravity="center"
-        android:backgroundTint="@color/colorAccent"
+        android:background="@color/colorAccent"
         android:text="@string/login_link"
         android:textSize="15dp"
         android:textColor="@color/whiteText"
