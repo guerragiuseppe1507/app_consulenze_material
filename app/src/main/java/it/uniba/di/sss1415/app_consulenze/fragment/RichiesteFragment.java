@@ -1,6 +1,7 @@
 package it.uniba.di.sss1415.app_consulenze.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 
@@ -44,7 +45,9 @@ public class RichiesteFragment extends AppCompatActivity implements   FragmentDr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UserSessionInfo.currentActivity="req";
         setContentView(R.layout.fragment_richieste);
+
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -168,6 +171,22 @@ public class RichiesteFragment extends AppCompatActivity implements   FragmentDr
             i.putExtra("menuItemSelected", desired);
         }
         startActivity(i);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        switch(requestCode) {
+            case 0:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = imageReturnedIntent.getData();
+                    //imageview.setImageURI(selectedImage);
+                    System.out.println(selectedImage);
+                    UserSessionInfo.selectedImage= selectedImage;
+                }
+
+                break;
+        }
     }
 
 }

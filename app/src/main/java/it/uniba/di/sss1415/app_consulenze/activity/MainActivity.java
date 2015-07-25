@@ -1,8 +1,13 @@
 package it.uniba.di.sss1415.app_consulenze.activity;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.Stack;
 
@@ -52,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UserSessionInfo.currentActivity="main";
         setContentView(R.layout.activity_main);
-
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(mToolbar);
@@ -277,5 +283,29 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        switch(requestCode) {
+            case 0:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = imageReturnedIntent.getData();
+                    //imageview.setImageURI(selectedImage);
+                    System.out.println(selectedImage);
+                    UserSessionInfo.selectedImage= selectedImage;
+                    drawerFragment.getLayout().closeDrawer(drawerFragment.getcontainer());
+                    creaMessaggio(getResources().getString(R.string.profileImageEdited));
+                }
+
+                break;
+        }
+    }
+
+    public void creaMessaggio(CharSequence message){
+        Context context = getApplicationContext();
+        Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toastMessage.show();
     }
 }

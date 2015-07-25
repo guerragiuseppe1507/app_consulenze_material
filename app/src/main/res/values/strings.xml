@@ -177,5 +177,6 @@
     <string name="nothesame">Both fields have to be the same</string>
     <string name="passChanged">Password changed</string>
     <string name="notsetyet">Not set yet</string>
+    <string name="profileImageEdited">Profile Image Edited</string>
 
 </resources>
