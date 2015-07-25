@@ -75,7 +75,7 @@ public class SummaryAvailability extends DialogFragment {
         super.onCreate(savedInstanceState);
         user  = UserSessionInfo.getInstance().getEmail();
         conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
-        caller = ((MainActivity)getActivity());
+        caller = (MainActivity) getActivity();
         exp = getArguments().getString("exp");
         date = getArguments().getString("date");
         sTime = getArguments().getString("sTime");

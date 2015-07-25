@@ -1,5 +1,6 @@
 package it.uniba.di.sss1415.app_consulenze.fragment;
 
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -39,6 +40,8 @@ public class ModificaProfiloFragment extends Fragment {
     private Spinner lista_province;
     private Spinner lista_branche_mediche;
     private Button btnupdate;
+    private Button btnModPwd;
+    PasswordChangeDialog pwdChangeDialog;
     private String password="";
     private String spec="";
     private ArrayList<String> query_spec;
@@ -108,6 +111,19 @@ public class ModificaProfiloFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 modifica_profilo();
+            }
+        });
+
+        btnModPwd = (Button) v.findViewById(R.id.btnModificaPassword);
+        btnModPwd.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                //TODO far partire la dialog
+                pwdChangeDialog = PasswordChangeDialog.newInstance();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                //pwdChangeDialog.show(ft, "changePwd"); //TODO non so perché da problemi
+
             }
         });
 
