@@ -6,7 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="it.uniba.di.sss1415.app_consulenze.Fragment.MessagesFragment">
-
+    <View
+        android:id="@+id/shadow"
+        android:layout_width="fill_parent"
+        android:layout_height="6dip"
+        android:elevation="10dp"
+        app:borderWidth="0dp"
+        android:background="@drawable/drop_shadow"
+        android:layout_below="@+id/sep"
+        />
 
     <LinearLayout
         android:layout_width="fill_parent"

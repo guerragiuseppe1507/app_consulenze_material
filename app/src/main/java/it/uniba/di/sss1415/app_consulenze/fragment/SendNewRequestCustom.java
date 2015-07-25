@@ -342,6 +342,12 @@ public class SendNewRequestCustom extends Fragment {
         }
     }
 
+    @Override
+    public void onDetach() {
+        super.onStop();
+        if(mTutorTask!=null)mTutorTask.cancel(true);
+    }
+
 
     public class ShowTutors extends AsyncTask<String, Void, String> {
 

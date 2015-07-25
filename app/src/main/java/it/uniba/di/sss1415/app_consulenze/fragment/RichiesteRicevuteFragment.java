@@ -112,6 +112,8 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
 
     }
 
+
+
     private void createAndPopulateCountriesArray(ArrayList<HashMap<String,String>> res) {
 
         Date d = new Date();

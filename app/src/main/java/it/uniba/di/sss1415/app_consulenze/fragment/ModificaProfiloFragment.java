@@ -165,6 +165,12 @@ public class ModificaProfiloFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onDetach() {
+        super.onStop();
+        if(editTask!=null)editTask.cancel(true);
+    }
+
     public class EditProfileTask extends AsyncTask<String, Void, String> {
 
         private String email;

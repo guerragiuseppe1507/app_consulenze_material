@@ -17,7 +17,7 @@
     <string name="summary_rep">Repetition</string>
     <string name="summary_untilDate">Until</string>
     <string name="summaryConfirmButton">Confirm</string>
-    <string name="summaryEditButton">Edit</string>
+    <string name="summaryEditButton">Back</string>
     <string name="summaryTitle">SUMMARY</string>
 
     <!-- strings _rating tutor  -->
@@ -103,6 +103,7 @@
     <string name="score">Score</string>
     <string name="mod_prof">Edit</string>
     <string name="mod_pwd">Change Password</string>
+    <string name="mod_prof">Save</string>
     <string name="title_button_Search">SEARCH</string>
     <string name="bottone_accetta">Accept</string>
     <string name="bottone_rifiuta">Decline</string>
@@ -168,5 +169,9 @@
     <string name="insertSurname">Insert surname please</string>
     <string name="insertYear">Insert registration year please</string>
     <string name="insertNumber">Insert registration number please</string>
+    <string name="date">Date</string>
+    <string name="startTime">Start time :</string>
+    <string name="endTime">End time :</string>
+    <string name="until">Until :</string>
 
 </resources>
