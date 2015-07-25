@@ -207,6 +207,7 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
 
     }
 
+
     public class ShowSentRequestTask extends AsyncTask<String, Void, String> {
 
         ShowSentRequestTask() {

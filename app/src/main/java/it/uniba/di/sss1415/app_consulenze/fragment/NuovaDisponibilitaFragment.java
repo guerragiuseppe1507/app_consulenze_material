@@ -151,7 +151,9 @@ public class NuovaDisponibilitaFragment extends Fragment {
 
         if(((MainActivity)getActivity()).isModifyCall()){
 
-
+            dateSet = true;
+            startSet = true;
+            endSet = true;
             MieDisp d = ((MainActivity)getActivity()).getMiaDispScelta();
             expertise.setSelection(adapter.getPosition(d.getIntervento()));
             dataIn.setText(d.getData());
