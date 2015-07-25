@@ -81,7 +81,7 @@ public class ModificaProfiloFragment extends Fragment {
         ETnome.setText(UserSessionInfo.getInstance().getNome());
         ETcognome.setText(UserSessionInfo.getInstance().getCognome());
         ETanno.setText(UserSessionInfo.getInstance().getAnnoIscr());
-        ETnumero.setText(UserSessionInfo.getInstance().getNome());
+        ETnumero.setText(UserSessionInfo.getInstance().getNumIscr());
         ScoreValue.setText(UserSessionInfo.getInstance().getScore());
         // inizializzazione spinner province
         lista_province = (Spinner) v.findViewById(R.id.spinnerModProvince);
@@ -203,6 +203,8 @@ public class ModificaProfiloFragment extends Fragment {
                 u.setExp(primaEx);
 
                 salvaInShared(primaEx);
+
+                creaMessaggio(getActivity().getApplicationContext().getResources().getString(R.string.profileEdited));
             }
 
             editTask = null;

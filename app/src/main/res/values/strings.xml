@@ -146,5 +146,6 @@
     <string name="requestDeleted">Request Deleted</string>
     <string name="data_label_appoint">Date:</string>
     <string name="choseExpertise">Choose expertise first</string>
+    <string name="profileEdited">Profile edited</string>
 
 </resources>

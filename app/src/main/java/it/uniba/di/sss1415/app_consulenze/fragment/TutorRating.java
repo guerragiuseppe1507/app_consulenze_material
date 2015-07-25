@@ -48,6 +48,8 @@ public class TutorRating extends DialogFragment {
     TextView neutralSel;
     TextView sadSel;
 
+    String timeout, voteSent;
+
 
 
 
@@ -81,7 +83,8 @@ public class TutorRating extends DialogFragment {
         nome = getArguments().getString("nome");
         cognome = getArguments().getString("cognome");
         voto = getArguments().getString("score");
-
+        timeout = getActivity().getResources().getString(R.string.conn_timeout);
+        voteSent = getActivity().getResources().getString(R.string.voteSent);
 
 
     }
@@ -240,11 +243,11 @@ public class TutorRating extends DialogFragment {
 
             if (result.equals(ToastMsgs.CONN_TIMEOUT)) {
 
-                creaMessaggio(getActivity().getResources().getString(R.string.conn_timeout));
+                creaMessaggio(timeout);
 
             }else {
 
-                    creaMessaggio(getResources().getString(R.string.voteSent));
+                    creaMessaggio(voteSent);
 
             }
 

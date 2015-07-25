@@ -42,6 +42,8 @@ public class SummaryAvailability extends DialogFragment {
     TextView eTimeTV;
     TextView repTV;
     TextView untilTV;
+    MainActivity caller;
+    String timeoutMsg, editedMsg, insertedMsg;
 
     View v;
 
@@ -73,7 +75,7 @@ public class SummaryAvailability extends DialogFragment {
         super.onCreate(savedInstanceState);
         user  = UserSessionInfo.getInstance().getEmail();
         conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
-
+        caller = ((MainActivity)getActivity());
         exp = getArguments().getString("exp");
         date = getArguments().getString("date");
         sTime = getArguments().getString("sTime");
@@ -81,6 +83,9 @@ public class SummaryAvailability extends DialogFragment {
         rep = getArguments().getString("rep");
         until = getArguments().getString("until");
         change = getArguments().getBoolean("change");
+        timeoutMsg = getActivity().getResources().getString(R.string.conn_timeout);
+        editedMsg = getResources().getString(R.string.availabilityEdited);
+        insertedMsg = getResources().getString(R.string.newAvailabilityInserted);
 
     }
 
@@ -102,7 +107,7 @@ public class SummaryAvailability extends DialogFragment {
                         // invio dati al server
                         availabilityTask = new AvailabilityTask(exp, date, sTime, eTime, rep, until, user, change);
                         availabilityTask.execute();
-                       ((MainActivity)getActivity()).displayView(1, false);
+
 
 
                     }
@@ -188,13 +193,15 @@ public class SummaryAvailability extends DialogFragment {
 
             if (result.equals(ToastMsgs.CONN_TIMEOUT)) {
 
-                creaMessaggio(getActivity().getResources().getString(R.string.conn_timeout));
+                creaMessaggio(timeoutMsg);
 
             }else {
                 if(change){
-                    creaMessaggio(getResources().getString(R.string.availabilityEdited));
+                    creaMessaggio(editedMsg);
+                    caller.displayView(1, false);
                 }else{
-                    creaMessaggio(getResources().getString(R.string.newAvailabilityInserted));
+                    creaMessaggio(insertedMsg);
+                    caller.displayView(1, false);
                 }
             }
 

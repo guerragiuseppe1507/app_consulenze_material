@@ -32,7 +32,7 @@ public class SummaryRequestCustom extends DialogFragment {
     String nomeTt;
     String cognomeTt;
 
-
+    String timeout;
 
     TextView expTV ;
     TextView dateTV;
@@ -40,6 +40,8 @@ public class SummaryRequestCustom extends DialogFragment {
     TextView eTimeTV;
     TextView tutorCgTV;
     TextView tutorNmTV;
+    String messaggioSent;
+    MainActivity caller;
 
     View v;
 
@@ -71,7 +73,9 @@ public class SummaryRequestCustom extends DialogFragment {
         super.onCreate(savedInstanceState);
         user  = UserSessionInfo.getInstance().getEmail();
         conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
-
+        messaggioSent = getResources().getString(R.string.newRequestSent);
+        caller =(MainActivity)getActivity();
+        timeout = getActivity().getResources().getString(R.string.conn_timeout);
         exp = getArguments().getString("exp");
         date = getArguments().getString("date");
         sTime = getArguments().getString("sTime");
@@ -182,23 +186,27 @@ public class SummaryRequestCustom extends DialogFragment {
 
             if (result.equals(ToastMsgs.CONN_TIMEOUT)) {
 
-                creaMessaggio(getActivity().getResources().getString(R.string.conn_timeout));
+                creaMessaggio(timeout);
 
             }else {
+                    finisci();
 
-                    creaMessaggio(getResources().getString(R.string.newRequestSent));
-                    ((MainActivity)getActivity()).displayView(3, false);
             }
 
             requestTask = null;
 
         }
 
-        public void creaMessaggio(CharSequence message) {
-            Context context = v.getContext();
-            Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
-            toastMessage.show();
-        }
+
+    }
+    public void creaMessaggio(CharSequence message) {
+        Context context = v.getContext();
+        Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toastMessage.show();
+    }
+    public void finisci() {
+        creaMessaggio(messaggioSent);
+        caller.displayView(3, false);
     }
 
 }
