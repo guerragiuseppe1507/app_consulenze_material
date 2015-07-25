@@ -63,6 +63,7 @@ public class FragmentDrawer extends Fragment {
     private MainActivity main;
     private RichiesteFragment req;
     private ImageView profileImage;
+    private Bitmap profileBtm;
 
     public FragmentDrawer() {
 
@@ -186,24 +187,30 @@ public class FragmentDrawer extends Fragment {
                 super.onDrawerSlide(drawerView, slideOffset);
                 toolbar.setAlpha(1 - slideOffset / 2);
                 if (firstOpen) checkCaller();
-                if (UserSessionInfo.selectedImage != null) {
-                    Bitmap b = decodeSampledBitmapFromResource(getRealPathFromURI(UserSessionInfo.selectedImage), profileImage.getWidth()-10,  profileImage.getHeight()-10);
-
-                    b = getRoundedShape(b);
-                    b = addWhiteBorder(b, 10);
-                    profileImage.setImageBitmap(b);
-                    salvaInPref(getRealPathFromURI(UserSessionInfo.selectedImage));
-                }else if (!getFromShared().equals("")){
-                    try{
-                        Bitmap b = decodeSampledBitmapFromResource(getFromShared(), profileImage.getWidth()-10,  profileImage.getHeight()-10);
+                if(profileBtm==null) {
+                    if (UserSessionInfo.selectedImage != null) {
+                        Bitmap b = decodeSampledBitmapFromResource(getRealPathFromURI(UserSessionInfo.selectedImage), profileImage.getWidth() - 10, profileImage.getHeight() - 10);
 
                         b = getRoundedShape(b);
-                        b = addWhiteBorder(b,10);
+                        b = addWhiteBorder(b, 10);
+                        profileBtm = b;
                         profileImage.setImageBitmap(b);
-                    }catch (Exception e){
+                        salvaInPref(getRealPathFromURI(UserSessionInfo.selectedImage));
+                    } else if (!getFromShared().equals("")) {
+                        try {
+                            Bitmap b = decodeSampledBitmapFromResource(getFromShared(), profileImage.getWidth() - 10, profileImage.getHeight() - 10);
+
+                            b = getRoundedShape(b);
+                            b = addWhiteBorder(b, 10);
+                            profileBtm = b;
+                            profileImage.setImageBitmap(b);
+                        } catch (Exception e) {
+
+                        }
 
                     }
-
+                }else{
+                    profileImage.setImageBitmap(profileBtm);
                 }
             }
         };
