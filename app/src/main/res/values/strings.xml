@@ -143,6 +143,7 @@
     <string name="repetition">Repetition :</string>
     <string name="endRepetition">Repetition ends :</string>
     <string name="allFieldsNeeded">All fields needed</string>
+    <string name="requestDeleted">Request Deleted</string>
     <string name="choseExpertise">Choose expertise first</string>
 
 </resources>

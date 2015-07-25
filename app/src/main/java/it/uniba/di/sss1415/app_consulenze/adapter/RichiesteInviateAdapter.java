@@ -1,6 +1,7 @@
 package it.uniba.di.sss1415.app_consulenze.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
@@ -25,12 +27,14 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
     private ArrayList<RichiesteInviate> items;
     private RecyclerViewClickListener itemListener;
     private int clickedPos;
+    private HashMap<String,String> hide = new HashMap<String,String>();
 
-    public RichiesteInviateAdapter(Context context, ArrayList<RichiesteInviate> items, RecyclerViewClickListener listener, int clickedPos) {
+    public RichiesteInviateAdapter(Context context, ArrayList<RichiesteInviate> items, RecyclerViewClickListener listener, int clickedPos, HashMap<String,String> hide) {
         this.context = context;
         this.items = items;
         this.itemListener = listener;
         this.clickedPos=clickedPos;
+        this.hide = hide;
     }
 
      // Create new views (invoked by the layout manager)
@@ -61,6 +65,11 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
             viewHolder.selectedRichiesta.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
         }
 
+        if (hide.values().contains(Integer.toString(position))) {
+            viewHolder.item.setVisibility(View.GONE);
+            viewHolder.parent.setVisibility(View.GONE);
+            viewHolder.parent.setPadding(0, 0, 0, 0);
+        }
     }
 
     @Override
@@ -78,6 +87,7 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
         public TextView tvNomeTutorRequest;
         public TextView tvCognomeTutorRequest;
         public TextView selectedRichiesta;
+        public CardView item;
         public LinearLayout parent;
 
 
@@ -92,6 +102,7 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
             tvNomeTutorRequest = (TextView) itemView.findViewById(R.id.tvNomeTutorRequest);
             tvCognomeTutorRequest = (TextView) itemView.findViewById(R.id.tvCognomeTutorRequest);
             selectedRichiesta = (TextView) itemView.findViewById(R.id.selectedRichiestaInv);
+            item = (CardView) itemView.findViewById(R.id.cv_richiesta_inviata);
             parent = (LinearLayout) itemView.findViewById(R.id.item_richieste_inviate);
 
             itemView.setOnClickListener(this);

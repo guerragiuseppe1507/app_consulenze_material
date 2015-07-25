@@ -26,10 +26,12 @@ import java.util.Date;
 import java.util.HashMap;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.adapter.DispListAdapter;
 import it.uniba.di.sss1415.app_consulenze.adapter.RichiesteInviateAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.MieDisp;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteInviate;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
 import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
@@ -129,11 +131,27 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                hideSelected(clickedPosition, clickedOffset);
+                creaMessaggio(getResources().getString(R.string.requestDeleted));
+            }
+        });
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return view;
     }
 
     private void setRecycler(){
-        richiesteInviateAdapter = new RichiesteInviateAdapter(getActivity(),requests, this,-1);
+        richiesteInviateAdapter = new RichiesteInviateAdapter(getActivity(),requests, this,-1, clickedPositions );
         recyclerView.setAdapter(richiesteInviateAdapter);
     }
 
@@ -157,7 +175,7 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
         this.clickedOffset = offset;
 
         int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
-        richiesteInviateAdapter = new RichiesteInviateAdapter(getActivity(), requests, this,position);
+        richiesteInviateAdapter = new RichiesteInviateAdapter(getActivity(), requests, this,position,clickedPositions);
         recyclerView.setAdapter(richiesteInviateAdapter);
         layoutManager.scrollToPosition(mScrollPosition);
 
@@ -165,8 +183,29 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
 
         System.out.println(mScrollPosition + " " + (offset));
 
+
     }
 
+
+    private void hideSelected(int position, int offset){
+        btnEdit.setVisibility(View.INVISIBLE);
+        btnDelete.setVisibility(View.INVISIBLE);
+        confirmDialog.setBackgroundColor(getResources().getColor(R.color.transparent));
+        final float scale = getResources().getDisplayMetrics().density;
+        int padding_in_px = (int) (15 * scale + 0.5f);
+        int padding_bot_px = (int) (7 * scale + 0.5f);
+        recyclerView.setPadding(padding_in_px, 0, padding_in_px, padding_bot_px);
+
+        clickedPositions.put(Integer.toString(position), Integer.toString(position));
+        int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
+        richiesteInviateAdapter = new RichiesteInviateAdapter(getActivity(), requests, this,position,clickedPositions);
+        recyclerView.setAdapter(richiesteInviateAdapter);
+        //layoutManager.scrollToPosition(mScrollPosition);
+
+        //layoutManager.scrollToPositionWithOffset(position, offset);
+        //System.out.println(mScrollPosition+" "+(offset));
+
+    }
 
     public class ShowSentRequestTask extends AsyncTask<String, Void, String> {
 
