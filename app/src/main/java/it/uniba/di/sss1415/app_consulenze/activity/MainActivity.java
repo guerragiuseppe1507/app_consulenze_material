@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             modifyCall=true;
             fragment = new NuovaDisponibilitaFragment();
             title = getString(R.string.title_editDisp);
-            drawerFragment.selectMenuPosition(this,ID_FRAGMENT_NEW_DISP);
+            drawerFragment.selectMenuPosition(this,ID_FRAGMENT_MIE_DISP);
             if(!isBackPressed)pushaNelBackstack("ModificaDisponibilitaFragment");
 
         }else if (name.equals("ModificaProfiloFragment")){
