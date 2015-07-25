@@ -161,13 +161,32 @@
 
     </ScrollView>
 
-    <Button
-        android:layout_width="fill_parent" android:layout_height="wrap_content"
-        android:id="@+id/btnConfermaModifiche"
-        android:text="@string/mod_prof"
-        android:textColor="@android:color/white"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnModificaPassword"
+            android:text="@string/mod_pwd"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnConfermaModifiche"
+            android:text="@string/mod_prof"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+    </LinearLayout>
 
 </LinearLayout>

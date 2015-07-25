@@ -80,9 +80,16 @@
     <string name="title_activity_richieste">Requests</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="summary_expertise">Confirm availability for </string>
     <string name="summary_date">on Date</string>
+
+    <!-- Strings related to Password change -->
+    <string name="pwd_change_dialog_title">CHANGE PASSWORD</string>
+    <string name="old_pwd_lbl">Insert old password:</string>
+    <string name="new_pwd_lbl">Insert new password:</string>
+    <string name="conf_pwd_lbl">Confirm new password:</string>
+    <string name="confirm_btn">Confirm</string>
+    <string name="back_btn">Back</string>
 
     <!-- Chiavi shared preferences -->
     <string name="email">Email</string>
@@ -95,6 +102,7 @@
     <string name="spec_prim">Expertise</string>
     <string name="score">Score</string>
     <string name="mod_prof">Edit</string>
+    <string name="mod_pwd">Change Password</string>
     <string name="title_button_Search">SEARCH</string>
     <string name="bottone_accetta">Accept</string>
     <string name="bottone_rifiuta">Decline</string>
