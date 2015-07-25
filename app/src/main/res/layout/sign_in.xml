@@ -74,6 +74,7 @@
         android:textStyle="bold"
         android:textSize="@dimen/login_link_text_size"
         android:textColor="@color/whiteText"
+        android:backgroundTint="@color/colorAccent"
         android:layout_above="@+id/link_to_signup"/>
 
     <Button android:id="@+id/link_to_signup"
@@ -82,6 +83,7 @@
         android:textStyle="bold"
         android:textColor="@color/whiteText"
         android:textSize="@dimen/login_link_text_size"
+        android:backgroundTint="@color/colorAccent"
         android:layout_alignParentBottom="true"/>
 
 
