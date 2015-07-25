@@ -275,5 +275,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         //il logout fa partire l'activity di login
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 }
