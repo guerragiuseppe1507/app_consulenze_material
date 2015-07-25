@@ -48,4 +48,49 @@
         android:layout_margin="10dp"
         android:onClick="showNewRequest"/>
 
-    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/richieste_inviate_confirm"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/whiteText"
+            android:text="@string/bottone_modifica_richiesta_inviata"
+            android:id="@+id/bottone_modifica_richiesta_inviata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="2.5dp" />
+
+        <Button
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/whiteText"
+            android:text="@string/bottone_cancella_richiesta_inviata"
+            android:id="@+id/bottone_cancella_richiesta_ricevuta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="2.5dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_gravity="center_vertical"
+            android:id="@+id/mieDispFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_plus"
+
+            app:elevation="6dp"
+            app:borderWidth="0dp"
+            app:pressedTranslationZ="12dp"
+            android:baselineAlignBottom="false"
+            android:layout_margin="10dp"
+            android:onClick="showNewDisp"
+            />
+
+    </LinearLayout>
+</RelativeLayout>

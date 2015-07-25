@@ -137,5 +137,7 @@
     <string name="voteSent">Vote sent</string>
     <string name="availabilityDeleted">Availability deleted</string>
     <string name="scoretutor">Score:</string>
+    <string name="bottone_modifica_richiesta_inviata">Edit</string>
+    <string name="bottone_cancella_richiesta_inviata">Delete</string>
 
 </resources>
