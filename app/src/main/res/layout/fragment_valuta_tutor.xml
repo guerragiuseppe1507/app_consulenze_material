@@ -38,7 +38,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/whiteText"
-            android:text="rate"
+            android:text="@string/rate_button"
             android:id="@+id/rateBtn"
             android:layout_weight="1"
             android:singleLine="false" />
@@ -48,7 +48,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/whiteText"
-            android:text="account"
+            android:text="@string/doctor_account_button"
             android:id="@+id/viewProfileBtn"
             android:layout_weight="1" />
 

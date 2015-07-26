@@ -46,7 +46,7 @@ public class SendNewRequest extends Fragment {
     private ShowDispTask dispTask = null;
     private Connection conn;
 
-    private static final String NOME_RICHIESTA = "dispon";
+    private static final String NOME_RICHIESTA = "dateDisp";
     private static final String TIPO_ACCESSO = "read";
 
 
@@ -172,8 +172,15 @@ public class SendNewRequest extends Fragment {
             } else {
                 try {
                     listaDisp = JsonHandler.fromJsonToMapList(NOME_RICHIESTA, result);
-                    System.out.println(listaDisp.get(1).get("oraInizio"));
+
                     createAndPopulateCountriesArray(listaDisp);
+                    System.out.println("QUII:" + disps.get(1).getData());
+                    System.out.println("QUII:" + disps.get(1).getOraInizio());
+                    System.out.println("QUII:" + disps.get(1).getOraFine());
+                    System.out.println("QUII:" + disps.get(1).getNome());
+                    System.out.println("QUII:" + disps.get(1).getCognome());
+                    System.out.println("QUII:" + disps.get(1).getScore());
+
 
                     setRecycler();
 

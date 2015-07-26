@@ -225,7 +225,7 @@ public class MieDispFragment extends Fragment implements RecyclerViewClickListen
             } else {
                 try {
                     listaDisp = JsonHandler.fromJsonToMapList(NOME_RICHIESTA, result);
-                    System.out.println(listaDisp.get(1).get("oraInizio"));
+
                     createAndPopulateCountriesArray(listaDisp);
 
                     setRecycler();

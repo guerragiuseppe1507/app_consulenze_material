@@ -23,7 +23,7 @@ public class StrutturaJson {
                 return new String[]{"id", "data", "oraInizio", "oraFine", "intervento", "ripetizione", "fineRipetizione", "utente"};
             case"tutor":
                 return new String[]{"nomeT", "cognomeT", "scoreT"};
-            case"dateDispon":
+            case"dateDisp":
                 return new String[]{"data", "oraInizio", "oraFine", "nomeT", "cognomeT", "scoreT"};
             case"registrazione":
                 return new String[]{"email", "numeroIscrizione", "annoIscrizione","provincia", "password"};
@@ -56,7 +56,7 @@ public class StrutturaJson {
                 return "disponibilita";
             case "tutor":
                 return "tutor";
-            case "dateDispon":
+            case "dateDisp":
                 return "dateDisponibili";
         }
 
