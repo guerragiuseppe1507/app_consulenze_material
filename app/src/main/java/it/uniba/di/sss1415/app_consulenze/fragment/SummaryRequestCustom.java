@@ -48,8 +48,8 @@ public class SummaryRequestCustom extends DialogFragment {
     private Connection conn;
     private RequestCustomTask requestTask = null;
 
-    private static final String TIPO_ELEMENTO = "mieRichiesteInserite";
-    private static final String ACCESSO_WRITE = "write";
+    private static final String NOME_RICHIESTA = "mieRichiesteInserite";
+    private static final String TIPO_ACCESSO = "write";
 
 
     private String user ;
@@ -168,7 +168,7 @@ public class SummaryRequestCustom extends DialogFragment {
             String idS = Integer.toString(id);
 
 
-                conn.setParametri(TIPO_ELEMENTO, ACCESSO_WRITE, idS , date, sTime, eTime, exp, nomeT, cognomeT, percorso ,user);
+                conn.setParametri(NOME_RICHIESTA, TIPO_ACCESSO, idS , date, sTime, eTime, exp, nomeT, cognomeT, percorso ,user);
 
 
             Log.i("PARAMETRI = ", conn.getParametri());
@@ -182,7 +182,7 @@ public class SummaryRequestCustom extends DialogFragment {
         @Override
         protected void onPostExecute(String result) {
 
-            System.out.println(result);
+            System.out.println("EHI SONO QUI:" + result);
 
             if (result.equals(ToastMsgs.CONN_TIMEOUT)) {
 
