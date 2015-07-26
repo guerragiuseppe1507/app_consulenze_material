@@ -18,7 +18,7 @@ public class StrutturaJson {
             case"richiesteValutare":
                 return new String[]{"data", "oraInizio", "oraFine", "intervento", "dottore"};
             case"mieRichiesteInserite":
-                return new String[]{"id", "data", "oraInizio", "oraFine", "intervento", "nomeTutor", "cognomeTutor", "percorso", "utente"};
+                return new String[]{"id", "data", "oraInizio", "oraFine", "intervento", "nomeTutor", "cognomeTutor", "percorso"};
             case"dispon":
                 return new String[]{"id", "data", "oraInizio", "oraFine", "intervento", "ripetizione", "fineRipetizione", "utente"};
             case"tutor":
