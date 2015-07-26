@@ -187,7 +187,7 @@ public class FragmentDrawer extends Fragment {
                 super.onDrawerSlide(drawerView, slideOffset);
                 toolbar.setAlpha(1 - slideOffset / 2);
                 if (firstOpen) checkCaller();
-                if(profileBtm==null) {
+                //if(profileBtm==null) {
                     if (UserSessionInfo.selectedImage != null) {
                         Bitmap b = decodeSampledBitmapFromResource(getRealPathFromURI(UserSessionInfo.selectedImage), profileImage.getWidth() - 10, profileImage.getHeight() - 10);
 
@@ -209,9 +209,9 @@ public class FragmentDrawer extends Fragment {
                         }
 
                     }
-                }else{
-                    profileImage.setImageBitmap(profileBtm);
-                }
+                //}else{
+                   // profileImage.setImageBitmap(profileBtm);
+                //}
             }
         };
 
