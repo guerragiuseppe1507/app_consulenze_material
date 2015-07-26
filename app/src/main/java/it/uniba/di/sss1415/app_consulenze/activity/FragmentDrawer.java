@@ -33,7 +33,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -65,6 +67,9 @@ public class FragmentDrawer extends Fragment {
     private RichiesteFragment req;
     private ImageView profileImage;
     private Bitmap profileBtm;
+    private TextView nome;
+    private TextView cognome;
+    private LinearLayout labelContainer;
 
     public FragmentDrawer() {
 
@@ -109,6 +114,9 @@ public class FragmentDrawer extends Fragment {
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         profileImage = (ImageView) layout.findViewById(R.id.profileImage);
+        labelContainer = (LinearLayout) layout.findViewById(R.id.profileImageLabel);
+        nome = (TextView) layout.findViewById(R.id.profileImageNome);
+        cognome = (TextView) layout.findViewById(R.id.profileImageCognome);
 
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,6 +195,22 @@ public class FragmentDrawer extends Fragment {
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
                 toolbar.setAlpha(1 - slideOffset / 2);
+                String notsetYet = getResources().getString(R.string.notsetyet);
+                if(UserSessionInfo.getInstance().getNome().equals(notsetYet) &&
+                        UserSessionInfo.getInstance().getNome().equals(notsetYet)){
+                    labelContainer.setVisibility(View.GONE);
+                }else {
+                    if (UserSessionInfo.getInstance().getNome().equals(notsetYet)) {
+                        nome.setVisibility(View.GONE);
+                    } else {
+                        nome.setText(UserSessionInfo.getInstance().getNome());
+                    }
+                    if (UserSessionInfo.getInstance().getCognome().equals(notsetYet)) {
+                        cognome.setVisibility(View.GONE);
+                    } else {
+                        cognome.setText(UserSessionInfo.getInstance().getCognome());
+                    }
+                }
                 if (firstOpen) checkCaller();
                 if(UserSessionInfo.profileImg==null) {
                     if (UserSessionInfo.selectedImage != null) {

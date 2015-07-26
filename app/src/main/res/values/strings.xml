@@ -178,5 +178,6 @@
     <string name="passChanged">Password changed</string>
     <string name="notsetyet">Not set yet</string>
     <string name="profileImageEdited">Profile Image Edited</string>
+    <string name="siglaDott">Dr.</string>
 
 </resources>

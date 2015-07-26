@@ -9,15 +9,45 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_alignParentTop="true"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/profileImage"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_profile"
-            android:scaleType="fitCenter"
             android:layout_centerInParent="true" />
+
+        <LinearLayout
+            android:id="@+id/profileImageLabel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/profileImage"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/siglaDott"
+                android:textColor="@color/whiteText"/>
+            <TextView
+                android:id="@+id/profileImageCognome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/whiteText"/>
+            <TextView
+                android:id="@+id/profileImageNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/whiteText"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 

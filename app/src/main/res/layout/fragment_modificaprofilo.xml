@@ -65,6 +65,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/etModNome"
                 android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:inputType="textCapSentences"
                 android:singleLine="true"
                 android:layout_below="@+id/tvModNome"
                 android:layout_marginBottom="10dp" />
@@ -81,6 +83,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/etModCognome"
                 android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:inputType="textCapSentences"
                 android:singleLine="true"
                 android:layout_below="@+id/tvModCognome"
                 android:layout_marginBottom="10dp"/>
@@ -121,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/etModAnno"
                 android:maxLines="1"
+                android:selectAllOnFocus="true"
                 android:singleLine="true"
                 android:inputType="numberDecimal"
                 android:layout_below="@+id/tvModAnno"
@@ -141,6 +146,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/etModNumero"
                 android:maxLines="1"
+                android:selectAllOnFocus="true"
                 android:singleLine="true"
                 android:inputType="numberDecimal"
                 android:layout_below="@+id/tvModNumero"

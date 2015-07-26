@@ -60,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/et_marginBottom"
             android:layout_marginTop="@dimen/et_marginTop"
+            android:selectAllOnFocus="true"
             android:maxLines="1"
             android:inputType="textEmailAddress"
             android:singleLine="true"/>
@@ -73,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/et_marginBottom"
             android:maxLines="1"
+            android:selectAllOnFocus="true"
             android:layout_marginTop="@dimen/et_marginTop"
             android:inputType="number"
             android:singleLine="true"/>
@@ -85,7 +87,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-
+            android:selectAllOnFocus="true"
             android:layout_marginBottom="@dimen/et_marginBottom"
             android:layout_marginTop="@dimen/et_marginTop"
             android:inputType="number"
