@@ -18,7 +18,8 @@
         <activity
             android:name="it.uniba.di.sss1415.app_consulenze.activity.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
 
         </activity>
 
@@ -26,7 +27,8 @@
             android:name="it.uniba.di.sss1415.app_consulenze.activity.LoginActivity"
             android:noHistory="true"
             android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden|adjustPan" >
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,7 +42,8 @@
             android:name="it.uniba.di.sss1415.app_consulenze.activity.RegistrazioneActivity"
             android:noHistory="true"
             android:windowSoftInputMode="stateHidden|adjustPan"
-            android:label="@string/title_activity_registrazione" >
+            android:label="@string/title_activity_registrazione"
+            android:screenOrientation="portrait">
 
         </activity>
 
@@ -48,7 +51,8 @@
             android:name="it.uniba.di.sss1415.app_consulenze.fragment.RichiesteFragment"
             android:noHistory="true"
             android:windowSoftInputMode="stateHidden|adjustPan"
-            android:label="@string/title_activity_richieste" >
+            android:label="@string/title_activity_richieste"
+            android:screenOrientation="portrait">
 
         </activity>
     </application>

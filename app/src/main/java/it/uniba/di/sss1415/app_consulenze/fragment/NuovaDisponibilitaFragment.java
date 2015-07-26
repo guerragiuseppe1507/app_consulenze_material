@@ -26,6 +26,7 @@ import android.widget.ToggleButton;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
@@ -298,9 +299,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
                         dataInMounth = monthOfYear;
                         dataInDay = dayOfMonth;
                         String day = "";
-                        SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
-                        Date date = new Date(year, monthOfYear, dayOfMonth-1);
-                        sss = simpledateformat.format(date);
+
 
 
 
@@ -316,22 +315,25 @@ public class NuovaDisponibilitaFragment extends Fragment {
                         dataIn.setError(null);
                         dataIn.setText(year + "-" + mese + "-" + giorno);
                         dateSet =true;
-                        //controllo giorno della settimana
-                        switch (sss){
 
-                            case "Monday" : day = getResources().getString(R.string.everyDay1);
+                        Calendar calendar = new GregorianCalendar(year, monthOfYear, dayOfMonth); // Note that Month value is 0-based. e.g., 0 for January.
+                        int reslut = calendar.get(Calendar.DAY_OF_WEEK);
+                        //controllo giorno della settimana
+                        switch (reslut){
+
+                            case Calendar.MONDAY : day = getResources().getString(R.string.everyDay1);
                                 break;
-                            case "Tuesday" : day = getResources().getString(R.string.everyDay2);
+                            case Calendar.TUESDAY : day = getResources().getString(R.string.everyDay2);
                                 break;
-                            case "Wednesday" : day = getResources().getString(R.string.everyDay3);
+                            case Calendar.WEDNESDAY : day = getResources().getString(R.string.everyDay3);
                                 break;
-                            case "Thursday" : day = getResources().getString(R.string.everyDay4) ;
+                            case Calendar.THURSDAY : day = getResources().getString(R.string.everyDay4) ;
                                 break;
-                            case "Friday" : day = getResources().getString(R.string.everyDay5);
+                            case Calendar.FRIDAY : day = getResources().getString(R.string.everyDay5);
                                 break;
-                            case "Saturday": day = getResources().getString(R.string.everyDay6);
+                            case Calendar.SATURDAY: day = getResources().getString(R.string.everyDay6);
                                 break;
-                            case "Sunday" : day = getResources().getString(R.string.everyDay7);
+                            case Calendar.SUNDAY : day = getResources().getString(R.string.everyDay7);
 
                                 break;
                             default:break;
