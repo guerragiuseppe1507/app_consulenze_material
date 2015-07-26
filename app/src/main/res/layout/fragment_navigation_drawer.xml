@@ -38,13 +38,13 @@
                 android:id="@+id/profileImageCognome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:textColor="@color/whiteText"/>
             <TextView
                 android:id="@+id/profileImageNome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="3dp"
                 android:textColor="@color/whiteText"/>
 
         </LinearLayout>
