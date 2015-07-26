@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Consulenze App</string>
-    <string name="action_settings">Profilo</string>
+    <string name="action_settings">Profile</string>
     <string name="action_search">Search</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
     <string name="nav_item_home">Appointments</string>
-    <string name="nav_item_friends">My Availabilities</string>
-    <string name="nav_item_request">My Requests</string>
+    <string name="nav_item_friends">Availabilities</string>
+    <string name="nav_item_request">Requests</string>
     <string name="nav_item_tutor">Rate Tutors</string>
 
     <!-- strings _nuova_disponibilita -->
@@ -38,8 +38,8 @@
         <item>@string/title_valTutor</item>
     </string-array>
 
-    <string name="title_request">My Requests</string>
-    <string name="title_friends">My availabilities</string>
+    <string name="title_request">Requests</string>
+    <string name="title_friends">Availabilities</string>
     <string name="title_home">Appointments</string>
     <string name="title_newDisp">New Availability</string>
     <string name="title_editDisp">Edit Availability</string>
@@ -47,7 +47,7 @@
     <string name="title_newReq">New Request</string>
     <string name="title_valTutor">Rate Tutors</string>
 
-    <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
+    <string name="serverQuery" translatable="false">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
 
     <!-- Strings related to login -->
     <string name="title_activity_login">Sign in</string>
@@ -111,7 +111,7 @@
     <string name="new_request_operation">Operation</string>
     <string name="new_request_date">Date</string>
     <string name="new_request_start">Start Time</string>
-    <string name="new_request_default_time">--:--</string>
+    <string name="new_request_default_time" translatable="false">--:--</string>
     <string name="new_request_end">End Time</string>
     <string name="new_request_tutor_choice">Tutor</string>
     <string name="new_request_send_button">SEND</string>
@@ -138,7 +138,7 @@
     <string name="choseOperation">Chose operation first</string>
     <string name="noOperation">No operations Avaible</string>
     <string name="requestAccepted">Request accepted</string>
-    <string name="requestRefused">Request refused</string>
+    <string name="requestRefused">Request declined</string>
     <string name="availabilityEdited">AvailabilityEdited</string>
     <string name="newAvailabilityInserted">New Availability Inserted</string>
     <string name="newRequestSent">New request Sent</string>
