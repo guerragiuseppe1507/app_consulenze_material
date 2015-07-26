@@ -144,7 +144,7 @@
     <string name="newRequestSent">New request Sent</string>
     <string name="voteSent">Vote sent</string>
     <string name="availabilityDeleted">Availability deleted</string>
-    <string name="scoretutor">Score:</string>
+    <string name="scoretutor">Score :</string>
     <string name="bottone_modifica_richiesta_inviata">Edit</string>
     <string name="bottone_cancella_richiesta_inviata">Delete</string>
     <string name="availabilityFor">Availability for :</string>
@@ -181,5 +181,8 @@
     <string name="siglaDott">Dr.</string>
     <string name="rate_button">Rate</string>
     <string name="doctor_account_button">Account</string>
+    <string name="doctor">Doctor :</string>
+    <string name="to">to</string>
+    <string name="send_request">Send request</string>
 
 </resources>

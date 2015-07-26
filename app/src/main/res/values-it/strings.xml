@@ -151,4 +151,7 @@
     <string name="rate_button">Valuta</string>
     <string name="doctor_account_button">Account</string>
     <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
+    <string name="to">alle</string>
+    <string name="send_request">Invia richiesta</string>
+    <string name="doctor">Dottore :</string>
 </resources>

@@ -166,7 +166,7 @@
         android:textStyle="bold"
         android:textSize="@dimen/login_link_text_size"
         android:textColor="@color/whiteText"
-        android:text="@string/new_request_send_button"
+        android:text="@string/new_request_summary_button"
         android:id="@+id/sendButtonCU"
         android:singleLine="true"
         android:layout_alignParentBottom="true"/>

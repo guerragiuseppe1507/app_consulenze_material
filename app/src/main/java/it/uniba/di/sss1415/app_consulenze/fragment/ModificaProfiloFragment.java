@@ -122,7 +122,7 @@ public class ModificaProfiloFragment extends Fragment {
                 //TODO far partire la dialog
                 pwdChangeDialog = PasswordChangeDialog.newInstance();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                pwdChangeDialog.show(ft, "changePwd"); //TODO non so perché da problemi
+                pwdChangeDialog.show(ft, "changePwd");
 
             }
         });

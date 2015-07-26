@@ -5,11 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.istances.DateDispon;
+import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
 /**
  * Created by Pasen on 15/07/2015.
@@ -17,10 +21,16 @@ import it.uniba.di.sss1415.app_consulenze.istances.DateDispon;
 public class DateDisponAdapter extends  RecyclerView.Adapter<DateDisponAdapter.DateDispHolder>  {
     private Context context;
     private ArrayList<DateDispon> items;
+    private RecyclerViewClickListener itemListener;
+    private int clickedPos;
+    private HashMap<String,String> hide = new HashMap<String,String>();
 
-    public DateDisponAdapter(Context context, ArrayList<DateDispon> items) {
+    public DateDisponAdapter(Context context, ArrayList<DateDispon> items, RecyclerViewClickListener listener, int clickedPos,HashMap<String,String> hide) {
         this.context = context;
         this.items = items;
+        this.itemListener = listener;
+        this.clickedPos=clickedPos;
+        this.hide = hide;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -42,9 +52,9 @@ public class DateDisponAdapter extends  RecyclerView.Adapter<DateDisponAdapter.D
         viewHolder.tvCognome.setText(disp.getCognome());
         viewHolder.tvScore.setText(disp.getScore());
 
-
-
-
+        if(this.clickedPos == position){
+            viewHolder.selectedDispon.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+        }
 
     }
 
@@ -62,6 +72,8 @@ public class DateDisponAdapter extends  RecyclerView.Adapter<DateDisponAdapter.D
         public TextView tvNome;
         public TextView tvCognome;
         public TextView tvScore;
+        public TextView selectedDispon;
+        public LinearLayout parent;
 
 
         public DateDispHolder(Context context, View itemView) {
@@ -73,13 +85,15 @@ public class DateDisponAdapter extends  RecyclerView.Adapter<DateDisponAdapter.D
             tvNome = (TextView) itemView.findViewById(R.id.tvNomeTDisp);
             tvCognome = (TextView) itemView.findViewById(R.id.tvCongnomeDisp);
             tvScore = (TextView) itemView.findViewById(R.id.tvScoreTDisp);
+            selectedDispon = (TextView) itemView.findViewById(R.id.selectedDisponRequest);
+            parent = (LinearLayout) itemView.findViewById(R.id.item_datedispon_parent);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(context, tvData.getText().toString(), Toast.LENGTH_SHORT).show();
+            itemListener.recyclerViewClicked(v, this.getPosition(), Math.round(parent.getTop()));
         }
 
     }
