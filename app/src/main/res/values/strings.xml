@@ -47,7 +47,7 @@
     <string name="title_newReq">New Request</string>
     <string name="title_valTutor">Rate Tutors</string>
 
-    <string name="serverQuery" translatable="false">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
+    <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
 
     <!-- Strings related to login -->
     <string name="title_activity_login">Sign in</string>
@@ -111,7 +111,7 @@
     <string name="new_request_operation">Operation</string>
     <string name="new_request_date">Date</string>
     <string name="new_request_start">Start Time</string>
-    <string name="new_request_default_time" translatable="false">--:--</string>
+    <string name="new_request_default_time">--:--</string>
     <string name="new_request_end">End Time</string>
     <string name="new_request_tutor_choice">Tutor</string>
     <string name="new_request_send_button">SEND</string>
