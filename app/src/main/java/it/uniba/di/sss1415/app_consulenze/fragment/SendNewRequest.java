@@ -174,13 +174,6 @@ public class SendNewRequest extends Fragment {
                     listaDisp = JsonHandler.fromJsonToMapList(NOME_RICHIESTA, result);
 
                     createAndPopulateCountriesArray(listaDisp);
-                    System.out.println("QUII:" + disps.get(1).getData());
-                    System.out.println("QUII:" + disps.get(1).getOraInizio());
-                    System.out.println("QUII:" + disps.get(1).getOraFine());
-                    System.out.println("QUII:" + disps.get(1).getNome());
-                    System.out.println("QUII:" + disps.get(1).getCognome());
-                    System.out.println("QUII:" + disps.get(1).getScore());
-
 
                     setRecycler();
 

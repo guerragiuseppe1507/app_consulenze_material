@@ -107,7 +107,7 @@
                 android:inputType="date"
                 android:ems="10"
                 android:id="@+id/oraInizioEditText"
-                android:text="--:--"
+                android:text="@string/new_request_default_time"
                 android:singleLine="true"
                 android:textSize="20dp"
                 />
@@ -136,7 +136,7 @@
                 android:inputType="date"
                 android:ems="10"
                 android:id="@+id/oraFineEditText"
-                android:text="--:--"
+                android:text="@string/new_request_default_time"
                 android:singleLine="true"
                 android:textSize="20dp"
                 />
