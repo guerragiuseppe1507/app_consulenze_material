@@ -2,6 +2,7 @@ package it.uniba.di.sss1415.app_consulenze.istances;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 
@@ -38,6 +39,7 @@ public class UserSessionInfo {
     public static MieDisp miaDispScelta;
     public static Stack<String> backStackFragment = new Stack<String>();
     public static Uri selectedImage ;
+    public static Bitmap profileImg;
     public static String currentActivity;
 
     //Di seguito i metodi che permettono di accedere in lettura e scrittura alla mail

@@ -295,6 +295,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                     //imageview.setImageURI(selectedImage);
                     System.out.println(selectedImage);
                     UserSessionInfo.selectedImage= selectedImage;
+                    UserSessionInfo.profileImg = null;
                     drawerFragment.getLayout().closeDrawer(drawerFragment.getcontainer());
                     creaMessaggio(getResources().getString(R.string.profileImageEdited));
                 }

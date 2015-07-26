@@ -45,6 +45,7 @@ import it.uniba.di.sss1415.app_consulenze.adapter.NavigationDrawerAdapter;
 import it.uniba.di.sss1415.app_consulenze.fragment.RichiesteFragment;
 import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.model.NavDrawerItem;
+import it.uniba.di.sss1415.app_consulenze.util.BitmapHandler;
 
 
 public class FragmentDrawer extends Fragment {
@@ -187,31 +188,31 @@ public class FragmentDrawer extends Fragment {
                 super.onDrawerSlide(drawerView, slideOffset);
                 toolbar.setAlpha(1 - slideOffset / 2);
                 if (firstOpen) checkCaller();
-                //if(profileBtm==null) {
+                if(UserSessionInfo.profileImg==null) {
                     if (UserSessionInfo.selectedImage != null) {
-                        Bitmap b = decodeSampledBitmapFromResource(getRealPathFromURI(UserSessionInfo.selectedImage), profileImage.getWidth() - 10, profileImage.getHeight() - 10);
-
-                        b = getRoundedShape(b);
-                        b = addWhiteBorder(b, 10);
-                        profileBtm = b;
+                        Bitmap b = BitmapHandler.decodeSampledBitmapFromResource(BitmapHandler.getRealPathFromURI(UserSessionInfo.selectedImage, main), profileImage.getWidth() - 10, profileImage.getHeight() - 10);
+                        b = BitmapHandler.createSquaredBitmap(b);
+                        b = BitmapHandler.getRoundedShape(b,profileImage.getWidth(),profileImage.getHeight());
+                        b = BitmapHandler.addWhiteBorder(b, 10);
+                        UserSessionInfo.profileImg = b;
                         profileImage.setImageBitmap(b);
-                        salvaInPref(getRealPathFromURI(UserSessionInfo.selectedImage));
+                        salvaInPref(BitmapHandler.getRealPathFromURI(UserSessionInfo.selectedImage,main));
                     } else if (!getFromShared().equals("")) {
                         try {
-                            Bitmap b = decodeSampledBitmapFromResource(getFromShared(), profileImage.getWidth() - 10, profileImage.getHeight() - 10);
-
-                            b = getRoundedShape(b);
-                            b = addWhiteBorder(b, 10);
-                            profileBtm = b;
+                            Bitmap b = BitmapHandler.decodeSampledBitmapFromResource(getFromShared(), profileImage.getWidth() - 10, profileImage.getHeight() - 10);
+                            b = BitmapHandler.createSquaredBitmap(b);
+                            b = BitmapHandler.getRoundedShape(b,profileImage.getWidth(),profileImage.getHeight());
+                            b = BitmapHandler.addWhiteBorder(b, 10);
+                            UserSessionInfo.profileImg = b;
                             profileImage.setImageBitmap(b);
                         } catch (Exception e) {
 
                         }
 
                     }
-                //}else{
-                   // profileImage.setImageBitmap(profileBtm);
-                //}
+                }else{
+                   profileImage.setImageBitmap(UserSessionInfo.profileImg);
+                }
             }
         };
 
@@ -288,81 +289,6 @@ public class FragmentDrawer extends Fragment {
         public void onDrawerItemSelected(View view, int position);
     }
 
-    public static Bitmap decodeSampledBitmapFromResource(String resId, int reqWidth, int reqHeight) {
-
-        // First decode with inJustDecodeBounds=true to check dimensions
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        Bitmap b = BitmapFactory.decodeFile(resId, options);
-
-        // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-
-        // Decode bitmap with inSampleSize set
-        options.inJustDecodeBounds = false;
-        options.inPreferredConfig = Bitmap.Config.RGB_565;
-        options.inDither = true;
-        return BitmapFactory.decodeFile(resId, options);
-    }
-
-    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
-// Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 3;
-            final int halfWidth = width / 3;
-
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
-            while ((halfHeight / inSampleSize) > reqHeight
-                    && (halfWidth / inSampleSize) > reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-        return inSampleSize;
-    }
-
-    private String getRealPathFromURI(Uri contentURI) {
-        String result;
-        Cursor cursor = getActivity().getContentResolver().query(contentURI, null, null, null, null);
-        if (cursor == null) { // Source is Dropbox or other similar local file path
-            result = contentURI.getPath();
-        } else {
-            cursor.moveToFirst();
-            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-            result = cursor.getString(idx);
-            cursor.close();
-        }
-        return result;
-    }
-
-    public Bitmap getRoundedShape(Bitmap scaleBitmapImage) {
-        int targetWidth = profileImage.getWidth();
-        int targetHeight = profileImage.getHeight();
-        Bitmap targetBitmap = Bitmap.createBitmap(targetWidth,
-                targetHeight,Bitmap.Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(targetBitmap);
-        Path path = new Path();
-        path.addCircle(((float) targetWidth - 1) / 2,
-                ((float) targetHeight - 1) / 2,
-                (Math.min(((float) targetWidth),
-                        ((float) targetHeight)) / 2),
-                Path.Direction.CCW);
-
-        canvas.clipPath(path);
-        Bitmap sourceBitmap = scaleBitmapImage;
-        canvas.drawBitmap(sourceBitmap,
-                new Rect(0, 0, sourceBitmap.getWidth(),
-                        sourceBitmap.getHeight()),
-                new Rect(0, 0, targetWidth, targetHeight), null);
-        return targetBitmap;
-    }
-
     public void salvaInPref(String result){
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity()); //new
@@ -374,35 +300,6 @@ public class FragmentDrawer extends Fragment {
     public String getFromShared(){
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         return pref.getString("profileImage", "");
-    }
-
-    private Bitmap addWhiteBorder(Bitmap bmp, int borderSize) {
-        int w = bmp.getWidth();
-        int h = bmp.getHeight();
-
-        int radius = Math.min(h / 2, w / 2);
-        Bitmap output = Bitmap.createBitmap(w + 8, h + 8, Bitmap.Config.ARGB_8888);
-
-        Paint p = new Paint();
-        p.setAntiAlias(true);
-
-        Canvas c = new Canvas(output);
-        c.drawARGB(0, 0, 0, 0);
-        p.setStyle(Paint.Style.FILL);
-
-        c.drawCircle((w / 2) + 4, (h / 2) + 4, radius, p);
-
-        p.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-
-        c.drawBitmap(bmp, 4, 4, p);
-        p.setXfermode(null);
-        p.setStyle(Paint.Style.STROKE);
-        p.setColor(Color.WHITE);
-        p.setStrokeWidth(borderSize);
-        p.setAntiAlias(true);
-        p.setFilterBitmap(true);
-        c.drawCircle((w / 2) + 4, (h / 2) + 4, radius, p);
-        return output;
     }
 
 }
