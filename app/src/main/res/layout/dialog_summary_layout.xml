@@ -101,9 +101,11 @@
         </LinearLayout>
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/repetition_summary"
             android:text="@string/summary_rep"
             />
 
@@ -121,6 +123,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/until_summary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"

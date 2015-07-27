@@ -184,5 +184,6 @@
     <string name="doctor">Doctor :</string>
     <string name="to">to</string>
     <string name="send_request">Send request</string>
+    <string name="notSet">[Not set]</string>
 
 </resources>

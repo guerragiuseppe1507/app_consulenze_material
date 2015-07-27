@@ -27,7 +27,7 @@ import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
  */
 public class SummaryAvailability extends DialogFragment {
 
-    final String NOTSET = "NOT SET";
+    String NOTSET;
     String exp ;
     String date;
     String sTime;
@@ -55,6 +55,9 @@ public class SummaryAvailability extends DialogFragment {
     private static final String ACCESSO_CHANGE = "change";
 
     private String user ;
+    private TextView repetitionTV;
+    private TextView untilLabelTv;
+
     public static SummaryAvailability newInstance(String exp , String date, String sTime , String eTime, String rep, String until, Boolean change){
         SummaryAvailability sa = new SummaryAvailability();
         Bundle args = new Bundle();
@@ -86,7 +89,7 @@ public class SummaryAvailability extends DialogFragment {
         timeoutMsg = getResources().getString(R.string.conn_timeout);
         editedMsg = getResources().getString(R.string.availabilityEdited);
         insertedMsg = getResources().getString(R.string.newAvailabilityInserted);
-
+        NOTSET = getResources().getString(R.string.notSet);
     }
 
     @Override
@@ -125,6 +128,8 @@ public class SummaryAvailability extends DialogFragment {
         dateTV = (TextView) v.findViewById(R.id.summaryDateTV);
         sTimeTV = (TextView) v.findViewById(R.id.startTimeTV);
         eTimeTV = (TextView) v.findViewById(R.id.endTimeTV);
+        repetitionTV = (TextView) v.findViewById(R.id.repetition_summary);
+        untilLabelTv = (TextView) v.findViewById(R.id.until_summary);
         repTV = (TextView) v.findViewById(R.id.repTV);
         untilTV = (TextView) v.findViewById(R.id.untilDateTV);
         expTV.setText(exp);
@@ -132,10 +137,15 @@ public class SummaryAvailability extends DialogFragment {
         sTimeTV.setText(sTime);
         eTimeTV.setText(eTime);
 
-        if(rep.equalsIgnoreCase("")){ repTV.setText(NOTSET);}else{ repTV.setText(rep);}
-        if(until.equalsIgnoreCase("")){ untilTV.setText(NOTSET);}else{ untilTV.setText(until);}
-
-
+        if(rep.equalsIgnoreCase("")){
+            repTV.setVisibility(View.GONE);
+            untilTV.setVisibility(View.GONE);
+            repetitionTV.setVisibility(View.GONE);
+            untilLabelTv.setVisibility(View.GONE);
+        }else{
+            repTV.setText(rep);
+            untilTV.setText(until);
+        }
 
         return d;
     }
