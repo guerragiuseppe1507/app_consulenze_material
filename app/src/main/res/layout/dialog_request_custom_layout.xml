@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="From"
+                android:text="@string/from"
                 android:id="@+id/textView2"
                 android:singleLine="true"
                 android:layout_marginLeft="10dp" />
@@ -120,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="With"
+                android:text="@string/appoint_doctor"
                 android:id="@+id/labelWithTutor"
                 android:singleLine="true" />
 
