@@ -143,7 +143,7 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                creaMessaggio("TO-DO");
             }
         });
 

@@ -82,6 +82,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
     private int dataFnYear;
     private int dataFnMounth;
     private int dataFnDay;
+    String nodatefn;
 
 
 
@@ -145,6 +146,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
         expertise = (Spinner) v.findViewById(R.id.specialtiesSpinner);
         rip = (ToggleButton) v.findViewById(R.id.RepToggleButton);
         ripLL =(LinearLayout) v.findViewById(R.id.repLinearLayout);
+        nodatefn =getActivity().getResources().getString(R.string.nodatefn);
 
         // Apply the adapter to the spinner
         expertise.setAdapter(adapter);
@@ -168,14 +170,64 @@ public class NuovaDisponibilitaFragment extends Fragment {
             MieDisp d = ((MainActivity)getActivity()).getMiaDispScelta();
             expertise.setSelection(adapter.getPosition(d.getIntervento()));
             dataIn.setText(d.getData());
+
+
             oraInizio.setText(d.getOraInizio());
+            String[] oreinizio = oraInizio.getText().toString().split(":");
+            if(oreinizio[0].substring(0).equals("0"))oreinizio[0]=oreinizio[0].substring(1);
+            if(oreinizio[1].substring(0).equals("0"))oreinizio[1]=oreinizio[1].substring(1);
+            oraInizioHour=Integer.parseInt(oreinizio[0]);
+            oraInizioMinute=Integer.parseInt(oreinizio[1]);
+
             oraFine.setText(d.getOraFine());
+            String[] orefine = oraFine.getText().toString().split(":");
+            if(orefine[0].substring(0).equals("0"))orefine[0]=orefine[0].substring(1);
+            if(orefine[1].substring(0).equals("0"))orefine[1]=orefine[1].substring(1);
+            oraFineHour=Integer.parseInt(orefine[0]);
+            oraFineMinute=Integer.parseInt(orefine[1]);
+
+
             if(!d.getRipetizione().equals("")){
                 rip.setChecked(true);
                 rb1.setChecked(true);
                 dataFn.setText(d.getFineRipetizione());
 
             }
+
+            String[] date =  dataIn.getText().toString().split("-");
+            if(date[1].substring(0).equals("0"))date[1]=date[1].substring(1);
+            if(date[2].substring(0).equals("0"))date[2]=date[2].substring(1);
+            dataInYear = Integer.parseInt(date[2]);
+            dataInMounth = Integer.parseInt(date[1]);
+            dataInDay = Integer.parseInt(date[0]);
+            String day = "";
+            Calendar calendar = new GregorianCalendar(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date[2])); // Note that Month value is 0-based. e.g., 0 for January.
+            int reslut = calendar.get(Calendar.DAY_OF_WEEK);
+            //controllo giorno della settimana
+            switch (reslut){
+
+                case Calendar.MONDAY : day = getResources().getString(R.string.everyDay1);
+                    break;
+                case Calendar.TUESDAY : day = getResources().getString(R.string.everyDay2);
+                    break;
+                case Calendar.WEDNESDAY : day = getResources().getString(R.string.everyDay3);
+                    break;
+                case Calendar.THURSDAY : day = getResources().getString(R.string.everyDay4) ;
+                    break;
+                case Calendar.FRIDAY : day = getResources().getString(R.string.everyDay5);
+                    break;
+                case Calendar.SATURDAY: day = getResources().getString(R.string.everyDay6);
+                    break;
+                case Calendar.SUNDAY : day = getResources().getString(R.string.everyDay7);
+
+                    break;
+                default:break;
+            }
+
+
+
+            rb1.setText(getResources().getString(R.string.everyWeek)+ " " + day);
+            rb2.setText(getResources().getString(R.string.everyTwoWeek)+ " " +  day);
 
         }
 
@@ -424,25 +476,39 @@ public class NuovaDisponibilitaFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(rb1.isChecked() && rip.isChecked()) {
+                Boolean repetition;
+                if (rb1.isChecked() && rip.isChecked()) {
                     repChecked = rb1.getText().toString();
+                    untilDate = dataFn.getText().toString();
+                    if (untilDate.equals("dd/mm/yyyy")) {
+                        repetition = false;
+                        dataFn.setError(nodatefn);
+                    } else {
+                        repetition = true;
+                    }
 
-                    untilDate  = dataFn.getText().toString();
+                } else if (rb2.isChecked() && rip.isChecked()) {
+                    repChecked = rb2.getText().toString();
 
-                } else if(rb2.isChecked() && rip.isChecked()){
-                    repChecked = rb2.getText().toString() ;
+                    untilDate = dataFn.getText().toString();
+                    if (untilDate.equals("dd/mm/yyyy")) {
+                        repetition = false;
+                        dataFn.setError(nodatefn);
+                    } else {
+                        repetition = true;
+                    }
+                } else if((!rb1.isChecked()|| !rb2.isChecked()) && rip.isChecked()){
+                    repetition=false;
+                }else{
 
-                    untilDate  = dataFn.getText().toString();
-                }else {
-
-
+                    repetition = true;
                     repChecked = "";
                     untilDate = "";
 
                 }
                 //Instance  object of dialog summary
 
-                if(dateSet && startSet && endSet){
+                if(dateSet && startSet && endSet && repetition){
                     dialogSummary = SummaryAvailability.newInstance(
                             expertise.getSelectedItem().toString(),
                             dataIn.getText().toString(),
@@ -470,6 +536,7 @@ public class NuovaDisponibilitaFragment extends Fragment {
     }
 
     private void showErrors(Boolean date, Boolean start, Boolean end){
+
         if(!date){
             dataIn.setError(getActivity().getResources().getString(R.string.nodate));
         }

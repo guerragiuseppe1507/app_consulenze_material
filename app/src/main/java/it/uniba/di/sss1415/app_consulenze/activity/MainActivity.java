@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 fragment = new MieDispFragment();
                 title = getString(R.string.title_friends);
                 if(!isBackPressed)pushaNelBackstack("1");
+                drawerFragment.selectMenuPosition(this, ID_FRAGMENT_MIE_DISP);
                 break;
             case ID_FRAGMENT_NEW_DISP:
                 fragment = new NuovaDisponibilitaFragment();
