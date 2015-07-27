@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Consulenze App</string>
+    <string name="app_name">Medical Consulting</string>
     <string name="action_settings">Profile</string>
     <string name="action_search">Search</string>
     <string name="drawer_open">Open</string>

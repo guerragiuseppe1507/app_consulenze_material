@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Consulenze App</string>
+    <string name="app_name">Consulenze Mediche</string>
     <string name="InvalidValue">Valore non valido</string>
     <string name="action_logout">Esci</string>
     <string name="action_search">Cerca</string>
