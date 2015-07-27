@@ -341,8 +341,8 @@ public class NuovaDisponibilitaFragment extends Fragment {
 
 
 
-                        rb1.setText(getResources().getString(R.string.everyWeek) + " "  + day);
-                        rb2.setText(getResources().getString(R.string.everyTwoWeek) + " "  + day);
+                        rb1.setText(getResources().getString(R.string.everyWeek)+ " " + day);
+                        rb2.setText(getResources().getString(R.string.everyTwoWeek)+ " " +  day);
 
                     }
                 }, year, month, day);

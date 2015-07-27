@@ -199,7 +199,7 @@ public class SummaryAvailability extends DialogFragment {
         @Override
         protected void onPostExecute(String result) {
 
-            System.out.println(result);
+            System.out.println("EHIII BIATCH:" + result);
 
             if (result.equals(ToastMsgs.CONN_TIMEOUT)) {
 

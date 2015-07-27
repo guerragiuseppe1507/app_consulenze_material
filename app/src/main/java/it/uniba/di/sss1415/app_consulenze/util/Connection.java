@@ -9,6 +9,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -86,8 +87,8 @@ public class Connection {
             conn.setReadTimeout(1000);
 
             //send POST request
-            DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
-            wr.writeBytes(getParametri());
+            OutputStream wr = conn.getOutputStream();
+            wr.write(postData);
             wr.flush();
             wr.close();
 
