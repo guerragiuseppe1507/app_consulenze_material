@@ -185,5 +185,6 @@
     <string name="to">to</string>
     <string name="send_request">Send request</string>
     <string name="notSet">[Not set]</string>
+    <string name="nodatefn">End date is required</string>
 
 </resources>

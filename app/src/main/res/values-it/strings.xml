@@ -154,4 +154,6 @@
     <string name="to">alle</string>
     <string name="send_request">Invia richiesta</string>
     <string name="doctor">Dottore :</string>
+    <string name="nodatefn">La data di fine è richiesta</string>
+    <string name="notSet">[Non impostato]</string>
 </resources>
