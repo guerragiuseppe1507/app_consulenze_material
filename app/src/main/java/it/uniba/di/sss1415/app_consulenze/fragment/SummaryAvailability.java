@@ -201,16 +201,7 @@ public class SummaryAvailability extends DialogFragment {
 
             System.out.println(result);
 
-            if (result == null){
-                if(change){
-                    creaMessaggio(editedMsg);
-                    caller.displayView(1, false);
-                }else{
-                    creaMessaggio(insertedMsg);
-                    caller.displayView(1, false);
-                }
-
-            } else if (result.equals(ToastMsgs.CONN_TIMEOUT)) {
+            if (result.equals(ToastMsgs.CONN_TIMEOUT)) {
 
                 creaMessaggio(timeoutMsg);
 
