@@ -22,57 +22,23 @@
             android:paddingRight="15dp"
             android:paddingBottom="7dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/richieste_miedisp_confirm"
-            android:layout_alignParentBottom="true">
-
-            <Button
-                android:layout_gravity="center_vertical"
-                app:elevation="6dp"
-                app:borderWidth="0dp"
-                app:pressedTranslationZ="12dp"
-                android:textColor="@color/whiteText"
-                android:text="@string/bottone_modifica_miaDisp"
-                android:id="@+id/bottone_modifica_miaDisp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="2.5dp"/>
-
-            <Button
-                android:layout_gravity="center_vertical"
-                app:elevation="6dp"
-                app:borderWidth="0dp"
-                app:pressedTranslationZ="12dp"
-                android:textColor="@color/whiteText"
-                android:text="@string/bottone_cancella_miaDisp"
-                android:id="@+id/bottone_cancella_miaDisp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="2.5dp" />
-
             <android.support.design.widget.FloatingActionButton
-                android:layout_gravity="center_vertical"
+
                 android:id="@+id/mieDispFab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_plus"
 
+                android:layout_gravity="bottom|right"
                 app:elevation="6dp"
                 app:borderWidth="0dp"
                 app:pressedTranslationZ="12dp"
                 android:baselineAlignBottom="false"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
                 android:layout_margin="10dp"
                 android:onClick="showNewDisp"
+
                 />
-
-        </LinearLayout>
-
 
 </RelativeLayout>

@@ -44,8 +44,7 @@ public class MieDispFragment extends Fragment implements RecyclerViewClickListen
     private DispListAdapter dispListAdapter;
     private LinearLayoutManager layoutManager;
     private LinearLayout confirmDialog;
-    private Button btnEdit;
-    private Button btnDelete;
+
 
     private CardView cardViewClicked;
 
@@ -106,12 +105,6 @@ public class MieDispFragment extends Fragment implements RecyclerViewClickListen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_miedisp, container, false);
-        confirmDialog = (LinearLayout) view.findViewById(R.id.richieste_miedisp_confirm);
-        btnEdit = (Button) view.findViewById(R.id.bottone_modifica_miaDisp);
-        btnDelete = (Button) view.findViewById(R.id.bottone_cancella_miaDisp);
-        confirmDialog.setBackgroundColor(getResources().getColor(R.color.transparent));
-        btnEdit.setVisibility(View.INVISIBLE);
-        btnDelete.setVisibility(View.INVISIBLE);
 
         layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -120,31 +113,11 @@ public class MieDispFragment extends Fragment implements RecyclerViewClickListen
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                hideSelected(clickedPosition, clickedOffset);
-                creaMessaggio(getResources().getString(R.string.availabilityDeleted));
-            }
-        });
-
-        btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MieDisp m = UserSessionInfo.miaDispScelta;
-                ((MainActivity)getActivity()).setMiaDispScelta(m.getId(),
-                        m.getData(), m.getOraInizio(), m.getOraFine(),
-                        m.getIntervento(), m.getRipetizione(), m.getFineRipetizione());
-                ((MainActivity)getActivity()).showFragment("ModificaDisponibilitaFragment", false);
-            }
-        });
-
         return view;
     }
 
     private void setRecycler(){
-        dispListAdapter = new DispListAdapter(getActivity(), disps, this,-1,clickedPositions);
+        dispListAdapter = new DispListAdapter(getActivity(), disps, this,-1);
         recyclerView.setAdapter(dispListAdapter);
     }
 
@@ -157,19 +130,17 @@ public class MieDispFragment extends Fragment implements RecyclerViewClickListen
 
     @Override
     public void recyclerViewClicked(View v , int position, int offset){
-        btnEdit.setVisibility(View.VISIBLE);
-        btnDelete.setVisibility(View.VISIBLE);
-        final float scale = getResources().getDisplayMetrics().density;
-        int padding_in_px = (int) (15 * scale + 0.5f);
-        int padding_bot_px = (int) (7 * scale + 0.5f);
-        recyclerView.setPadding(padding_in_px, 0, padding_in_px, confirmDialog.getHeight()+padding_bot_px);
-        confirmDialog.setBackgroundColor(getResources().getColor(R.color.whiteText));
+        //final float scale = getResources().getDisplayMetrics().density;
+        //int padding_in_px = (int) (15 * scale + 0.5f);
+        //int padding_bot_px = (int) (7 * scale + 0.5f);
+        //recyclerView.setPadding(padding_in_px, 0, padding_in_px, confirmDialog.getHeight()+padding_bot_px);
+        //confirmDialog.setBackgroundColor(getResources().getColor(R.color.whiteText));
 
-        this.clickedPosition = position;
-        this.clickedOffset = offset;
+        //this.clickedPosition = position;
+        //this.clickedOffset = offset;
 
         int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
-        dispListAdapter = new DispListAdapter(getActivity(), disps, this,position,clickedPositions);
+        dispListAdapter = new DispListAdapter(getActivity(), disps, this,position);
         recyclerView.setAdapter(dispListAdapter);
         layoutManager.scrollToPosition(mScrollPosition);
 
@@ -179,25 +150,6 @@ public class MieDispFragment extends Fragment implements RecyclerViewClickListen
 
     }
 
-    private void hideSelected(int position, int offset){
-        btnEdit.setVisibility(View.INVISIBLE);
-        btnDelete.setVisibility(View.INVISIBLE);
-        confirmDialog.setBackgroundColor(getResources().getColor(R.color.transparent));
-        final float scale = getResources().getDisplayMetrics().density;
-        int padding_in_px = (int) (15 * scale + 0.5f);
-        int padding_bot_px = (int) (7 * scale + 0.5f);
-        recyclerView.setPadding(padding_in_px, 0, padding_in_px, padding_bot_px);
-
-        clickedPositions.put(Integer.toString(position), Integer.toString(position));
-        int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
-        dispListAdapter = new DispListAdapter(getActivity(), disps, this,position,clickedPositions);
-        recyclerView.setAdapter(dispListAdapter);
-        //layoutManager.scrollToPosition(mScrollPosition);
-
-        //layoutManager.scrollToPositionWithOffset(position, offset);
-        //System.out.println(mScrollPosition+" "+(offset));
-
-    }
 
     public class ShowDispTask extends AsyncTask<String, Void, String> {
 
