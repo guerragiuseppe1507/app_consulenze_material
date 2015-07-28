@@ -65,24 +65,25 @@
              android:paddingBottom="20dp"
              android:paddingTop="10dp">
 
-             <ImageButton
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:src="@drawable/emoticon_sad"
-                 android:layout_alignParentTop="true"
-                 android:layout_toEndOf="@+id/imageButtonNeutral"
-                 android:id="@+id/imageButtonSad"/>
+
 
              <LinearLayout
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:orientation="vertical" >
-
+                 <ImageButton
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/emoticon_sad"
+                     android:layout_alignParentTop="true"
+                     android:layout_toEndOf="@+id/imageButtonNeutral"
+                     android:id="@+id/imageButtonSad"/>
                  <TextView
                      android:layout_width="fill_parent"
                      android:layout_height="10dp"
-                     android:id="@+id/happyTV"
+                     android:id="@+id/sadTV"
                      />
+
            </LinearLayout>
 
              <LinearLayout
@@ -108,19 +109,19 @@
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:orientation="vertical" >
-
+                 <ImageButton
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/emoticon_happy"
+                     android:id="@+id/imageButtonHappy" />
                  <TextView
                      android:layout_width="fill_parent"
                      android:layout_height="10dp"
-                     android:id="@+id/sadTV"
+                     android:id="@+id/happyTV"
                      />
              </LinearLayout>
 
-             <ImageButton
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:src="@drawable/emoticon_happy"
-                 android:id="@+id/imageButtonHappy" />
+
 
 
          </LinearLayout>

@@ -43,9 +43,6 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
     private LinearLayoutManager layoutManager;
     FragmentTransaction ft;
     TutorRating sd;
-    private Button buttonRate;
-    private Button buttonProfile;
-    private TutorRating dialogRate;
 
    // private CardView cardViewClicked;
 
@@ -55,10 +52,6 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
     private static final String NOME_RICHIESTA = "tutor";
     private static final String TIPO_ACCESSO = "read";
 
-    CardView cardViewClicked;
-
-    TextView name;
-    private LinearLayout tutorOp;
 
     public TutorFragment() {
         // Required empty public constructor
@@ -100,45 +93,17 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_valuta_tutor, container, false);
-        tutorOp = (LinearLayout) view.findViewById(R.id.tutor_op);
-        tutorOp.setVisibility(View.GONE);
-        buttonRate = (Button) view.findViewById(R.id.rateBtn);
-        buttonProfile = (Button) view.findViewById(R.id.viewProfileBtn);
         layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView = (RecyclerView) view.findViewById(R.id.tutor_recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
-        buttonRate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Tutors t = UserSessionInfo.tutorScelto;
-                dialogRate = TutorRating.newInstance(t.getNome(),t.getCognome(),t.getScore());
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                dialogRate.show(ft,"Rate");
-
-            }
-        });
-
-        buttonProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                creaMessaggio("TO-DO");
-            }
-        });
-
-
-
         return view;
     }
 
     private void setRecycler(){
-        tutorAdapter = new TutorsAdapter(getActivity(), tutor, this,-1);
+        tutorAdapter = new TutorsAdapter(getActivity(), tutor, this,-1,this);
         recyclerView.setAdapter(tutorAdapter);
     }
 
@@ -151,18 +116,13 @@ public class TutorFragment extends Fragment implements RecyclerViewClickListener
 
     @Override
     public void recyclerViewClicked(View v , int position, int offset){
-        tutorOp.setVisibility(View.VISIBLE);
         int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
-        tutorAdapter = new TutorsAdapter(getActivity(), tutor, this,position);
+        tutorAdapter = new TutorsAdapter(getActivity(), tutor, this,position,this);
         recyclerView.setAdapter(tutorAdapter);
         layoutManager.scrollToPosition(mScrollPosition);
         layoutManager.scrollToPositionWithOffset(position, offset);
 
         System.out.println(mScrollPosition+" "+(offset));
-
-
-
-
     }
 
     public  void showDialog(TutorRating vf){

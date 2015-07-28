@@ -42,6 +42,7 @@ public class UserSessionInfo {
     public static Uri selectedImage ;
     public static Bitmap profileImg;
     public static String currentActivity;
+    public static int posClicked = 0;
 
     //Di seguito i metodi che permettono di accedere in lettura e scrittura alla mail
     public void setParams(Context c , String dati){

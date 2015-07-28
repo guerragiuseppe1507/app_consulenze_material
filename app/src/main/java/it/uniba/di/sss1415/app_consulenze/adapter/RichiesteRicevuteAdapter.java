@@ -30,7 +30,6 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
     private ArrayList<RichiesteRicevute> items;
     private static RecyclerViewClickListener itemListener;
     private int clickedPos;
-    private int confirmheight;
 
     public RichiesteRicevuteAdapter(Context context, ArrayList<RichiesteRicevute> items, RecyclerViewClickListener listener, int clickedPos) {
         this.context = context;
@@ -59,7 +58,7 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
         if(this.clickedPos == position){
             viewHolder.selectedRichiesta.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
             viewHolder.confirm.setVisibility(View.VISIBLE);
-            confirmheight =  viewHolder.confirm.getHeight();
+            UserSessionInfo.posClicked = position;
         }else{
             viewHolder.confirm.setVisibility(View.GONE);
         }
@@ -132,11 +131,12 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
 
         @Override
         public void onClick(View v) {
-            if(top == parent.getTop()) {
-
-                itemListener.recyclerViewClicked(v, this.getPosition(), Math.round(parent.getTop()));
-            }else{
-                itemListener.recyclerViewClicked(v, this.getPosition(), Math.round(parent.getTop())- confirmheight);
+            if(this.getPosition() == 0){
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            }else if (this.getPosition() < UserSessionInfo.posClicked){
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            } else {
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop())-175);
             }
         }
 

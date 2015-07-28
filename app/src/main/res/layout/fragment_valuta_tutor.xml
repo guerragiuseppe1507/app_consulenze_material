@@ -22,40 +22,5 @@
         android:paddingRight="15dp"
         android:paddingBottom="7dp"/>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/tutor_op"
-        android:elevation="10dp"
-        app:borderWidth="0dp"
-        android:background="@color/whiteText"
-        android:layout_alignParentBottom="true">
-
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/whiteText"
-            android:text="@string/rate_button"
-            android:id="@+id/rateBtn"
-            android:layout_weight="1"
-            android:singleLine="false" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/whiteText"
-            android:text="@string/doctor_account_button"
-            android:id="@+id/viewProfileBtn"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-
-
-
 </RelativeLayout>
 

@@ -15,6 +15,7 @@ import java.util.HashMap;
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.istances.DateDispon;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
 /**
@@ -57,7 +58,7 @@ public class DateDisponAdapter extends  RecyclerView.Adapter<DateDisponAdapter.D
 
         if(this.clickedPos == position){
             viewHolder.selectedDispon.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
-
+            UserSessionInfo.posClicked = position;
             btnSend.setVisibility(View.VISIBLE);
         } else {
             btnSend.setVisibility(View.GONE);
@@ -110,7 +111,13 @@ public class DateDisponAdapter extends  RecyclerView.Adapter<DateDisponAdapter.D
 
         @Override
         public void onClick(View v) {
-            itemListener.recyclerViewClicked(v, this.getPosition(), Math.round(parent.getTop()));
+            if(this.getPosition() == 0){
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            }else if (this.getPosition() < UserSessionInfo.posClicked){
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            } else if (this.getPosition() > UserSessionInfo.posClicked){
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop())-175);
+            }
         }
 
     }

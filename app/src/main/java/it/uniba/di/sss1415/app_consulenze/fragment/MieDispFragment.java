@@ -66,6 +66,7 @@ public class MieDispFragment extends Fragment implements RecyclerViewClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UserSessionInfo.posClicked= -1;
 
         conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
         dispTask = new ShowDispTask();

@@ -77,6 +77,7 @@ public class RichiesteInviateFragment extends Fragment implements RecyclerViewCl
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
+        UserSessionInfo.posClicked= -1;
 
         conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
         dispTask = new ShowSentRequestTask();

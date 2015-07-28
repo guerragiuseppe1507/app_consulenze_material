@@ -87,6 +87,7 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
             final String fineripetizione = disp.getFineRipetizione();
 
             UserSessionInfo.miaDispScelta = new MieDisp(id,data,orainizio,orafine,intervento,ripetizione,fineripetizione);
+            UserSessionInfo.posClicked = position;
 
             btnEdit.setVisibility(View.VISIBLE);
             btnDelete.setVisibility(View.VISIBLE);
@@ -163,7 +164,13 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
 
         @Override
         public void onClick(View v) {
-            itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            if(this.getPosition() == 0){
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            }else if (this.getPosition() < UserSessionInfo.posClicked){
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            } else if (this.getPosition() > UserSessionInfo.posClicked) {
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop())-175);
+            }
         }
 
 

@@ -78,6 +78,38 @@
                 android:layout_toRightOf="@+id/labelScoreTV"
                 android:layout_marginLeft="15dp"/>
 
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/tutor_op"
+                android:background="@color/whiteText"
+                android:layout_below="@+id/labelScoreTV"
+                android:layout_marginTop="10dp">
+
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/whiteText"
+                    android:text="@string/rate_button"
+                    android:id="@+id/rateBtn"
+                    android:layout_weight="1"
+                    android:singleLine="false" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/whiteText"
+                    android:text="@string/doctor_account_button"
+                    android:id="@+id/viewProfileBtn"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
         </RelativeLayout>
         <TextView
             android:layout_width="fill_parent"

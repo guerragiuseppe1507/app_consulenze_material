@@ -31,6 +31,7 @@ import it.uniba.di.sss1415.app_consulenze.adapter.RichiesteInviateAdapter;
 import it.uniba.di.sss1415.app_consulenze.adapter.RichiesteRicevuteAdapter;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteInviate;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteRicevute;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.Connection;
 import it.uniba.di.sss1415.app_consulenze.util.JsonHandler;
 import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
@@ -67,6 +68,7 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
+        UserSessionInfo.posClicked= -1;
 
         conn = new Connection(getActivity().getApplicationContext().getResources().getString(R.string.serverQuery));
         dispTask = new ShowReceivedRequestTask();

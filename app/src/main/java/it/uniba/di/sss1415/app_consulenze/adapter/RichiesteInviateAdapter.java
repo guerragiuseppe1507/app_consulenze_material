@@ -17,6 +17,7 @@ import java.util.HashMap;
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteInviate;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
 /**
@@ -63,6 +64,7 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
         if(this.clickedPos == position){
             viewHolder.selectedRichiesta.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
             viewHolder.confirmDialog.setVisibility(View.VISIBLE);
+            UserSessionInfo.posClicked = position;
         } else{
             viewHolder.confirmDialog.setVisibility(View.GONE);
         }
@@ -133,7 +135,14 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
 
         @Override
         public void onClick(View v) {
-            itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            if(this.getPosition() == 0){
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            }else if (this.getPosition() < UserSessionInfo.posClicked){
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            } else {
+                itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop())-175);
+            }
+
         }
 
     }
