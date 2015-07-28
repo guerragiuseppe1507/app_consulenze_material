@@ -18,7 +18,7 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -118,6 +118,40 @@
                 android:layout_toRightOf="@+id/tvInterventoRequestReceivedLabel"
                 android:layout_marginLeft="15dp"
                 />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/whiteText"
+                android:layout_marginTop="10dp"
+                android:id="@+id/richieste_ricevute_confirm"
+                android:layout_below="@+id/tvInterventoRequestReceivedLabel">
+
+                <Button
+
+
+                    android:textColor="@color/whiteText"
+                    android:text="@string/bottone_accetta"
+                    android:id="@+id/bottone_accetta_richiesta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="2.5dp" />
+
+                <Button
+                    android:textColor="@color/whiteText"
+                    android:text="@string/bottone_rifiuta"
+                    android:id="@+id/bottone_rifiuta_richiesta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="2.5dp" />
+
+            </LinearLayout>
+
 
 
 

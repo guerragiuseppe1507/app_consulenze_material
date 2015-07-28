@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 import app_consulenze_material.R;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteInviate;
 import it.uniba.di.sss1415.app_consulenze.istances.RichiesteRicevute;
+import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
 /**
@@ -28,14 +30,13 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
     private ArrayList<RichiesteRicevute> items;
     private static RecyclerViewClickListener itemListener;
     private int clickedPos;
-    private HashMap<String,String> hide = new HashMap<String,String>();
+    private int confirmheight;
 
-    public RichiesteRicevuteAdapter(Context context, ArrayList<RichiesteRicevute> items, RecyclerViewClickListener listener, int clickedPos ,HashMap<String,String> hide) {
+    public RichiesteRicevuteAdapter(Context context, ArrayList<RichiesteRicevute> items, RecyclerViewClickListener listener, int clickedPos) {
         this.context = context;
         this.items = items;
         this.itemListener = listener;
         this.clickedPos=clickedPos;
-        this.hide = hide;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -48,7 +49,7 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(RichiesteRicevuteHolder viewHolder, int position) {
+    public void onBindViewHolder(final RichiesteRicevuteHolder viewHolder,final int position) {
         RichiesteRicevute request = items.get(position);
         viewHolder.tvDataRequest.setText(request.getData());
         viewHolder.tvOraInizioRequest.setText(request.getOraInizio());
@@ -57,17 +58,35 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
         viewHolder.tvDottoreRequest.setText(request.getDottore());
         if(this.clickedPos == position){
             viewHolder.selectedRichiesta.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+            viewHolder.confirm.setVisibility(View.VISIBLE);
+            confirmheight =  viewHolder.confirm.getHeight();
+        }else{
+            viewHolder.confirm.setVisibility(View.GONE);
         }
 
+        viewHolder.bottoneAccetta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                removeAt(position);
 
-        if (hide.values().contains(Integer.toString(position))) {
-            viewHolder.item.setVisibility(View.GONE);
-            viewHolder.parent.setVisibility(View.GONE);
-            viewHolder.parent.setPadding(0,0,0,0);
-        }
+            }
+        });
 
+        viewHolder.bottoneDeclina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                removeAt(position);
+            }
+        });
+
+    }
+
+    public void removeAt(int position) {
+        items.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, items.size());
     }
 
     @Override
@@ -86,6 +105,10 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
         public TextView selectedRichiesta;
         public CardView item;
         private LinearLayout parent;
+        private LinearLayout confirm;
+        private Button bottoneAccetta;
+        private Button bottoneDeclina;
+        private int top;
 
 
         public RichiesteRicevuteHolder(Context context, final View itemView) {
@@ -99,13 +122,22 @@ public class RichiesteRicevuteAdapter extends  RecyclerView.Adapter<RichiesteRic
             selectedRichiesta = (TextView) itemView.findViewById(R.id.selectedRichiestaRic);
             item = (CardView) itemView.findViewById(R.id.item_richieste_ricevute);
             parent = (LinearLayout) itemView.findViewById(R.id.item_richieste_ricevute_parent);
+            top = parent.getTop();
+            confirm = (LinearLayout) itemView.findViewById(R.id.richieste_ricevute_confirm);
+            bottoneAccetta = (Button) itemView.findViewById(R.id.bottone_accetta_richiesta);
+            bottoneDeclina = (Button) itemView.findViewById(R.id.bottone_rifiuta_richiesta);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+            if(top == parent.getTop()) {
+
+                itemListener.recyclerViewClicked(v, this.getPosition(), Math.round(parent.getTop()));
+            }else{
+                itemListener.recyclerViewClicked(v, this.getPosition(), Math.round(parent.getTop())- confirmheight);
+            }
         }
 
     }

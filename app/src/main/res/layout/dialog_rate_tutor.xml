@@ -7,7 +7,7 @@
         android:layout_width="fill_parent"
         android:layout_height="@dimen/login_margin"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="RATE TUTOR"
+        android:text="@string/rateTutor"
         android:id="@+id/textView"
         android:textColor="@color/whiteText"
         android:background="@color/colorPrimary"

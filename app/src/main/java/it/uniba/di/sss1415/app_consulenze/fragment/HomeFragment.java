@@ -112,6 +112,8 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
         return view;
     }
 
+
+
     private void setRecycler(){
         appuntamentiAdapter = new AppuntamentiAdapter(getActivity(), appuntamenti, this,-1);
         recyclerView.setAdapter(appuntamentiAdapter);

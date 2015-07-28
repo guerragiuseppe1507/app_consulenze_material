@@ -101,6 +101,7 @@ public class MieDispFragment extends Fragment implements RecyclerViewClickListen
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

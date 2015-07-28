@@ -186,5 +186,8 @@
     <string name="send_request">Send request</string>
     <string name="notSet">[Not set]</string>
     <string name="nodatefn">End date is required</string>
+    <string name="recurrenceOff">Repeat OFF</string>
+    <string name="recurrenceOn">Repeat ON</string>
+    <string name="rateTutor">RATE TUTOR</string>
 
 </resources>

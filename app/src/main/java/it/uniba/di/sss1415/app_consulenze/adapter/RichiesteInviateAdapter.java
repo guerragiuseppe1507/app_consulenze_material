@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,14 +28,13 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
     private ArrayList<RichiesteInviate> items;
     private RecyclerViewClickListener itemListener;
     private int clickedPos;
-    private HashMap<String,String> hide = new HashMap<String,String>();
+    private int confirmheight;
 
-    public RichiesteInviateAdapter(Context context, ArrayList<RichiesteInviate> items, RecyclerViewClickListener listener, int clickedPos, HashMap<String,String> hide) {
+    public RichiesteInviateAdapter(Context context, ArrayList<RichiesteInviate> items, RecyclerViewClickListener listener, int clickedPos) {
         this.context = context;
         this.items = items;
         this.itemListener = listener;
         this.clickedPos=clickedPos;
-        this.hide = hide;
     }
 
      // Create new views (invoked by the layout manager)
@@ -47,7 +47,7 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(RichiesteInviateHolder viewHolder, int position) {
+    public void onBindViewHolder(final RichiesteInviateHolder viewHolder,final int position) {
         RichiesteInviate request = items.get(position);
         viewHolder.tvDataRequest.setText(request.getData());
         viewHolder.tvOraInizioRequest.setText(request.getOraInizio());
@@ -63,13 +63,34 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
 
         if(this.clickedPos == position){
             viewHolder.selectedRichiesta.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+            viewHolder.confirmDialog.setVisibility(View.VISIBLE);
+            confirmheight =  viewHolder.confirmDialog.getHeight();
+        } else{
+            viewHolder.confirmDialog.setVisibility(View.GONE);
         }
 
-        if (hide.values().contains(Integer.toString(position))) {
-            viewHolder.item.setVisibility(View.GONE);
-            viewHolder.parent.setVisibility(View.GONE);
-            viewHolder.parent.setPadding(0, 0, 0, 0);
-        }
+        viewHolder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //viewHolder.parent.setVisibility(View.GONE);
+                removeAt(position);
+            }
+        });
+
+        viewHolder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                creaMessaggio("TO-DO");
+            }
+        });
+
+    }
+
+    public void removeAt(int position) {
+        items.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, items.size());
     }
 
     @Override
@@ -89,6 +110,11 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
         public TextView selectedRichiesta;
         public CardView item;
         public LinearLayout parent;
+        public LinearLayout confirmDialog;
+        public Button btnEdit;
+        public Button btnDelete;
+        private int top;
+
 
 
 
@@ -104,16 +130,29 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
             selectedRichiesta = (TextView) itemView.findViewById(R.id.selectedRichiestaInv);
             item = (CardView) itemView.findViewById(R.id.cv_richiesta_inviata);
             parent = (LinearLayout) itemView.findViewById(R.id.item_richieste_inviate);
+            top = parent.getTop();
+            confirmDialog = (LinearLayout) itemView.findViewById(R.id.richieste_inviate_confirm);
+            btnEdit = (Button) itemView.findViewById(R.id.bottone_modifica_richiesta_inviata);
+            btnDelete = (Button) itemView.findViewById(R.id.bottone_cancella_richiesta_ricevuta);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            if(top == parent.getTop()) {
 
-            itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
+                itemListener.recyclerViewClicked(v, this.getPosition(), Math.round(parent.getTop()));
+            }else{
+                itemListener.recyclerViewClicked(v, this.getPosition(), Math.round(parent.getTop())- confirmheight);
+            }
         }
 
+    }
+
+    public void creaMessaggio(CharSequence message){
+        Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toastMessage.show();
     }
 
 

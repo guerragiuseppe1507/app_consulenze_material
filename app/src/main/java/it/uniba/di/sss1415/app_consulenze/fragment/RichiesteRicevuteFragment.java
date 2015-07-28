@@ -48,15 +48,6 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
     private RichiesteRicevuteAdapter richiesteRicevuteAdapter;
     private LinearLayoutManager layoutManager;
     private RecyclerView recyclerView;
-    private LinearLayout confirm;
-    private Button bottoneAccetta;
-    private Button bottoneDeclina;
-    private int clickedPosition;
-    private HashMap<String,String> clickedPositions = new HashMap<String,String>();
-    private int clickedOffset;
-
-    private CardView cardViewClicked;
-
     private ShowReceivedRequestTask dispTask = null;
     private Connection conn;
 
@@ -86,32 +77,12 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
 
     @Override
      public void recyclerViewClicked(View v , int position, int offset){
-        confirm.setVisibility(View.VISIBLE);
-        this.clickedPosition = position;
-        this.clickedOffset = offset;
         int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
-        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,position,clickedPositions);
+        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,position);
         recyclerView.setAdapter(richiesteRicevuteAdapter);
         layoutManager.scrollToPosition(mScrollPosition);
-
         layoutManager.scrollToPositionWithOffset(position, offset);
-        //System.out.println(mScrollPosition+" "+(offset));
-
     }
-
-    private void hideSelected(int position, int offset){
-        confirm.setVisibility(View.GONE);
-        clickedPositions.put(Integer.toString(position), Integer.toString(position));
-        int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
-        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,position,clickedPositions);
-        recyclerView.setAdapter(richiesteRicevuteAdapter);
-        //layoutManager.scrollToPosition(mScrollPosition);
-
-        //layoutManager.scrollToPositionWithOffset(position, offset);
-        //System.out.println(mScrollPosition+" "+(offset));
-
-    }
-
 
 
     private void createAndPopulateCountriesArray(ArrayList<HashMap<String,String>> res) {
@@ -134,6 +105,7 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
             requests.add(new RichiesteRicevute(temp.get("data").substring(0, 10), temp.get("oraInizio"), temp.get("oraFine"),
                     temp.get("intervento"), temp.get("dottore")));
 
+
             //}
             //} catch (ParseException e) {
             //    e.printStackTrace();
@@ -147,11 +119,6 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_richieste_ricevute, container, false);
 
-        bottoneAccetta = (Button) view.findViewById(R.id.bottone_accetta_richiesta);
-        bottoneDeclina = (Button) view.findViewById(R.id.bottone_rifiuta_richiesta);
-        confirm = (LinearLayout) view.findViewById(R.id.richieste_ricevute_confirm);
-        confirm.setVisibility(View.GONE);
-
         layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView = (RecyclerView) view.findViewById(R.id.richieste_ricevute_recycler);
@@ -159,29 +126,12 @@ public class RichiesteRicevuteFragment extends Fragment implements RecyclerViewC
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        bottoneAccetta.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
 
-                hideSelected(clickedPosition, clickedOffset);
-                creaMessaggio(getResources().getString(R.string.requestAccepted));
-
-            }
-        });
-
-        bottoneDeclina.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-
-                hideSelected(clickedPosition, clickedOffset);
-                creaMessaggio(getResources().getString(R.string.requestRefused));
-            }
-        });
         return view;
     }
 
     private void setRecycler(){
-        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,-1,clickedPositions);
+        richiesteRicevuteAdapter = new RichiesteRicevuteAdapter(getActivity(), requests, this,-1);
         recyclerView.setAdapter(richiesteRicevuteAdapter);
     }
 

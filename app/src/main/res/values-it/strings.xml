@@ -156,4 +156,7 @@
     <string name="doctor">Dottore :</string>
     <string name="nodatefn">La data di fine è richiesta</string>
     <string name="notSet">[Non impostato]</string>
+    <string name="rateTutor">VALUTA tUTOR</string>
+    <string name="recurrenceOff">Ripetizione OFF</string>
+    <string name="recurrenceOn">Ripetizione ON</string>
 </resources>
