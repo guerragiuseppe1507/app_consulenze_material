@@ -28,7 +28,6 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
     private ArrayList<RichiesteInviate> items;
     private RecyclerViewClickListener itemListener;
     private int clickedPos;
-    private int confirmheight;
 
     public RichiesteInviateAdapter(Context context, ArrayList<RichiesteInviate> items, RecyclerViewClickListener listener, int clickedPos) {
         this.context = context;
@@ -64,7 +63,6 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
         if(this.clickedPos == position){
             viewHolder.selectedRichiesta.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
             viewHolder.confirmDialog.setVisibility(View.VISIBLE);
-            confirmheight =  viewHolder.confirmDialog.getHeight();
         } else{
             viewHolder.confirmDialog.setVisibility(View.GONE);
         }
@@ -73,7 +71,7 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
             @Override
             public void onClick(View v) {
 
-                //viewHolder.parent.setVisibility(View.GONE);
+                viewHolder.parent.setVisibility(View.GONE);
                 removeAt(position);
             }
         });
@@ -113,10 +111,6 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
         public LinearLayout confirmDialog;
         public Button btnEdit;
         public Button btnDelete;
-        private int top;
-
-
-
 
         public RichiesteInviateHolder(Context context, View itemView) {
             super(itemView);
@@ -130,7 +124,6 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
             selectedRichiesta = (TextView) itemView.findViewById(R.id.selectedRichiestaInv);
             item = (CardView) itemView.findViewById(R.id.cv_richiesta_inviata);
             parent = (LinearLayout) itemView.findViewById(R.id.item_richieste_inviate);
-            top = parent.getTop();
             confirmDialog = (LinearLayout) itemView.findViewById(R.id.richieste_inviate_confirm);
             btnEdit = (Button) itemView.findViewById(R.id.bottone_modifica_richiesta_inviata);
             btnDelete = (Button) itemView.findViewById(R.id.bottone_cancella_richiesta_ricevuta);
@@ -140,12 +133,7 @@ public class RichiesteInviateAdapter extends  RecyclerView.Adapter<RichiesteInvi
 
         @Override
         public void onClick(View v) {
-            if(top == parent.getTop()) {
-
-                itemListener.recyclerViewClicked(v, this.getPosition(), Math.round(parent.getTop()));
-            }else{
-                itemListener.recyclerViewClicked(v, this.getPosition(), Math.round(parent.getTop())- confirmheight);
-            }
+            itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
         }
 
     }
