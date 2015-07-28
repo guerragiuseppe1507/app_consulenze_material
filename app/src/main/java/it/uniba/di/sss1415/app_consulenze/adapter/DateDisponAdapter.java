@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import app_consulenze_material.R;
+import it.uniba.di.sss1415.app_consulenze.activity.MainActivity;
 import it.uniba.di.sss1415.app_consulenze.istances.DateDispon;
 import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
@@ -23,14 +25,15 @@ public class DateDisponAdapter extends  RecyclerView.Adapter<DateDisponAdapter.D
     private ArrayList<DateDispon> items;
     private RecyclerViewClickListener itemListener;
     private int clickedPos;
-    private HashMap<String,String> hide = new HashMap<String,String>();
 
-    public DateDisponAdapter(Context context, ArrayList<DateDispon> items, RecyclerViewClickListener listener, int clickedPos,HashMap<String,String> hide) {
+    private Button btnSend;
+
+
+    public DateDisponAdapter(Context context, ArrayList<DateDispon> items, RecyclerViewClickListener listener, int clickedPos) {
         this.context = context;
         this.items = items;
         this.itemListener = listener;
         this.clickedPos=clickedPos;
-        this.hide = hide;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -54,7 +57,20 @@ public class DateDisponAdapter extends  RecyclerView.Adapter<DateDisponAdapter.D
 
         if(this.clickedPos == position){
             viewHolder.selectedDispon.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+
+            btnSend.setVisibility(View.VISIBLE);
+        } else {
+            btnSend.setVisibility(View.GONE);
         }
+
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                creaMessaggio(context.getString(R.string.newRequestSent));
+                ((MainActivity)context).displayView(3, false);
+
+            }
+        });
 
     }
 
@@ -87,6 +103,7 @@ public class DateDisponAdapter extends  RecyclerView.Adapter<DateDisponAdapter.D
             tvScore = (TextView) itemView.findViewById(R.id.tvScoreTDisp);
             selectedDispon = (TextView) itemView.findViewById(R.id.selectedDisponRequest);
             parent = (LinearLayout) itemView.findViewById(R.id.item_datedispon_parent);
+            btnSend = (Button) itemView.findViewById(R.id.new_request_send);
 
             itemView.setOnClickListener(this);
         }
@@ -96,5 +113,10 @@ public class DateDisponAdapter extends  RecyclerView.Adapter<DateDisponAdapter.D
             itemListener.recyclerViewClicked(v, this.getPosition(), Math.round(parent.getTop()));
         }
 
+    }
+
+    public void creaMessaggio(CharSequence message){
+        Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toastMessage.show();
     }
 }

@@ -22,11 +22,13 @@
             android:padding="5dp">
 
 
+
         <LinearLayout
             android:id="@+id/datedisponFirstRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,9 +83,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="12:00"/>
+
             </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/dateDisponThirdRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -131,7 +135,23 @@
                 android:text="11"
                 android:layout_marginLeft="10dp"/>
 
+
         </LinearLayout>
+
+
+
+            <Button
+                android:layout_below="@+id/dateDisponThirdRow"
+                android:textColor="@color/whiteText"
+                android:text="@string/send_request"
+                android:id="@+id/new_request_send"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="2.5dp"/>
+
         </RelativeLayout>
         <TextView
             android:layout_width="fill_parent"
