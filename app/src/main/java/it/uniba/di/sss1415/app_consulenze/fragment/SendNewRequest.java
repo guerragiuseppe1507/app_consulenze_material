@@ -59,8 +59,7 @@ public class SendNewRequest extends Fragment implements RecyclerViewClickListene
     private int clickedOffset;
 
     private HashMap<String,String> clickedPositions = new HashMap<String,String>();
-    private Button btnSend;
-    private LinearLayout confirmDialog;
+
 
 
     /**
@@ -129,11 +128,6 @@ public class SendNewRequest extends Fragment implements RecyclerViewClickListene
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_send_new_request, container, false);
 
-        confirmDialog = (LinearLayout) view.findViewById(R.id.newreq_confirm);
-        btnSend = (Button) view.findViewById(R.id.new_request_send);
-        confirmDialog.setBackgroundColor(getResources().getColor(R.color.transparent));
-        btnSend.setVisibility(View.INVISIBLE);
-
 
         layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -142,46 +136,30 @@ public class SendNewRequest extends Fragment implements RecyclerViewClickListene
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO chiamare  classe per inviare richiesta selezionata
-            }
-        });
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                creaMessaggio(getResources().getString(R.string.newRequestSent));
-                ((MainActivity)getActivity()).displayView(3, false);
-
-            }
-        });
 
         return view;
     }
 
 
     private void setRecycler(){
-        dispListAdapter = new DateDisponAdapter(getActivity(), disps, this,-1,clickedPositions);
+        dispListAdapter = new DateDisponAdapter(getActivity(), disps, this,-1);
         recyclerView.setAdapter(dispListAdapter);
     }
 
     @Override
     public void recyclerViewClicked(View v , int position, int offset){
 
-        btnSend.setVisibility(View.VISIBLE);
+        //final float scale = getResources().getDisplayMetrics().density;
+        //int padding_in_px = (int) (15 * scale + 0.5f);
+        //int padding_bot_px = (int) (7 * scale + 0.5f);
+        //recyclerView.setPadding(padding_in_px, 0, padding_in_px, confirmDialog.getHeight()+padding_bot_px);
+        //confirmDialog.setBackgroundColor(getResources().getColor(R.color.whiteText));
 
-        final float scale = getResources().getDisplayMetrics().density;
-        int padding_in_px = (int) (15 * scale + 0.5f);
-        int padding_bot_px = (int) (7 * scale + 0.5f);
-        recyclerView.setPadding(padding_in_px, 0, padding_in_px, confirmDialog.getHeight()+padding_bot_px);
-        confirmDialog.setBackgroundColor(getResources().getColor(R.color.whiteText));
-
-        this.clickedPosition = position;
-        this.clickedOffset = offset;
+       // this.clickedPosition = position;
+        //this.clickedOffset = offset;
 
         int mScrollPosition = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
-        dispListAdapter = new DateDisponAdapter(getActivity(), disps, this,position,clickedPositions);
+        dispListAdapter = new DateDisponAdapter(getActivity(), disps, this,position);
         recyclerView.setAdapter(dispListAdapter);
         layoutManager.scrollToPosition(mScrollPosition);
 

@@ -20,26 +20,6 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingBottom="7dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/newreq_confirm"
-        android:layout_alignParentBottom="true">
-
-    <Button
-        android:layout_gravity="center_vertical"
-        app:elevation="6dp"
-        app:borderWidth="0dp"
-        app:pressedTranslationZ="12dp"
-        android:textColor="@color/whiteText"
-        android:text="@string/send_request"
-        android:id="@+id/new_request_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="2.5dp"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/newReqSend"
@@ -56,5 +36,5 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="10dp"
         android:onClick="showRichiestaCustom" />
-    </LinearLayout>
+
 </RelativeLayout>
