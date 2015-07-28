@@ -27,7 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="@string/availabilityFor"/>
+                android:text="@string/availabilityFor"
+                android:layout_marginTop="10dp"/>
             <TextView
                 android:id="@+id/tvData"
                 android:layout_width="wrap_content"
@@ -107,6 +108,38 @@
                 android:layout_alignBaseline="@+id/tvFineRipetizioneLabel"
                 android:layout_toRightOf="@+id/tvFineRipetizioneLabel"
                 android:layout_marginLeft="15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/richieste_miedisp_confirm"
+            android:layout_below="@+id/tvFineRipetizioneLabel"
+            android:layout_marginTop="10dp">
+
+        <Button
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/whiteText"
+            android:text="@string/bottone_modifica_miaDisp"
+            android:id="@+id/bottone_modifica_miaDisp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="2.5dp"/>
+
+        <Button
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/whiteText"
+            android:text="@string/bottone_cancella_miaDisp"
+            android:id="@+id/bottone_cancella_miaDisp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="2.5dp" />
+
+        </LinearLayout>
         </RelativeLayout>
         <TextView
             android:layout_width="fill_parent"

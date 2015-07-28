@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,14 +33,17 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
     private ArrayList<MieDisp> items;
     private RecyclerViewClickListener itemListener;
     private int clickedPos;
-    private HashMap<String,String> hide = new HashMap<String,String>();
 
-    public DispListAdapter(Context context, ArrayList<MieDisp> items, RecyclerViewClickListener listener, int clickedPos,HashMap<String,String> hide) {
+
+    private Button btnEdit;
+    private Button btnDelete;
+    private LinearLayout layoutButtons;
+
+    public DispListAdapter(Context context, ArrayList<MieDisp> items, RecyclerViewClickListener listener, int clickedPos) {
         this.context = context;
         this.items = items;
         this.itemListener = listener;
         this.clickedPos=clickedPos;
-        this.hide = hide;
     }
 
     // Create new views (invoked by the layrout manage)
@@ -52,7 +56,7 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MieDispHolder viewHolder, int position) {
+    public void onBindViewHolder(final MieDispHolder viewHolder, final int position) {
         MieDisp disp = items.get(position);
         viewHolder.tvData.setText(disp.getData());
         viewHolder.tvOraInizio.setText(disp.getOraInizio());
@@ -81,14 +85,37 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
             final String intervento = disp.getIntervento();
             final String ripetizione = disp.getRipetizione();
             final String fineripetizione = disp.getFineRipetizione();
+
             UserSessionInfo.miaDispScelta = new MieDisp(id,data,orainizio,orafine,intervento,ripetizione,fineripetizione);
+
+            btnEdit.setVisibility(View.VISIBLE);
+            btnDelete.setVisibility(View.VISIBLE);
+
+        } else {
+
+            layoutButtons.setVisibility(View.GONE);
         }
 
-        if (hide.values().contains(Integer.toString(position))) {
-            viewHolder.item.setVisibility(View.GONE);
-            viewHolder.parent.setVisibility(View.GONE);
-            viewHolder.parent.setPadding(0, 0, 0, 0);
-        }
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                removeAt(position);
+                creaMessaggio(context.getResources().getString(R.string.availabilityDeleted));
+            }
+        });
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MieDisp m = UserSessionInfo.miaDispScelta;
+                ((MainActivity) context).setMiaDispScelta(m.getId(),
+                        m.getData(), m.getOraInizio(), m.getOraFine(),
+                        m.getIntervento(), m.getRipetizione(), m.getFineRipetizione());
+                ((MainActivity) context).showFragment("ModificaDisponibilitaFragment", false);
+            }
+        });
+
 
     }
 
@@ -125,6 +152,9 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
             tvRipetizioneLabel = (TextView) itemView.findViewById(R.id.tvRipetizioneLabel);
             tvFineRipetizioneLabel = (TextView) itemView.findViewById(R.id.tvFineRipetizioneLabel);
             selectedDispon = (TextView) itemView.findViewById(R.id.selectedDispon);
+            btnDelete = (Button) itemView.findViewById(R.id.bottone_cancella_miaDisp);
+            btnEdit = (Button) itemView.findViewById(R.id.bottone_modifica_miaDisp);
+            layoutButtons = (LinearLayout) itemView.findViewById(R.id.richieste_miedisp_confirm);
             item = (CardView) itemView.findViewById(R.id.item_miadisp);
             parent = (LinearLayout) itemView.findViewById(R.id.item_miadisp_parent);
 
@@ -136,6 +166,19 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
             itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
         }
 
+
+    }
+
+    public void removeAt(int position) {
+        items.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, items.size());
+    }
+
+    public void creaMessaggio(CharSequence message){
+
+        Toast toastMessage = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toastMessage.show();
     }
 
 }

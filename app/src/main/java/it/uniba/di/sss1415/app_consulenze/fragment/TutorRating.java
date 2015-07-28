@@ -25,8 +25,8 @@ import it.uniba.di.sss1415.app_consulenze.util.ToastMsgs;
 public class TutorRating extends DialogFragment {
 
 
-    int ha = 2;
-    int nt = 1;
+    int ha = +1;
+    int nt = 0;
     int sd = -1;
     int vote = 0;
 
