@@ -56,7 +56,7 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MieDispHolder viewHolder, int position) {
+    public void onBindViewHolder(final MieDispHolder viewHolder, final int position) {
         MieDisp disp = items.get(position);
         viewHolder.tvData.setText(disp.getData());
         viewHolder.tvOraInizio.setText(disp.getOraInizio());
@@ -100,7 +100,7 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
             @Override
             public void onClick(View v) {
 
-
+                removeAt(position);
                 creaMessaggio(context.getResources().getString(R.string.availabilityDeleted));
             }
         });
@@ -166,6 +166,13 @@ public class DispListAdapter extends  RecyclerView.Adapter<DispListAdapter.MieDi
             itemListener.recyclerViewClicked(v, this.getPosition(),Math.round(parent.getTop()));
         }
 
+
+    }
+
+    public void removeAt(int position) {
+        items.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, items.size());
     }
 
     public void creaMessaggio(CharSequence message){
