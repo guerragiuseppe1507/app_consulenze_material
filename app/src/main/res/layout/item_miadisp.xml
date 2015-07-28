@@ -27,8 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="@string/availabilityFor"
-                android:layout_marginTop="10dp"/>
+                android:text="@string/availabilityFor"/>
             <TextView
                 android:id="@+id/tvData"
                 android:layout_width="wrap_content"
