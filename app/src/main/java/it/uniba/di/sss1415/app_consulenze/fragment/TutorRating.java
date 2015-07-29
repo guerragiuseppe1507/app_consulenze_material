@@ -40,12 +40,10 @@ public class TutorRating extends DialogFragment {
     TextView addScore;
 
     ImageButton happy ;
-    ImageButton neutral ;
     ImageButton sad ;
 
     // selection vote image
     TextView happySel ;
-    TextView neutralSel;
     TextView sadSel;
     Boolean chosen = false;
     String timeout, voteSent,chooseOne;
@@ -133,18 +131,17 @@ public class TutorRating extends DialogFragment {
         Dialog d = builder.create();
 
         happy = (ImageButton) v.findViewById(R.id.imageButtonHappy);
-        neutral = (ImageButton) v.findViewById(R.id.imageButtonNeutral);
+
         sad = (ImageButton) v.findViewById(R.id.imageButtonSad);
 
         happySel = (TextView) v.findViewById(R.id.happyTV);
-        neutralSel = (TextView) v.findViewById(R.id.neutralTV);
         sadSel = (TextView) v.findViewById(R.id.sadTV);
 
         happySel.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-        neutralSel.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+
         sadSel.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         happySel.setVisibility(View.INVISIBLE);
-        neutralSel.setVisibility(View.INVISIBLE);
+
         sadSel.setVisibility(View.INVISIBLE);
 
         //recupero view
@@ -161,7 +158,7 @@ public class TutorRating extends DialogFragment {
             @Override
             public void onClick(View v) {
                 happySel.setVisibility(View.VISIBLE);
-                neutralSel.setVisibility(View.INVISIBLE);
+
                 sadSel.setVisibility(View.INVISIBLE);
 
                 addScore.setText("+" + Integer.toString(ha));
@@ -173,26 +170,13 @@ public class TutorRating extends DialogFragment {
             }
         });
 
-        neutral.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                happySel.setVisibility(View.INVISIBLE);
-                neutralSel.setVisibility(View.VISIBLE);
-                sadSel.setVisibility(View.INVISIBLE);
 
-                addScore.setText("+" + Integer.toString(nt));
-                addScore.setTextColor(getResources().getColor(R.color.colorAccent));
-                vote = Integer.parseInt(voto) + nt;
-                voto = Integer.toString(vote);
-                chosen = true;
-            }
-        });
 
         sad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 happySel.setVisibility(View.INVISIBLE);
-                neutralSel.setVisibility(View.INVISIBLE);
+
                 sadSel.setVisibility(View.VISIBLE);
 
                 addScore.setText(Integer.toString(sd));
