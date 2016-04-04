@@ -1,5 +1,9 @@
 package it.uniba.di.sss1415.app_consulenze.adapter;
 
+/**
+ * Version 1.0
+ */
+
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;

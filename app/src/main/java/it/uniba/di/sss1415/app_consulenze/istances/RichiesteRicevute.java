@@ -1,8 +1,11 @@
 package it.uniba.di.sss1415.app_consulenze.istances;
 
+
 /**
+ * Version 1.0
  * Created by Valerio on 17/07/2015.
  */
+
 public class RichiesteRicevute {
 
     private String data;

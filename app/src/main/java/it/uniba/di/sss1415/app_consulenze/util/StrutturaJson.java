@@ -1,8 +1,11 @@
 package it.uniba.di.sss1415.app_consulenze.util;
 
+
 /**
+ * Version 1.0
  * Created by Giuseppe on 04/06/2015.
  */
+
 public class StrutturaJson {
 
     public StrutturaJson (){}

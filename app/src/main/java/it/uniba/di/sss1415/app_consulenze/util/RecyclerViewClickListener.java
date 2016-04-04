@@ -1,5 +1,9 @@
 package it.uniba.di.sss1415.app_consulenze.util;
 
+/**
+ * Version 1.0
+ */
+
 import android.view.View;
 
 /**

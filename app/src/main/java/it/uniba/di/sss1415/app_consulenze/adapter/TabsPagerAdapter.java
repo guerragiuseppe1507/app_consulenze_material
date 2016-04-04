@@ -1,6 +1,7 @@
 package it.uniba.di.sss1415.app_consulenze.adapter;
 
 /**
+ * Version 1.0
  * Created by Valerio on 15/07/2015.
  */
 

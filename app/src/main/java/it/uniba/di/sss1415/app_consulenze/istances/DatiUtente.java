@@ -1,5 +1,9 @@
 package it.uniba.di.sss1415.app_consulenze.istances;
 
+/**
+ * Version 1.0
+ */
+
 import java.util.List;
 
 /**

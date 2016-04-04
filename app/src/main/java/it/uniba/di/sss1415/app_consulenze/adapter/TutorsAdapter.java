@@ -21,6 +21,7 @@ import it.uniba.di.sss1415.app_consulenze.istances.UserSessionInfo;
 import it.uniba.di.sss1415.app_consulenze.util.RecyclerViewClickListener;
 
 /**
+ * Version 1.0
  * Created by Pasen on 21/07/2015.
  */
 public class TutorsAdapter  extends  RecyclerView.Adapter<TutorsAdapter.TutorsHolder>  {

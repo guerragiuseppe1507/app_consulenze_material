@@ -11,9 +11,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
+
 /**
+ * Version 1.0
  * Created by Valerio on 13/07/2015.
  */
+
 public class UserSessionInfo {
 
     //Dichiarazione e instanziazione di un oggetto della classe Context

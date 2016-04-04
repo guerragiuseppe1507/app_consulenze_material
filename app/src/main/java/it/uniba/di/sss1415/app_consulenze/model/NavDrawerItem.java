@@ -1,5 +1,9 @@
 package it.uniba.di.sss1415.app_consulenze.model;
 
+/**
+ * Version 1.0
+ */
+
 
 public class NavDrawerItem {
     private boolean showNotify;
